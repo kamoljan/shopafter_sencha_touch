@@ -45,8 +45,63 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
                             labelWidth: '25%'
                         },
                         items: [
+//                            {
+//                                xtype: 'capturepicture'
+//                            },
                             {
-                                xtype: 'capturepicture'
+                                xtype: 'image',
+                                id: 'photo',
+                                name: 'photo',
+                                src: 'http://placehold.it/200x200',
+                                width: 200,
+                                height: 200,
+                                listeners: {
+                                    tap: function () {
+                                        function uploadPhoto(image_uri) {
+                                            var options = new FileUploadOptions();
+                                            options.file = 'file';
+                                            options.fileName = image_uri.substr(image_uri.lastIndexOf('/') + 1);
+                                            options.mimeType = "image/jpeg";
+                                            var ft = new FileTransfer();
+                                            ft.upload(
+                                                image_uri,
+                                                encodeURI('http://localhost:9999/upload'),
+                                                win,
+                                                fail,
+                                                options);
+                                            //var img = Ext.ComponentQuery.query('image')[0];
+                                            //img.setSrc(image_uri);
+                                        }
+
+                                        function win(r) {
+                                            console.log("Code = " + r.responseCode);
+                                            console.log("Response = " + r.response);
+                                            console.log("Sent = " + r.bytesSent);
+                                        }
+
+                                        function fail(error) {
+                                            alert("An error has occurred: Code = " + error.code);
+                                            console.log("upload error source " + error.source);
+                                            console.log("upload error target " + error.target);
+                                        }
+
+                                        navigator.camera.getPicture(
+                                            uploadPhoto,
+                                            function (message) {
+                                                alert('Failed: ' + message);
+                                            },
+                                            {
+                                                quality: 85,
+                                                destinationType: Camera.DestinationType.FILE_URI,
+                                                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                                                allowEdit: true,
+                                                encodingType: Camera.EncodingType.JPEG,
+                                                targetWidth: 400,
+                                                targetHeight: 400
+                                            }
+                                        )
+                                    }
+                                }
                             },
                             {
                                 xtype: 'selectfield',
@@ -132,16 +187,16 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
     _store: null,
     _itemTemplate: null,
 
-    initialize: function() {
+    initialize: function () {
         this.create();
     },
 
-    create: function() {
+    create: function () {
         this.removeAll(false);
         this.add(this.getHeaderBar());
     },
 
-    getHeaderBar: function() {
+    getHeaderBar: function () {
         if (!this._headerBar) {
             this._headerBar = Ext.create("Ext.Toolbar", {
                 xtype: "toolbar",
