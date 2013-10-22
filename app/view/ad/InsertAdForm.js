@@ -65,7 +65,7 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
                                             var ft = new FileTransfer();
                                             ft.upload(
                                                 image_uri,
-                                                encodeURI('http://localhost:9999/upload'),
+                                                encodeURI('http://shopafter.com:7777/upload'),
                                                 win,
                                                 fail,
                                                 options);
