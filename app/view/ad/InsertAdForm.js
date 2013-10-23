@@ -45,9 +45,6 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
                             labelWidth: '25%'
                         },
                         items: [
-//                            {
-//                                xtype: 'capturepicture'
-//                            },
                             {
                                 xtype: 'image',
                                 id: 'photo',
@@ -57,14 +54,39 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
                                 height: 200,
                                 listeners: {
                                     tap: function () {
-                                        function uploadPhoto(image_uri) {
-                                            var options = new FileUploadOptions();
-                                            options.file = 'file';
-                                            options.fileName = image_uri.substr(image_uri.lastIndexOf('/') + 1);
+                                        navigator.camera.getPicture(
+                                            function (imageURI) {
+                                                console.log(imageURI);
+                                                uploadPhoto(imageURI);
+                                            },
+                                            function (message) {
+                                                alert('Failed: ' + message);
+                                            },
+                                            {
+                                                quality: 85,
+                                                targetWidth: 200,
+                                                targetHeight: 200,
+                                                destinationType: Camera.DestinationType.FILE_URI,
+                                                encodingType: Camera.EncodingType.JPEG,
+                                                sourceType: Camera.PictureSourceType.CAMERA
+                                            }
+                                        )
+
+                                        function uploadPhoto(imageURI) {
+                                            var ft = new FileTransfer(),
+                                                options = new FileUploadOptions();
+                                            options.fileKey = 'file';
+                                            options.httpMethod = 'PUT';
+                                            options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+                                            alert("options.fileName = " + options.fileName);
                                             options.mimeType = "image/jpeg";
-                                            var ft = new FileTransfer();
+                                            //options.chunkedMode = false;
+
+                                            var params = {};
+                                            options.params = params;
+
                                             ft.upload(
-                                                image_uri,
+                                                imageURI,
                                                 encodeURI('http://shopafter.com:7777/upload'),
                                                 win,
                                                 fail,
@@ -81,25 +103,9 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
 
                                         function fail(error) {
                                             alert("An error has occurred: Code = " + error.code);
-                                            console.log("upload error source " + error.source);
-                                            console.log("upload error target " + error.target);
+                                            alert("upload error source " + error.source);
+                                            alert("upload error target " + error.target);
                                         }
-
-                                        navigator.camera.getPicture(
-                                            uploadPhoto,
-                                            function (message) {
-                                                alert('Failed: ' + message);
-                                            },
-                                            {
-                                                quality: 85,
-                                                destinationType: Camera.DestinationType.FILE_URI,
-                                                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-                                                allowEdit: true,
-                                                encodingType: Camera.EncodingType.JPEG,
-                                                targetWidth: 400,
-                                                targetHeight: 400
-                                            }
-                                        )
                                     }
                                 }
                             },
