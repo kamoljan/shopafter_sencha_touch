@@ -4,7 +4,85 @@ Ext.define('ShopAfter.controller.InsertAdForm', {
         control: {
             '#saveAdForm': {
                 tap: 'validateAdForm'
+            },
+            '#adphoto': {
+                tap: 'uploadPhoto'
             }
+        }
+    },
+
+    uploadPhoto: function () {
+        var s3Uploader = (function () {
+            var signingURI = "http://shopafter:3000/signing";
+
+            function upload(imageURI, fileName) {
+                var deferred = $.Deferred(),
+                    ft = new FileTransfer(),
+                    options = new FileUploadOptions();
+                options.fileKey = "file";
+                options.fileName = fileName;
+                options.mimeType = "image/jpeg";
+                options.chunkedMode = false;
+                $.ajax({url: signingURI, data: {"fileName": fileName}, dataType: "json", type: "POST"})
+                    .done(function (data) {
+                        options.params = {
+                            "key": fileName,
+                            "AWSAccessKeyId": data.awsKey,
+                            "acl": "public-read",
+                            "policy": data.policy,
+                            "signature": data.signature,
+                            "Content-Type": "image/jpeg"
+                        };
+                        ft.upload(imageURI, "https://" + data.bucket + ".s3.amazonaws.com/",
+                            function (e) {
+                                deferred.resolve(e);
+                            },
+                            function (e) {
+                                alert("Upload failed");
+                                deferred.reject(e);
+                            }, options);
+                    })
+                    .fail(function (error) {
+                        console.log(JSON.stringify(error));
+                    });
+                return deferred.promise();
+            }
+
+            return {
+                upload: upload
+            }
+        }());
+
+        navigator.camera.getPicture(
+            function (imageURI) {
+                console.log(imageURI);
+                uploadPhoto(imageURI);
+            },
+            function (message) {
+                alert('Failed: ' + message);
+            },
+            {
+                quality: 85,
+                targetWidth: 200,
+                targetHeight: 200,
+                destinationType: Camera.DestinationType.FILE_URI,
+                encodingType: Camera.EncodingType.JPEG,
+                sourceType: Camera.PictureSourceType.CAMERA
+            }
+        )
+
+        function uploadPhoto(imageURI) {
+            var img = Ext.ComponentQuery.query('image')[0];
+            img.setSrc(image_uri);
+
+            var fileName = "" + (new Date()).getTime() + ".jpg"; // consider a more reliable way to generate unique ids
+            s3Uploader.upload(imageURI, fileName)
+                .done(function () {
+                    alert("S3 upload succeeded");
+                })
+                .fail(function () {
+                    alert("S3 upload failed");
+                });
         }
     },
 

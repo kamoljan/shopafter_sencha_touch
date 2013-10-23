@@ -47,67 +47,11 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
                         items: [
                             {
                                 xtype: 'image',
-                                id: 'photo',
-                                name: 'photo',
+                                id: 'adphoto',
+                                name: 'adphoto',
                                 src: 'http://placehold.it/200x200',
                                 width: 200,
-                                height: 200,
-                                listeners: {
-                                    tap: function () {
-                                        navigator.camera.getPicture(
-                                            function (imageURI) {
-                                                console.log(imageURI);
-                                                uploadPhoto(imageURI);
-                                            },
-                                            function (message) {
-                                                alert('Failed: ' + message);
-                                            },
-                                            {
-                                                quality: 85,
-                                                targetWidth: 200,
-                                                targetHeight: 200,
-                                                destinationType: Camera.DestinationType.FILE_URI,
-                                                encodingType: Camera.EncodingType.JPEG,
-                                                sourceType: Camera.PictureSourceType.CAMERA
-                                            }
-                                        )
-
-                                        function uploadPhoto(imageURI) {
-                                            var ft = new FileTransfer(),
-                                                options = new FileUploadOptions();
-                                            options.fileKey = 'file';
-                                            options.httpMethod = 'PUT';
-                                            options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-                                            alert("options.fileName = " + options.fileName);
-                                            options.mimeType = "image/jpeg";
-                                            //options.chunkedMode = false;
-
-                                            var params = {};
-                                            options.params = params;
-
-                                            ft.upload(
-                                                imageURI,
-                                                encodeURI('http://shopafter.com:7777/upload'),
-                                                win,
-                                                fail,
-                                                options);
-                                            //var img = Ext.ComponentQuery.query('image')[0];
-                                            //img.setSrc(image_uri);
-                                        }
-
-                                        function win(r) {
-                                            console.log("Code = " + r.responseCode);
-                                            console.log("Response = " + r.response);
-                                            console.log("Sent = " + r.bytesSent);
-                                        }
-
-                                        function fail(error) {
-                                            alert("An error has occurred: Code = " + error.code);
-                                            alert("upload error source " + error.source);
-                                            alert("upload error target " + error.target);
-                                        }
-                                    }
-                                }
+                                height: 200
                             },
                             {
                                 xtype: 'selectfield',
