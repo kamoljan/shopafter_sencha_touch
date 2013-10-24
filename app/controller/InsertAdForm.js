@@ -6,65 +6,25 @@ Ext.define('ShopAfter.controller.InsertAdForm', {
                 tap: 'validateAdForm'
             },
             '#adphoto': {
-                tap: 'uploadPhoto'
+                tap: 'tabPhoto'
             }
         }
     },
 
-    uploadPhoto: function () {
-        var s3Uploader = (function () {
-            var signingURI = "http://shopafter:3000/signing";
-
-            function upload(imageURI, fileName) {
-                var deferred = $.Deferred(),
-                    ft = new FileTransfer(),
-                    options = new FileUploadOptions();
-                options.fileKey = "file";
-                options.fileName = fileName;
-                options.mimeType = "image/jpeg";
-                options.chunkedMode = false;
-                $.ajax({url: signingURI, data: {"fileName": fileName}, dataType: "json", type: "POST"})
-                    .done(function (data) {
-                        options.params = {
-                            "key": fileName,
-                            "AWSAccessKeyId": data.awsKey,
-                            "acl": "public-read",
-                            "policy": data.policy,
-                            "signature": data.signature,
-                            "Content-Type": "image/jpeg"
-                        };
-                        ft.upload(imageURI, "https://" + data.bucket + ".s3.amazonaws.com/",
-                            function (e) {
-                                deferred.resolve(e);
-                            },
-                            function (e) {
-                                alert("Upload failed");
-                                deferred.reject(e);
-                            }, options);
-                    })
-                    .fail(function (error) {
-                        console.log(JSON.stringify(error));
-                    });
-                return deferred.promise();
-            }
-
-            return {
-                upload: upload
-            }
-        }());
-
+    tabPhoto: function () {
+        console.log('controller.Ads uploadPhoto');
         navigator.camera.getPicture(
             function (imageURI) {
-                console.log(imageURI);
+                alert("imageURI = " + imageURI);
                 uploadPhoto(imageURI);
             },
             function (message) {
                 alert('Failed: ' + message);
             },
             {
-                quality: 85,
-                targetWidth: 200,
-                targetHeight: 200,
+                quality: 100,
+                targetWidth: 300,
+                targetHeight: 300,
                 destinationType: Camera.DestinationType.FILE_URI,
                 encodingType: Camera.EncodingType.JPEG,
                 sourceType: Camera.PictureSourceType.CAMERA
@@ -73,16 +33,54 @@ Ext.define('ShopAfter.controller.InsertAdForm', {
 
         function uploadPhoto(imageURI) {
             var img = Ext.ComponentQuery.query('image')[0];
-            img.setSrc(image_uri);
+            img.setSrc(imageURI);
 
-            var fileName = "" + (new Date()).getTime() + ".jpg"; // consider a more reliable way to generate unique ids
-            s3Uploader.upload(imageURI, fileName)
-                .done(function () {
-                    alert("S3 upload succeeded");
-                })
-                .fail(function () {
-                    alert("S3 upload failed");
-                });
+            // consider a more reliable way to generate unique ids
+            var fileName = "" + (new Date()).getTime() + ".jpg";
+
+            var ft = new FileTransfer(),
+                op = new FileUploadOptions();
+            op.fileKey = "file";
+            op.fileName = fileName;
+            op.mimeType = "image/jpeg";
+            op.chunkedMode = false;
+            op.httpMethod = "POST";
+            Ext.Ajax.request({
+                url: 'http://shopafter.com:3000/signing',
+                scope: this,  // need this to be able access the controller scope
+                method: 'POST',
+                params: {
+                    "fileName": fileName
+                },
+                success: function (response, opts) {
+                    var obj = Ext.decode(response.responseText);
+                    var params = {
+                        "key": fileName,
+                        "AWSAccessKeyId": obj.awsKey,
+                        "acl": "public-read",
+                        "policy": obj.policy,
+                        "signature": obj.signature,
+                        "Content-Type": "image/jpeg"
+                    };
+                    op.params = params;
+                    var aws_url = encodeURI("http://" + obj.bucket + ".s3.amazonaws.com/");
+                    ft.upload(imageURI, aws_url, win, fail, op);
+                    function win(r) {
+                        console.log("r = " + JSON.stringify(r));
+                        console.log("Code = " + r.responseCode);
+                        console.log("Response = " + r.response);
+                        console.log("Sent = " + r.bytesSent);
+                    }
+
+                    function fail(error) {
+                        alert("Error = " + JSON.stringify(error));
+                    }
+                },
+                failure: function (response, opts) {
+                    console.log('server-side failure with status code ' + response.status);
+                    alert('server-side failure with status code ' + response.status);
+                }
+            });
         }
     },
 
@@ -170,4 +168,5 @@ Ext.define('ShopAfter.controller.InsertAdForm', {
         geo.updateLocation();
     }
 
-});
+})
+;
