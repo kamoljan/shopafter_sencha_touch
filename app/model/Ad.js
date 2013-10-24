@@ -3,7 +3,7 @@ Ext.define('ShopAfter.model.Ad', {
 
     config: {
         fields: [
-            { name: "profileId", type: "int" },
+//            { name: "profileId", type: "int" },
             { name: "image", type: "string" },
             { name: "thumb", type: "string" },
             { name: "Number", type: "int" },
@@ -37,17 +37,3 @@ Ext.define('ShopAfter.model.Ad', {
         ]
     }
 });
-
-/*
- fields: [
- { name: "id", type: "string"},
- { name: "title", type: "string" },
- { name: "synopsis", type: "string" },
- { name: "year", type: "int" },
- { name: "mpaa_rating", type: "string" },
- { name: "runtime", type: "int" },
- { name: "posters"},
- { name: "abridged_cast"},
- { name: "ratings"}
- ]
- */

@@ -121,8 +121,7 @@ Ext.define('ShopAfter.controller.InsertAdForm', {
                 var f = errorObj.getField();
                 var s = Ext.String.format('field[name={0}]', f);
                 //FIXME: need validation for category_id
-                console.log('controller.Ads s = %s', s);
-                console.log('controller.Ads f = %s', f);
+                alert('controller.Ads s = %s, f = %f', s, f);
                 if (f !== 'image') {
                     form.down(s).addCls('invalidField');
                 }
@@ -143,6 +142,7 @@ Ext.define('ShopAfter.controller.InsertAdForm', {
     },
 
     postAd: function (lat, lon) {
+        alert('controller.Ads postAd');
         var form = Ext.getCmp('insertadform'),
             values = form.getValues();
         Ext.Ajax.request({
@@ -170,7 +170,7 @@ Ext.define('ShopAfter.controller.InsertAdForm', {
     },
 
     getLocation: function () {
-        console.log('controller.Ads updateLocation');
+        alert('controller.Ads updateLocation');
         var geo = Ext.create('Ext.util.Geolocation', {
             autoUpdate: false,
             listeners: {
