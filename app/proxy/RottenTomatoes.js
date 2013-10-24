@@ -4,12 +4,13 @@ Ext.define('ShopAfter.proxy.RottenTomatoes', {
 
     config: {
         type: 'ajax',
-        url: "http://shopafter.com:9999/",
+        url: "http://shopafter.com:3000/",
         reader: {
             type: "json",
             rootProperty: "ads"
         },
-        service: "ads.json"  //FIXME: remove it
+//        service: "ads.json"  //FIXME: remove it
+        service: "ad"  //FIXME: remove it
     },
     getUrl: function() {
         return this._url + this.getService();
