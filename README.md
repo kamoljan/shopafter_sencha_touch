@@ -1,18 +1,29 @@
-shopafter
-=========
+# ShopAfter - Native Apps
 
 ST 2.3, CMD 4 w/ PhoneGap enabled
 
-Lauch Web app (http://localhost:1841/)
---------------------------------------
-    
+## Prerequisites
+
+### Server Side
+* In `server-side` run
+
+    node server.js
+
+* Login into mongodb by `mongo` command and run
+
+    db.addUser( { user: "admin", pwd: "12345678", roles: ["readWrite", "dbAdmin"] } )
+
+## Launch Web app (http://localhost:1841/)
+
     sencha web start
     
-Laouch Android app
-------------------
+## Launch Android app
 
     sencha app build -run native
     
-Scane the qrcode.
+Scan the qrcode or install into your local emulator/device
+
+    adb uninstall com.shopafter.ShopAfter; sencha app build native; adb install ./phonegap/platforms/android/bin/ShopAfter-debug.apk
+
 
 
