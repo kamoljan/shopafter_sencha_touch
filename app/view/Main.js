@@ -17,7 +17,8 @@ Ext.define('ShopAfter.view.Main', {
                 title: 'Latest Ads',
                 menu: "opening",
                 xtype: 'adslistview',
-                autoLoad: true,
+                autoLoad: false,
+                enablePaging: true,
                 proxy: {
                     service: "ad/"
                 }
@@ -44,7 +45,6 @@ Ext.define('ShopAfter.view.Main', {
                 xtype: 'adsearch'
             },
             {
-//                title: 'Sell it!',
                 menu: "insert",
                 xtype: 'insertadform'
             }
