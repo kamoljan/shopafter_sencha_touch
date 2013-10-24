@@ -57,16 +57,17 @@ Ext.application({
                     iconCls: 'time',
                     menu: "opening"
                 },
-                {
-                    text: 'Nearest',
-                    iconCls: 'locate',
-                    menu: "theatres"
-                },
-                {
-                    text: 'Popular',
-                    iconCls: 'team',
-                    menu: "upcoming"
-                },
+                // TODO: Geolocation, disabled for now
+//                {
+//                    text: 'Nearest',
+//                    iconCls: 'locate',
+//                    menu: "theatres"
+//                },
+//                {
+//                    text: 'Popular',
+//                    iconCls: 'team',
+//                    menu: "upcoming"
+//                },
                 {
                     text: 'Search',
                     iconCls: 'search',

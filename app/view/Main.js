@@ -22,23 +22,23 @@ Ext.define('ShopAfter.view.Main', {
                     service: "ad/"
                 }
             },
-            {
-                title: 'Nearest Ads',
-                menu: "theatres",
-                xtype: 'adslistview',
-                enablePaging: true,
-                proxy: {
-                    service: "ad/"
-                }
-            },
-            {
-                title: 'Latest Ads',
-                menu: "upcoming",
-                xtype: 'adslistview',
-                proxy: {
-                    service: "ad/"
-                }
-            },
+//            {
+//                title: 'Nearest Ads',
+//                menu: "theatres",
+//                xtype: 'adslistview',
+//                enablePaging: true,
+//                proxy: {
+//                    service: "ad/"
+//                }
+//            },
+//            {
+//                title: 'Latest Ads',
+//                menu: "upcoming",
+//                xtype: 'adslistview',
+//                proxy: {
+//                    service: "ad/"
+//                }
+//            },
             {
                 menu: "search",
                 xtype: 'adsearch'
