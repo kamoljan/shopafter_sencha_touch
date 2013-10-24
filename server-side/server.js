@@ -16,8 +16,11 @@ app.use(express.bodyParser());
 app.use(app.router);
 
 // FIXME: SECURE THIS ENDPOINT WITH APPROPRIATE AUTHENTICATION/AUTHORIZATION MECHANISM
-app.post('/signing', sign.signing);
+app.post('/sign', sign.signing);
 app.post('/ad', ad.posting);
+app.get('/ad', ad.searching);
+app.options('/ad', ad.searching);
+app.get('/ad/:id', ad.viewing);
 
 app.listen(3000, function () {
     console.log('Server listening on port 3000');
