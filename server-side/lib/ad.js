@@ -38,11 +38,15 @@ exports.posting = function (req, res, next) {
 exports.searching = function (req, res, next) {
     console.log("(ad): searching");
 
+    // FIXME: remove in production
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
     // pagination
     var page = req.query.page || 1;
     var limit = req.query.limit || 10;
     // filter
-    var q = new RegExp(req.query.q, 'i');  // 'i' makes it case insensitive
+    var filter = new RegExp(req.query.filter, 'i');  // 'i' makes it case insensitive
     var category = req.query.category || 0;
 
     var query = {};
@@ -54,11 +58,11 @@ exports.searching = function (req, res, next) {
 
     console.log('server page is = ' + page);
     console.log('server limit is = ' + limit);
-    console.log('server q is = ' + q);
+    console.log('server filter is = ' + filter);
     console.log('server category is = ' + category);
 
-    if (q) {
-        query['description'] = q;
+    if (filter) {
+        query['description'] = filter;
     }
     if (category !== 0) {
         query['category'] = category;
