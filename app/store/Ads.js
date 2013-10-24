@@ -10,6 +10,5 @@ Ext.define('ShopAfter.store.Ads', {
             type: 'ajax',
             url: 'ad'
         }
-
     }
 });

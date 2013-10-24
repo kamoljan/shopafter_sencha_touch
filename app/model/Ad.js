@@ -1,12 +1,10 @@
 Ext.define('ShopAfter.model.Ad', {
     extend: 'Ext.data.Model',
-
     config: {
         fields: [
-//            { name: "profileId", type: "int" },
             { name: "image", type: "string" },
             { name: "thumb", type: "string" },
-            { name: "Number", type: "int" },
+            { name: "Number", type: "int" },  // FIXME: some weirdo
             { name: "description", type: "string" },
             { name: "price", type: "int" },
             { name: "phone", type: "string" },
@@ -14,11 +12,6 @@ Ext.define('ShopAfter.model.Ad', {
             { name: "date" }
         ],
         validations: [
-//            {
-//                type: 'presence',
-//                field: 'category',
-//                message: 'The right category helps people find your item faster'
-//            },
             {
                 type: 'presence',
                 field: 'description',

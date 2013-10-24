@@ -1,7 +1,7 @@
 Ext.define("ShopAfter.components.MenuButton", {
     extend: "Ext.Button",
-    xtype:"menubutton",
+    xtype: "menubutton",
     config: {
-        menu:null
+        menu: null
     }
 });

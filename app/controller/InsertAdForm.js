@@ -78,7 +78,7 @@ Ext.define('ShopAfter.controller.InsertAdForm', {
                     ft.upload(imageURI, aws_url, win, fail, op);
                     function win(r) {
                         if (r.responseCode === 204) {
-                            fn.set_name(aws_url + fileName);
+                            fn.set_name(fileName);
                         } else {
                             fn.set_name("");
                         }

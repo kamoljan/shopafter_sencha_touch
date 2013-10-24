@@ -11,9 +11,7 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
         'Ext.plugin.ListPaging',
         // Insert Ad
         'Ext.MessageBox',
-        'Ext.data.JsonP',
         'Ext.data.Errors',
-        'Ext.device.Camera',
         'ShopAfter.proxy.RottenTomatoes',
         'ShopAfter.model.Ad'
     ],
