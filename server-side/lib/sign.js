@@ -1,6 +1,7 @@
 var crypto = require('crypto');
 
 exports.signing = function (req, res, next) {
+    console.log("(sign): signing");
     var fileName = req.body.fileName,
         expiration = new Date(new Date().getTime() + 1000 * 60 * 5).toISOString(),  // 5 min
         policy =

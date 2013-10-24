@@ -37,6 +37,7 @@ mongoose.Model.paginate = function (q, pageNumber, resultsPerPage, callback) {
 
 Ad = mongoose.model('Ad', new mongoose.Schema({
     profileId: Number,  // Facebook profile ID
+    name: String,
     image: String,
     thumb: String,
     category: Number,
@@ -47,4 +48,4 @@ Ad = mongoose.model('Ad', new mongoose.Schema({
     date: Date
 }));
 
-mongoose.connect(config.mongoDb);
+mongoose.connect(conf.db.mongoDb);
