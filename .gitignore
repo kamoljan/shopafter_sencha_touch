@@ -1,6 +1,9 @@
 .idea
 .DS_Store
 public/resources/scss/.sass-cache/
+build/
+phonegap/platforms/
+phonegap/www/
 .sass-cache
 node_modules
 *.css
