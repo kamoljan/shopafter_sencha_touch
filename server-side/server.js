@@ -5,12 +5,12 @@ var express = require('express'),
     app = express();
 
 var aws = {
-        "accessKeyId": "AKIAJVYDZS3ZM5UT4V4A",
-        "secretAccessKey": "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",
+        "accessKeyId": "AKIAJKZ3C6AHMVUUMXMQ",
+        "secretAccessKey": "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",
         "region": "ap-southeast-1",
-        "s3_bucket": "img.shopafter.com",
+        "s3_bucket": "android.shopafter.com",
         "sslEnabled": false
-    };
+};
 
 app.use(express.logger("dev"));
 app.use(express.methodOverride());
@@ -46,7 +46,11 @@ function sign(req, res, next) {
         signature: signature
     });
 
-    console.log(JSON.stringify(res));
+    console.log('aws.region = ' + aws.region);
+    console.log('aws.s3_bucket = ' + aws.s3_bucket);
+    console.log('aws.accessKeyId = ' + aws.accessKeyId);
+    console.log('policyBase64 = ' + policyBase64);
+    console.log('signature = ' + signature);
 }
 
 // FIXME: SECURE THIS ENDPOINT WITH APPROPRIATE AUTHENTICATION/AUTHORIZATION MECHANISM
@@ -55,18 +59,3 @@ app.post('/signing', sign);
 app.listen(3000, function () {
     console.log('Server listening on port 3000');
 });
-
-
-//// Global includes
-//config = require('./config').config;
-//require('./lib/database');
-//
-////console.log(config);
-//
-//AWS.config.update({
-//    accessKeyId: config.aws.accessKeyId,  //accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-//    secretAccessKey: config.aws.secretAccessKey,  //secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-//    region: config.aws.region,  //region: process.env.AWS_REGION
-//    sslEnabled: config.aws.sslEnabled
-//});
-//
