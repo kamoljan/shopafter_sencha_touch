@@ -27,7 +27,6 @@ Ext.define('ShopAfter.controller.InsertAdForm', {
     tabPhoto: function () {
         navigator.camera.getPicture(
             function (imageURI) {
-                alert("imageURI = " + imageURI);
                 uploadPhoto(imageURI);
             },
             function (message) {
@@ -58,7 +57,7 @@ Ext.define('ShopAfter.controller.InsertAdForm', {
             op.chunkedMode = false;
             op.httpMethod = "POST";
             Ext.Ajax.request({
-                url: 'http://shopafter.com:3000/signing',
+                url: 'http://shopafter.com:3000/sign',
                 scope: this,  // need this to be able access the controller scope
                 method: 'POST',
                 params: {
@@ -78,9 +77,8 @@ Ext.define('ShopAfter.controller.InsertAdForm', {
                     var aws_url = encodeURI("http://" + obj.bucket + ".s3.amazonaws.com/");
                     ft.upload(imageURI, aws_url, win, fail, op);
                     function win(r) {
-                        //alert("r = " + JSON.stringify(r));
                         if (r.responseCode === 204) {
-                            fn.set_name(fileName);
+                            fn.set_name(aws_url + fileName);
                         } else {
                             fn.set_name("");
                         }
@@ -120,7 +118,6 @@ Ext.define('ShopAfter.controller.InsertAdForm', {
                 var f = errorObj.getField();
                 var s = Ext.String.format('field[name={0}]', f);
                 //FIXME: need validation for category_id
-                //alert('controller.Ads s = %s, f = %f', s, f);
                 if (f !== 'image') {
                     form.down(s).addCls('invalidField');
                 }
@@ -132,7 +129,7 @@ Ext.define('ShopAfter.controller.InsertAdForm', {
             xtype: 'loadmask',
             message: 'Posting your ad ...'
         });
-        // FIXME: disabled for now
+        // TODO: Geolocation, disabled for now
         this.postAd(1.3427427, 103.8479989);
         return true;
     },
