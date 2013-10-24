@@ -15,8 +15,7 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
         'Ext.data.Errors',
         'Ext.device.Camera',
         'ShopAfter.proxy.RottenTomatoes',
-        'ShopAfter.model.Ad',
-        'ShopAfter.view.ad.CapturePicture'
+        'ShopAfter.model.Ad'
     ],
     config: {
         layout: "vbox",

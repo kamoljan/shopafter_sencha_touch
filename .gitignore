@@ -5,6 +5,7 @@ build/
 phonegap/platforms/
 phonegap/www/
 .sass-cache
+bootstrap.js
 node_modules
 *.css
 *.log

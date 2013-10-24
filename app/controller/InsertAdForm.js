@@ -1,3 +1,16 @@
+var fN = function () {
+    var name = '';
+    return {
+        set_name: function (p) {
+            name = p;
+        },
+        get_name: function () {
+            return name;
+        }
+    };
+};
+var fn = fN();
+
 Ext.define('ShopAfter.controller.InsertAdForm', {
     extend: 'Ext.app.Controller',
     config: {
@@ -66,7 +79,14 @@ Ext.define('ShopAfter.controller.InsertAdForm', {
                     var aws_url = encodeURI("http://" + obj.bucket + ".s3.amazonaws.com/");
                     ft.upload(imageURI, aws_url, win, fail, op);
                     function win(r) {
-                        console.log("r = " + JSON.stringify(r));
+                        alert("r = " + JSON.stringify(r));
+                        if (r.responseCode === 204) {
+                            alert("true r.responseCode = " + r.responseCode);
+                            fn.set_name(fileName);
+                        } else {
+                            alert("S3 returned not 204");
+                            fn.set_name("");
+                        }
                         console.log("Code = " + r.responseCode);
                         console.log("Response = " + r.response);
                         console.log("Sent = " + r.bytesSent);
@@ -74,6 +94,7 @@ Ext.define('ShopAfter.controller.InsertAdForm', {
 
                     function fail(error) {
                         alert("Error = " + JSON.stringify(error));
+                        fn.set_name("");
                     }
                 },
                 failure: function (response, opts) {
@@ -109,6 +130,10 @@ Ext.define('ShopAfter.controller.InsertAdForm', {
             alert(errorString);
             return false;
         }
+        if (fn.get_name() === "") {
+            alert('The pictures help you sell better, please upload them now!');
+            return false;
+        }
         Ext.getCmp('insertadform').setMasked({
             xtype: 'loadmask',
             message: 'Posting your ad ...'
@@ -119,14 +144,13 @@ Ext.define('ShopAfter.controller.InsertAdForm', {
 
     postAd: function (lat, lon) {
         var form = Ext.getCmp('insertadform'),
-            capture = form.down('capturepicture'),
             values = form.getValues();
         Ext.Ajax.request({
-            url: '/ad',
+            url: 'http://shopafter.com:3000/ad',
             scope: this,  //need this to be able access the controller scope
             method: 'POST',
             params: {
-                image: capture.getImageDataUrl(),
+                image: fn.get_name(),
                 category: values.category,
                 description: values.description,
                 price: values.price,
