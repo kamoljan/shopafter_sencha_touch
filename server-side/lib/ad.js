@@ -9,7 +9,7 @@ exports.posting = function (req, res, next) {
             console.log("(ad): async.waterfall started");
             console.log("(ad): req.body = " + JSON.stringify(req.body));
             // Construct a new Ad using the post data
-            var img = "http://" + conf.aws.s3_bucket + ".s3.amazonaws.com/" + req.body.photo;
+            var img = "http://" + conf.aws.s3_bucket + ".s3.amazonaws.com/" + req.body.image;
             console.log("(ad): img = " + img);
             var ad = new Ad({
                 image: img,
