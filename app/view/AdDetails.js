@@ -24,19 +24,19 @@ Ext.define('ShopAfter.view.AdDetails', {
         }
     },
 
-    initialize: function() {
+    initialize: function () {
         var me = this;
-        this.element.on("swipe", function(e) {
+        this.element.on("swipe", function (e) {
             me.fireEvent("swipe", me, e);
         })
     },
 
-    updateRecord: function() {
+    updateRecord: function () {
         this.removeAll(false);
         this.createView();
     },
 
-    createView: function() {
+    createView: function () {
         var record = this.getRecord();
         if (record) {
             var header = this.getHeader(),
@@ -49,14 +49,10 @@ Ext.define('ShopAfter.view.AdDetails', {
 
             this.add(this.getCloseButton());
             this.add(header);
-
-            if (content.getHtml().length > 0) {
-                this.add(content);
-            }
         }
     },
 
-    getHeader: function() {
+    getHeader: function () {
         if (!this._header) {
             this._header = Ext.create("Ext.Container", {
                 layout: "vbox"
@@ -65,7 +61,7 @@ Ext.define('ShopAfter.view.AdDetails', {
         return this._header;
     },
 
-    getContent: function() {
+    getContent: function () {
         if (!this._content) {
             this._content = Ext.create("Ext.Container", {
                 scrollable: true,
@@ -76,34 +72,27 @@ Ext.define('ShopAfter.view.AdDetails', {
         return this._content;
     },
 
-    getHeaderTemplate: function() {
+    getHeaderTemplate: function () {
         if (!this._headerTemplate) {
             this._headerTemplate = new Ext.XTemplate(
-                
+
                 '<div class="img" style="background-image: url({image}); background-repeat: no-repeat;"></div>',
                 '<div class="info">',
-                    '<div class="fbProfilePic"><img src="https://graph.facebook.com/{profileId}/picture?type=square" /></div>',
-                    '<span class="userName">&nbsp;</span>',
-                    '<div class="adDetailData">Posted at: {date}</div>',
-                    
-                    '<div class="vbox vbox-isk">',
-                        '<div class="adDetailPrice">${price}</div>',
-                        '<p class="adDetailPhone"><a href="tel:+{phone}">{phone}</a></p>',
-                        '<div class="adDetailDesc"><span></span>{description}</div>',
-                    '</div>',
+                '<div class="fbProfilePic"><img src="https://graph.facebook.com/{profileId}/picture?type=square" /></div>',
+                '<span class="userName">&nbsp;</span>',
+                '<div class="adDetailData">Posted at: {date}</div>',
+
+                '<div class="vbox vbox-isk">',
+                '<div class="adDetailPrice">${price}</div>',
+                '<p class="adDetailPhone"><a href="tel:+{phone}">{phone}</a></p>',
+                '<div class="adDetailDesc"><span></span>{description}</div>',
                 '</div>',
-                '<tpl if="abridged_cast.length &gt; 0">',
-                    '<ul class="cast">',
-                        '<tpl for="abridged_cast">',
-                        '<li>{name}</li>',
-                        '</tpl>',
-                    '</ul>',
-                '</tpl>'
+                '</div>'
             )
         }
         return this._headerTemplate;
     },
-    getCloseButton: function() {
+    getCloseButton: function () {
         if (!this._closeButton) {
             this._closeButton = Ext.create('Ext.Button', {
                 text: "Back",
