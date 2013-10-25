@@ -79,14 +79,17 @@ Ext.define('ShopAfter.view.AdDetails', {
     getHeaderTemplate: function() {
         if (!this._headerTemplate) {
             this._headerTemplate = new Ext.XTemplate(
-                '<div class="title">{date}</div>',
+                
                 '<div class="img" style="background-image: url({image}); background-repeat: no-repeat;"></div>',
                 '<div class="info">',
                     '<div class="fbProfilePic"><img src="https://graph.facebook.com/{profileId}/picture?type=square" /></div>',
-                    '<div class="rating">{description}</div>',
+                    '<span class="userName">&nbsp;</span>',
+                    '<div class="adDetailData">Posted at: {date}</div>',
+                    
                     '<div class="vbox vbox-isk">',
-                        '<div class="year">price: {price}</div>',
-                        '<p>Phone number: <a href="tel:+{phone}">{phone}</a></p>',
+                        '<div class="adDetailPrice">${price}</div>',
+                        '<p class="adDetailPhone"><a href="tel:+{phone}">{phone}</a></p>',
+                        '<div class="adDetailDesc"><span></span>{description}</div>',
                     '</div>',
                 '</div>',
                 '<tpl if="abridged_cast.length &gt; 0">',
@@ -103,7 +106,7 @@ Ext.define('ShopAfter.view.AdDetails', {
     getCloseButton: function() {
         if (!this._closeButton) {
             this._closeButton = Ext.create('Ext.Button', {
-                text: "close",
+                text: "Back",
                 action: "close"
             })
         }

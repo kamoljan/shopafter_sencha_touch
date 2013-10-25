@@ -1,6 +1,8 @@
 @import "compass/css3";
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700);
 
+$icon-sprite-detail:"../images/spriteD.png";
+
 $base-color: white;
 $base-gradient: flat;
 $toolbar-base-color: white;
@@ -15,6 +17,8 @@ $font-family: 'Roboto';
 @import "media-queries";
 @import "sencha";
 
+//@import 'sencha-touch/base';
+//@import 'sencha-touch/base/all';
 @import 'sencha-touch/default';
 @import 'sencha-touch/default/all';
 @include icon("bank");
@@ -25,6 +29,82 @@ $font-family: 'Roboto';
 @import "list";
 @import "details";
 @import "windows";
-.vbox-isk{width: 100%; float: left; text-align: left !important;}
+
+@mixin spriteD{
+  background: url($icon-sprite-detail) no-repeat;
+  background-size: 36px 177px !important;
+
+}
+.x-toolbar{@include background-image(linear-gradient(#611c8f, #8327c0));}
+.x-title .x-innerhtml{color: #fff; text-shadow: none;}
+.vbox-isk{width: 100%; float: left; text-align: left !important;padding: 0px !important;}
 .addetails .info{display: block !important;}
+.addetails .title{text-align: left !important;}
+.addetails .img{padding-bottom: 15px;background-position: 0 !important;box-shadow:none !important;min-height: 150px !important;margin-bottom: 15px;border-bottom: 1px solid #F3f3f3;}
+.addetails .x-stretched.x-container{width: 100%; float: left;}
+.addetails .x-stretched.x-container>.x-inner {
+    margin: 15px;
+    color: #a1a1a1;
+    background: #fff;
+    padding: 3%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 94%;
+    float: left;
+}
+.addetails .x-button{ @include background-image(linear-gradient(#611c8f, #8327c0));height: 50px;
+color: #fff;
+font-weight: bold;
+font-family: arial, sans-serif;
+text-transform: uppercase;}
+.addetails .x-button.x-button-pressing{background: #8327c0;}
+.fbProfilePic img {
+border: 1px solid #fcfcfc;
+}
+
+.adDetailPrice{
+  @include spriteD;
+  background-position:5px 5px;
+  font-size: 24px;
+  color: #090909;
+  padding-left: 50px;
+  height: 40px;
+  line-height: 40px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.adDetailPhone{background: #fbfbfb;
+
+a{
+  @include spriteD;
+  background-position:5px -43px;
+  display: block;
+  padding: 10px 5px 10px 50px;
+  text-decoration: none;
+  color: #969696;
+}
+}
+.adDetailDesc{
+  
+  margin-top: 20px;
+  padding: 5px 5px 5px 0px;
+  span{
+  @include spriteD;
+  background-position: 5px -100px;
+  width: 50px;
+  height: 30px;
+  display: block;
+  float: left;
+  }
+}
+.addetails .fbProfilePic {
+    float: left;
+}
+.adDetailData {
+    font-size: 13px;float: right;
+    margin-top: 37px;
+}
+.x-button-icon.x-shown.list{color: #fff;}
 
