@@ -2,7 +2,9 @@
 <widget id="com.shopafter.ShopAfter" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>ShopAfter</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        ShopAfter is a fabulous 24/7 market which enables you to shop and sell your stuff easily.
+        With ShopAfter you'll be able to discover the most beautiful things, whether brand new or used,
+        in your neighbourhood and sell your things quickly to people around you.
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
         PhoneGap Team
@@ -48,9 +50,9 @@
     <gap:splash gap:platform="ios" height="1024" src="res/screen/ios/screen-ipad-portrait.png" width="768" />
     <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
+    <!--<access origin="http://127.0.0.1*" />-->
     <access origin="*" />
     <gap:plugin name="org.apache.cordova.camera" />
     <gap:plugin name="org.apache.cordova.file-transfer" />
     <gap:plugin name="org.apache.cordova.geolocation" />
-    <content src="index.html" />
 </widget>
