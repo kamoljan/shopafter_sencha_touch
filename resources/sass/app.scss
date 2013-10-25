@@ -107,4 +107,116 @@ a{
     margin-top: 37px;
 }
 .x-button-icon.x-shown.list{color: #fff;}
+.insertadform {
+    .x-toolbar{
+        background: none; 
+      padding: 0;
+      .x-button{
+        @include background-image(linear-gradient(#611c8f, #8327c0));height: 50px;
+color: #fff;padding: 0px;
+margin: 0px;
+border-radius: 0;
+
+      .x-button-icon{
+        position: absolute;
+top: 10px;
+left: 10px;
+        }  
+      }
+    }
+}
+#ext-menu-1{z-index: 1;}
+#appLoadingIndicator{z-index: 0}
+#ext-viewport{z-index: 2;}
+.fieldset1 {
+width: 100%;
+}
+.x-form-fieldset .x-form-fieldset-inner{padding: 15px;}
+#fieldset1 {
+    padding: 20px;
+    .x-field{width: 100%;}
+    input, textarea{
+        padding: 10px;
+        height: auto;
+        border: 1px solid #ccc;
+        @include border-radius(4px, 4px);
+        }
+    textarea{
+        min-height: 100px;
+    }
+    .x-field-input{
+        padding-right: 0px !important;
+    }
+    .x-field{border-bottom: none;}
+    .x-component-outer{
+        border: none !important;
+        background-color: #fcfcfc;
+        @include border-radius(4px, 4px);
+    }
+}
+.x-toolbar .x-button.x-button-plain.x-button-pressing{background:#8327c0;}
+
+.picture-capture{
+    @include background-image(linear-gradient(#611c8f,#7e26ba));
+    @include border-radius(3px);
+    @include box-shadow(inset 0px 1px 1px #a84be8);
+    border:1px solid #000000;
+    border-width:1px;
+    margin:20px auto;
+    min-height:100px;
+
+
+    .icon{
+        @include spriteD;
+        background-position: 0 0;
+        visibility: visible;
+        margin: 0 auto;
+        position: relative;
+        margin-top: 30px;
+    }
+}
+
+.saveAdForm {
+  background: #520a80;
+  @include background-image(linear-gradient(#520a80, #41016a));
+  color: #fff;
+  @include border-radius(4px, 4px !important);
+  border: 1px solid #280047 !important;
+  -webkit-box-shadow: inset 0 1px 1px 0px #6810A3;
+  box-shadow: inset 0 1px 1px 0px #6810A3;
+  padding: 8px 0;
+  text-shadow: 0 1px 0 #2A0047;
+  &.x-button-pressing,
+  &.x-button-pressed {
+    background: #41016a;
+    @include background-image(linear-gradient(#41016a, #520a80));
+  }
+}
+
+.reset {
+  color: #585858 !important;
+  background: #e3e3e3 !important;
+  border: 1px solid #bbb !important;
+  @include border-radius(4px, 4px !important);
+  -webkit-box-shadow: inset 0 0 1px 1px #f6f6f6;
+  box-shadow: inset 0 0 1px 1px #f6f6f6;
+  color: #333;
+  padding: 8px 0;
+  text-align: center;
+  text-shadow: 0 1px 0 #fff;
+  &.x-button-pressing,
+  &.x-button-pressed {
+    background: #F2F2F2;
+  }
+}
+
+
+
+
+
+
+
+
+
+
 

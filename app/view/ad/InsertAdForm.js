@@ -27,15 +27,18 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
             {
                 iconCls: "list",
                 ui: "plain",
-                docked: "left"
+                docked: "top",
+                align: 'left'
             },
             {
                 xtype: "formpanel",
                 scrollable: null,
+                cls: 'fieldset1',
                 items: [
                     {
                         xtype: 'fieldset',
                         id: 'fieldset1',
+                        
                         title: 'Sell it now!',
                         //instructions: 'Please enter the information above.',
                         defaults: {
@@ -46,9 +49,13 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
                                 xtype: 'image',
                                 id: 'adphoto',
                                 name: 'adphoto',
-                                src: 'http://placehold.it/200x200',
+                                cls: 'picture-capture',
+
                                 width: 200,
-                                height: 200
+                                height: 200,
+                                html: [
+                                    '<div class="icon"><i class="icon-camera"></i>"Pix" your item</div>',
+                                ].join('')
                             },
                             {
                                 xtype: 'selectfield',
@@ -101,7 +108,7 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
                                 xtype: 'container',
                                 defaults: {
                                     xtype: 'button',
-                                    style: 'margin: 10px 4.9% 25px',
+                                    style: 'margin: 10px 10px 25px',
                                     flex: 1
                                 },
                                 layout: {
