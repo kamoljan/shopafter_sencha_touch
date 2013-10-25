@@ -4,7 +4,7 @@ Ext.define('ShopAfter.view.AdSearch', {
     requires: [
         'Ext.Toolbar', 'Ext.field.Text', 'Ext.field.Search', 'Ext.dataview.List',
         'Ext.form.Panel', 'Ext.plugin.ListPaging',
-        'ShopAfter.proxy.RottenTomatoes', 'ShopAfter.model.Ad'],
+        'ShopAfter.proxy.Ads', 'ShopAfter.model.Ad'],
     config: {
         enablePaging: true,
         autoLoad: false,

@@ -4,7 +4,7 @@ Ext.define('ShopAfter.view.AdsListView', {
     requires: [
         'Ext.dataview.DataView',
         'Ext.dataview.List',
-        'ShopAfter.proxy.RottenTomatoes',
+        'ShopAfter.proxy.Ads',
         'ShopAfter.model.Ad'
     ],
     config: {
@@ -104,7 +104,7 @@ Ext.define('ShopAfter.view.AdsListView', {
 
     applyProxy: function(config) {
         if (Ext.isSimpleObject(config)) {
-            return Ext.factory(config, 'ShopAfter.proxy.RottenTomatoes')
+            return Ext.factory(config, 'ShopAfter.proxy.Ads')
         }
         return config;
     },

@@ -12,7 +12,7 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
         // Insert Ad
         'Ext.MessageBox',
         'Ext.data.Errors',
-        'ShopAfter.proxy.RottenTomatoes',
+        'ShopAfter.proxy.Ads',
         'ShopAfter.model.Ad'
     ],
     config: {
