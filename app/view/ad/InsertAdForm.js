@@ -55,6 +55,8 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
                                 height: 200,
                                 html: [
                                     '<div class="icon"><i class="icon-camera"></i>"Pix" your item</div>',
+                                    '<img class="image-tns" />',
+                                    
                                 ].join('')
                             },
                             {
