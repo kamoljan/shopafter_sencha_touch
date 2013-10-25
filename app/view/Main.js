@@ -10,17 +10,21 @@ Ext.define('ShopAfter.view.Main', {
 
     config: {
         fullscreen: true,
-        layout:"card",
+        layout: 'card',
         ui: 'light',
         items: [
             {
                 title: 'Latest Ads',
-                menu: "opening",
+                menu: 'opening',
                 xtype: 'adslistview',
                 autoLoad: false,
                 enablePaging: true,
                 proxy: {
-                    service: "ad/"
+                    service: 'search/',
+                    params: {
+                        sort: 'Date'
+                    }
+
                 }
             },
 //            {

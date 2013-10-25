@@ -13,9 +13,15 @@ mongoose.Model.paginate = function (q, pageNumber, resultsPerPage, callback) {
     var model = this;
     callback = callback || function () {
     };
-
     var skipFrom = (pageNumber * resultsPerPage) - resultsPerPage;
-    var query = model.find(q).skip(skipFrom).limit(resultsPerPage);
+
+    /**
+     * Have to use sort( { $natural: -1 } ) sorting for now. It is data order in disk.
+     * http://docs.mongodb.org/manual/reference/method/cursor.sort/
+     * var query = model.find(q).skip(skipFrom).limit(resultsPerPage);
+     * FIXME: We will need sorting mechanism instead of $natural one
+     */
+    var query = model.find(q).skip(skipFrom).limit(resultsPerPage).sort({ $natural: -1 });
 
     query.exec(function (error, results) {
         if (error) {

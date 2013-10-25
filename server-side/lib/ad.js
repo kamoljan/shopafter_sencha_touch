@@ -50,6 +50,8 @@ exports.searching = function (req, res, next) {
     var category = req.query.category || 0;
 
     var query = {};
+
+    // sorting
 //    if (req.query.sort && req.query.sort.match(/Date/i)) {
 //        query['sort'] = 'date';
 //    } else if (req.query.sort && req.query.sort.match(/Location/)) {

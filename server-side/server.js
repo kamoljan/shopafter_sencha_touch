@@ -18,8 +18,8 @@ app.use(app.router);
 // FIXME: SECURE THIS ENDPOINT WITH APPROPRIATE AUTHENTICATION/AUTHORIZATION MECHANISM
 app.post('/sign', sign.signing);
 app.post('/ad', ad.posting);
-app.get('/ad', ad.searching);
-app.options('/ad', ad.searching);
+app.get('/search', ad.searching);
+app.options('/search', ad.searching);  // FIXME: find out why it sends OPTIONS method?
 app.get('/ad/:id', ad.viewing);
 
 app.listen(3000, function () {
