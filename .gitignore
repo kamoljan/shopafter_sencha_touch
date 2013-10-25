@@ -2,7 +2,8 @@
 .DS_Store
 public/resources/scss/.sass-cache/
 build/
-phonegap/platforms/
+phonegap/platforms/*
+!phonegap/platforms/android/res
 phonegap/www/
 .sass-cache
 bootstrap.js
