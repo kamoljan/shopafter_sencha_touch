@@ -79,7 +79,7 @@ Ext.application({
                     menu: "insert"
                 },
                 {
-                    text: 'Help',
+                    text: 'Feedback',
                     iconCls: 'team',
                     handler: function () {
                         window.location = 'mailto:kamol701@gmail.com';
