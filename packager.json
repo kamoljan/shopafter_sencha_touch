@@ -17,7 +17,7 @@
 	 * @cfg  bundleSeedId
 	 * A ten character string which stands before aplication ID in Apple Provisioning Portal
 	 */
-	"bundleSeedId":"KPXFEPZ6EF",
+	"bundleSeedId":"com.shopafter.ShopAfter",
 
 	/**
 	 * @cfg  versionString

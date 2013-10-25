@@ -17,7 +17,7 @@ Ext.define('ShopAfter.view.Main', {
                 title: 'Latest Ads',
                 menu: 'opening',
                 xtype: 'adslistview',
-                autoLoad: false,
+                autoLoad: true,
                 enablePaging: true,
                 proxy: {
                     service: 'search/',
