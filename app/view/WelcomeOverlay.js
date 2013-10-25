@@ -6,13 +6,13 @@ Ext.define('ShopAfter.view.WelcomeOverlay', {
         cls: "welcomeOverlay",
         html: [
             "<div class='message'>",
-                "<h2>Welcome to <em>Shoplifter</em></h2>",
-                "<p>Browse any of our lists by selecting a tab at the bottom, or swiping across the app.</p>",
-                "<div class='tap'>Tap anywhere to begin</div>",
+            "<h2>Welcome to <em>ShopAfter</em></h2>",
+            "<p>Browse any of our lists by selecting a tab at the bottom, or swiping across the app.</p>",
+            "<div class='tap'>Tap anywhere to begin</div>",
             "</div>"
         ].join(""),
-        hidden:true,
-        showAnimation:  Ext.browser.is.ie || Ext.browser.is.AndroidStock ? null : {
+        hidden: true,
+        showAnimation: Ext.browser.is.ie || Ext.browser.is.AndroidStock ? null : {
             type: "fadeIn",
             duration: 250
         },
@@ -22,14 +22,14 @@ Ext.define('ShopAfter.view.WelcomeOverlay', {
         }
     },
 
-    initialize: function() {
+    initialize: function () {
         this.element.on({
             tap: {
-                fn: function() {
+                fn: function () {
                     this.hide();
                 },
-                single:true,
-                scope:this
+                single: true,
+                scope: this
             }
         })
     }
