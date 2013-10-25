@@ -77,6 +77,13 @@ Ext.application({
                     text: 'Post Ad',
                     iconCls: 'add',
                     menu: "insert"
+                },
+                {
+                    text: 'Help',
+                    iconCls: 'team',
+                    handler: function () {
+                        window.location = 'mailto:kamol701@gmail.com';
+                    }
                 }
             ]
         });
