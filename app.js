@@ -5,7 +5,11 @@ Ext.application({
         'Ext.MessageBox',
         'Ext.device.Storage',
         'Ext.Menu',
-        'ShopAfter.components.MenuButton'
+        'ShopAfter.components.MenuButton',
+        'Ext.form.FieldSet',
+        'Ext.Img',
+        'Ext.field.Select',
+        'Ext.field.Number'
     ],
 
     controllers: [
