@@ -4,14 +4,12 @@ Ext.define('ShopAfter.controller.Main', {
         "ShopAfter.view.AdDetails",
         "Ext.util.InputBlocker"
     ],
-
     config: {
         refs: {
             main: 'main',
             adsList: 'adsearch > list',
             searchField: 'adsearch > toolbar > formpanel > searchfield'
         },
-
         control: {
             searchField: {
                 action: 'onSearch'
@@ -31,25 +29,16 @@ Ext.define('ShopAfter.controller.Main', {
 
             'menu > button': {
                 tap: function (btn) {
-                    console.log('controller.Main menu > button');
-                    console.log('controller.Main btn = %s', btn);
-
                     if (btn.getMenu() === 'insert') {
                         var newActiveItem = Ext.ComponentQuery.query("insertadform");
                     } else {
                         var newActiveItem = Ext.ComponentQuery.query("adslistview[menu=" + btn.getMenu() + "]");
                     }
-                    console.log('controller.Main newActiveItem = %s', newActiveItem);
                     var main = this.getMain();
-
-                    console.log('controller.Main btn.getMenu() = ' + btn.getMenu());
-                    console.log('controller.Main this.getMain() = ' + this.getMain());
-
                     newActiveItem = newActiveItem.length > 0 ? newActiveItem[0] : null;
                     if (newActiveItem) {
                         main.setActiveItem(newActiveItem);
                         Ext.Viewport.hideAllMenus();
-
                         Ext.Viewport.getTranslatable().on('animationend', function () {
                             var list = newActiveItem.down("list"),
                                 store;
@@ -85,7 +74,6 @@ Ext.define('ShopAfter.controller.Main', {
                     this._adDetails.setRecord(record);
                     Ext.Viewport.add(this._adDetails);
                     Ext.util.InputBlocker.blockInputs();
-
                     this._adDetails.on({
                         show: {
                             fn: function () {
@@ -95,7 +83,6 @@ Ext.define('ShopAfter.controller.Main', {
                             single: true
                         }
                     });
-
                     this._adDetails.show();
                 }
             }
@@ -103,26 +90,22 @@ Ext.define('ShopAfter.controller.Main', {
     },
 
     onSearch: function () {
-        console.log('controller.Main onSearch');
         var searchField = this.getSearchField();
         this.fireAction('search', [searchField.getValue()], 'doSearch');
     },
 
     doSearch: function (search) {
-        console.log('controller.Main doSearch');
         search = search.replace(/^\s+|\s+$/g, '');
         if (search.length <= 0) return;
         var adsList = this.getAdsList(),
             adsStore = adsList.getStore();
         adsStore.currentPage = 1;
         adsStore.filter('query', search);
-
         adsList.setScrollToTopOnRefresh(true);
         adsStore.load();
     },
 
     getAdDetails: function () {
-        console.log('controller.Main getAdDetails');
         if (!this._adDetails) {
             this._adDetails = Ext.create("ShopAfter.view.AdDetails");
         }
