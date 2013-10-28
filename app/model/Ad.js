@@ -4,7 +4,6 @@ Ext.define('ShopAfter.model.Ad', {
         fields: [
             { name: "image", type: "string" },
             { name: "thumb", type: "string" },
-            { name: "Number", type: "int" },  // FIXME: some weirdo
             { name: "description", type: "string" },
             { name: "price", type: "int" },
             { name: "phone", type: "string" },

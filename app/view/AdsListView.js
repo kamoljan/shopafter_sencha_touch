@@ -25,11 +25,11 @@ Ext.define('ShopAfter.view.AdsListView', {
     _store: null,
     _itemTemplate: null,
 
-    initialize: function() {
+    initialize: function () {
         this.create();
     },
 
-    create: function() {
+    create: function () {
         this.removeAll(false);
         this.add(this.getHeaderBar());
         this.add(this.getList());
@@ -37,7 +37,7 @@ Ext.define('ShopAfter.view.AdsListView', {
         this.down("list").getStore().load();
     },
 
-    getHeaderBar: function() {
+    getHeaderBar: function () {
         if (!this._headerBar) {
             this._headerBar = Ext.create("Ext.Toolbar", {
                 xtype: "toolbar",
@@ -52,7 +52,7 @@ Ext.define('ShopAfter.view.AdsListView', {
         return this._headerBar;
     },
 
-    getList: function() {
+    getList: function () {
         if (!this._list) {
             this._list = Ext.create("Ext.dataview.List", {
                 flex: 1,
@@ -71,7 +71,7 @@ Ext.define('ShopAfter.view.AdsListView', {
         return this._list;
     },
 
-    getStore: function() {
+    getStore: function () {
         if (!this._store) {
             this._store = Ext.create("Ext.data.Store", {
                 model: "ShopAfter.model.Ad",
@@ -84,7 +84,7 @@ Ext.define('ShopAfter.view.AdsListView', {
         return this._store;
     },
 
-    getItemTemplate: function() {
+    getItemTemplate: function () {
         if (!this._itemTemplate) {
             this._itemTemplate = new Ext.XTemplate(
                 '<div class="ad">',
@@ -102,21 +102,21 @@ Ext.define('ShopAfter.view.AdsListView', {
         return this._itemTemplate;
     },
 
-    applyProxy: function(config) {
+    applyProxy: function (config) {
         if (Ext.isSimpleObject(config)) {
             return Ext.factory(config, 'ShopAfter.proxy.Ads')
         }
         return config;
     },
 
-    updateProxy: function(value) {
+    updateProxy: function (value) {
         if (this._store) {
             this._store.setProxy(value);
             this._store.load();
         }
     },
 
-    updateEnablePaging: function(currentValue, oldValue) {
+    updateEnablePaging: function (currentValue, oldValue) {
         if (currentValue != oldValue && (currentValue != false && oldValue != undefined)) {
             this.create();
             this._store.load();

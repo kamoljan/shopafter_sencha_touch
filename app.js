@@ -1,6 +1,5 @@
 Ext.application({
     name: 'ShopAfter',
-
     requires: [
         'Ext.MessageBox',
         'Ext.device.Storage',
@@ -11,26 +10,21 @@ Ext.application({
         'Ext.field.Select',
         'Ext.field.Number'
     ],
-
     controllers: [
         'ShopAfter.controller.Main',
         'ShopAfter.controller.InsertAdForm'
     ],
-
     views: [
         'ShopAfter.view.Main',
         'ShopAfter.view.WelcomeOverlay'
     ],
-
     icon: {
         '57': 'resources/icons/Icon.png',
         '72': 'resources/icons/Icon~ipad.png',
         '114': 'resources/icons/Icon@2x.png',
         '144': 'resources/icons/Icon~ipad@2x.png'
     },
-
     isIconPrecomposed: true,
-
     startupImage: {
         '320x460': 'resources/startup/320x460.jpg',
         '640x920': 'resources/startup/640x920.png',
@@ -61,17 +55,6 @@ Ext.application({
                     iconCls: 'time',
                     menu: "opening"
                 },
-                // TODO: Geolocation, disabled for now
-//                {
-//                    text: 'Nearest',
-//                    iconCls: 'locate',
-//                    menu: "theatres"
-//                },
-//                {
-//                    text: 'Popular',
-//                    iconCls: 'team',
-//                    menu: "upcoming"
-//                },
                 {
                     text: 'Search',
                     iconCls: 'search',
@@ -91,7 +74,6 @@ Ext.application({
                 }
             ]
         });
-
         Ext.Viewport.setMenu(menu, {
             side: 'left',
             reveal: true

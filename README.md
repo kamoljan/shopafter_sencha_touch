@@ -1,6 +1,5 @@
 # ShopAfter - Native Apps
 
-
 ## Prerequisites
 #### Platform requirements:
 * ST 2.3

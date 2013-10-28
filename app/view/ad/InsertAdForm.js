@@ -17,11 +17,7 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
     ],
     config: {
         layout: "vbox",
-        title: null,
-        menu: null,
-        enablePaging: true,
-        autoLoad: false,
-        proxy: {},
+        title: 'Sell it now!',
         cls: "insertadform",
         header: [
             {
@@ -38,8 +34,7 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
                     {
                         xtype: 'fieldset',
                         id: 'fieldset1',
-                        
-                        title: 'Sell it now!',
+                        //title: 'Sell it now!',
                         //instructions: 'Please enter the information above.',
                         defaults: {
                             labelWidth: '25%'
@@ -56,7 +51,7 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
                                 html: [
                                     '<div class="icon"><i class="icon-camera"></i>"Pix" your item</div>',
                                     '<img class="image-tns" />',
-                                    
+
                                 ].join('')
                             },
                             {
@@ -166,6 +161,4 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
         }
         return this._headerBar;
     }
-
-
 });

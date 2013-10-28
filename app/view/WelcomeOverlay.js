@@ -1,7 +1,6 @@
 Ext.define('ShopAfter.view.WelcomeOverlay', {
     extend: 'Ext.Panel',
     xtype: "main",
-
     config: {
         cls: "welcomeOverlay",
         html: [
@@ -21,7 +20,6 @@ Ext.define('ShopAfter.view.WelcomeOverlay', {
             duration: 250
         }
     },
-
     initialize: function () {
         this.element.on({
             tap: {
