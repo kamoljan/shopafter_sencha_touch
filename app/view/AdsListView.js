@@ -59,10 +59,16 @@ Ext.define('ShopAfter.view.AdsListView', {
                 emptyText: 'No ads found.',
                 loadingText: "Loading Ads",
                 cls: 'grid',
-                plugins: this.getEnablePaging() ? {
-                    xclass: 'Ext.plugin.ListPaging',
-                    autoPaging: true
-                } : null,
+                plugins: this.getEnablePaging() ? [
+                    {
+                        xclass: 'Ext.plugin.PullRefresh',
+                        pullText: 'Pull down for more new Ads!'
+                    },
+                    {
+                        xclass: 'Ext.plugin.ListPaging',
+                        autoPaging: true
+                    }
+                ] : null,
                 mode: "simple",
                 store: this.getStore(),
                 itemTpl: this.getItemTemplate()

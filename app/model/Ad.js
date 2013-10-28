@@ -1,6 +1,7 @@
 Ext.define('ShopAfter.model.Ad', {
     extend: 'Ext.data.Model',
     config: {
+        idProperty: '_id',  // avid duplicates
         fields: [
             { name: "image", type: "string" },
             { name: "thumb", type: "string" },

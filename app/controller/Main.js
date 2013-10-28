@@ -14,25 +14,23 @@ Ext.define('ShopAfter.controller.Main', {
             searchField: {
                 action: 'onSearch'
             },
-
             'adslistview > toolbar > button': {
                 tap: function () {
                     Ext.Viewport.toggleMenu("left");
                 }
             },
-
             'insertadform > toolbar > button': {
                 tap: function () {
                     Ext.Viewport.toggleMenu("left");
                 }
             },
-
             'menu > button': {
                 tap: function (btn) {
+                    var newActiveItem;
                     if (btn.getMenu() === 'insert') {
-                        var newActiveItem = Ext.ComponentQuery.query("insertadform");
+                        newActiveItem = Ext.ComponentQuery.query("insertadform");
                     } else {
-                        var newActiveItem = Ext.ComponentQuery.query("adslistview[menu=" + btn.getMenu() + "]");
+                        newActiveItem = Ext.ComponentQuery.query("adslistview[menu=" + btn.getMenu() + "]");
                     }
                     var main = this.getMain();
                     newActiveItem = newActiveItem.length > 0 ? newActiveItem[0] : null;

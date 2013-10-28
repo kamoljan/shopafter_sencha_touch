@@ -1,9 +1,7 @@
 Ext.define('ShopAfter.view.AdDetails', {
     extend: 'Ext.Container',
     xtype: "addetails",
-
     requires: [],
-
     config: {
         fullscreen: true,
         tabBarPosition: "bottom",
