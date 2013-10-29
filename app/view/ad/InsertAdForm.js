@@ -46,11 +46,11 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
                                 name: 'adphoto',
                                 cls: 'picture-capture',
 
-                                width: 200,
-                                height: 200,
+                              //  width: 85,
+                                height: 93,
                                 html: [
-                                    '<div class="icon"><i class="icon-camera"></i>"Pix" your item</div>',
-                                    '<img class="image-tns" />',
+                                    '<div class="icon"></div>',
+                                    '<div class="image-tns"></div>',
 
                                 ].join('')
                             },
@@ -103,14 +103,13 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
                             },
                             {
                                 xtype: 'container',
+                                cls: 'buttons-adIn',
                                 defaults: {
                                     xtype: 'button',
-                                    style: 'margin: 10px 10px 25px',
+                                    style: 'margin: 10px 0px 25px',
                                     flex: 1
                                 },
-                                layout: {
-                                    type: 'hbox'
-                                },
+                                
                                 items: [
                                     {
                                         text: 'Reset',
