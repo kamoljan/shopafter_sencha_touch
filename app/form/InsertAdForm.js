@@ -34,7 +34,7 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                                 height: 93,
                                 html: [
                                     '<div class="icon"></div>',
-                                    '<div class="image-tns"></div>',
+                                    '<div class="image-tns"></div>'
                                 ].join('')
                             },
                             {

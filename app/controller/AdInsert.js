@@ -43,12 +43,10 @@ Ext.define('ShopAfter.controller.AdInsert', {
         )
 
         function uploadPhoto(imageURI) {
-            var img = Ext.ComponentQuery.query('image')[0];
+            var img = Ext.getCmp('adphoto');
             img.setSrc(imageURI);
-
             // consider a more reliable way to generate unique ids
             var fileName = "" + (new Date()).getTime() + ".jpg";
-
             var ft = new FileTransfer(),
                 op = new FileUploadOptions();
             op.fileKey = "file";
@@ -101,12 +99,10 @@ Ext.define('ShopAfter.controller.AdInsert', {
         var errorString = '',
             form = Ext.getCmp('insertadform'),
             fields = form.query('field');
-
         if (fn.get_name() === "") {
             alert('The pictures help you sell better, please upload them now!');
             return false;
         }
-
         for (var i = 0; i < fields.length; i++) {
             fields[i].removeCls('invalidField');
         }
