@@ -13,7 +13,7 @@ Ext.application({
     ],
     controllers: [
         'ShopAfter.controller.Main',
-        'ShopAfter.controller.InsertAdForm'
+        'ShopAfter.controller.AdInsert'
     ],
     views: [
         'ShopAfter.view.Main',

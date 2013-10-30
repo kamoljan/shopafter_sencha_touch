@@ -11,7 +11,7 @@ var fN = function () {
 };
 var fn = fN();
 
-Ext.define('ShopAfter.controller.InsertAdForm', {
+Ext.define('ShopAfter.controller.AdInsert', {
     extend: 'Ext.app.Controller',
     config: {
         control: {
@@ -148,7 +148,8 @@ Ext.define('ShopAfter.controller.InsertAdForm', {
                 price: values.price,
                 phone: values.phone,
                 latitude: lat,
-                longitude: lon
+                longitude: lon,
+                currency: values.currency
             },
             callback: function (success) {
                 Ext.getCmp('insertadform').setMasked(false);

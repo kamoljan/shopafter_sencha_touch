@@ -50,7 +50,8 @@ Ad = mongoose.model('Ad', new mongoose.Schema({
     price: Number,
     phone: String,
     loc: [Number, Number],  // longitude, latidute
-    date: Date
+    date: Date,
+    currency: String
 }));
 
 mongoose.connect(conf.db.mongoDb);

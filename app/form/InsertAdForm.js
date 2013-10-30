@@ -81,7 +81,6 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                                         cls: 'currencyAdFrom',
                                         id: 'currency',
                                         name: 'currency',
-
                                         required: true,
                                         autoSelect: true,
                                         value: 'SGD',
@@ -90,7 +89,7 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                                             {text: 'MYR', value: 'MYR'},
                                             {text: 'PHP', value: 'PHP'},
                                             {text: 'SGD', value: 'SGD'},
-                                            {text: 'VND', value: 'VND'},
+                                            {text: 'VND', value: 'VND'}
                                         ]
                                     },
                                     {

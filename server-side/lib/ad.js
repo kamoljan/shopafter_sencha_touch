@@ -19,7 +19,8 @@ exports.posting = function (req, res, next) {
                 price: req.body.price,
                 phone: req.body.phone,
                 loc: [req.body.longitude, req.body.latitude],
-                date: new Date
+                date: new Date,
+                currency: req.body.currency
             });
 
             // Save the ad to the database
