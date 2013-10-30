@@ -4,7 +4,7 @@ Ext.define('ShopAfter.view.Main', {
     requires: [
         'ShopAfter.view.AdSearch',
         'ShopAfter.view.AdsListView',
-        'ShopAfter.view.ad.InsertAdForm'
+        'ShopAfter.view.AdInsert'
     ],
     config: {
         fullscreen: true,
@@ -31,7 +31,7 @@ Ext.define('ShopAfter.view.Main', {
             {
                 title: 'Sell it now!',
                 menu: "insert",
-                xtype: 'insertadform'
+                xtype: 'adinsert'
             }
         ]
     }

@@ -19,19 +19,14 @@ Ext.define('ShopAfter.controller.Main', {
                     Ext.Viewport.toggleMenu("left");
                 }
             },
-            'insertadform > toolbar > button': {
+            'adinsert > toolbar > button': {
                 tap: function () {
                     Ext.Viewport.toggleMenu("left");
                 }
             },
             'menu > button': {
                 tap: function (btn) {
-                    var newActiveItem;
-                    if (btn.getMenu() === 'insert') {
-                        newActiveItem = Ext.ComponentQuery.query("insertadform");
-                    } else {
-                        newActiveItem = Ext.ComponentQuery.query("adslistview[menu=" + btn.getMenu() + "]");
-                    }
+                    var newActiveItem = Ext.ComponentQuery.query("adslistview[menu=" + btn.getMenu() + "]");
                     var main = this.getMain();
                     newActiveItem = newActiveItem.length > 0 ? newActiveItem[0] : null;
                     if (newActiveItem) {

@@ -1,7 +1,7 @@
 @import "compass/css3";
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700);
 
-$icon-sprite-detail:"../images/spriteD.png";
+$icon-sprite-detail: "../images/spriteD.png";
 $bg-body: "../images/bg.jpg";
 
 $base-color: #7e26ba;
@@ -9,10 +9,7 @@ $base-gradient: flat;
 $toolbar-base-color: #7e26ba;
 $tabs-light: rgb(180, 48, 39);
 
-
-
 $font-family: 'Roboto';
-
 
 //Import Sencha SASS
 @import "media-queries";
@@ -24,51 +21,93 @@ $font-family: 'Roboto';
 @import 'sencha-touch/default/all';
 @include icon("bank");
 
-
 @import "menu";
 @import "welcomeOverlay";
 @import "list";
 @import "details";
 @import "windows";
 
-@mixin spriteD{
+@mixin spriteD {
   background: url($icon-sprite-detail) no-repeat;
   background-size: 36px 177px !important;
 
 }
-.x-layout-card-item{background:url($bg-body) !important; }
-.x-toolbar{@include background-image(linear-gradient(#611c8f, #8327c0));}
-.x-title .x-innerhtml{color: #fff; text-shadow: none;}
-.vbox-isk{width: 100%; float: left; text-align: left !important;padding: 0px !important;}
-.addetails .info{display: block !important;}
-.addetails .title{text-align: left !important;}
-.addetails .img{padding-bottom: 15px;background-position: 0 !important;box-shadow:none !important;min-height: 150px !important;margin-bottom: 15px;border-bottom: 1px solid #F3f3f3;}
-.addetails .x-stretched.x-container{width: 100%; float: left;}
-.addetails .x-stretched.x-container>.x-inner {
-    margin: 15px;
-    color: #a1a1a1;
-    background: #fff;
-    padding: 3%;
-    position: relative;
-    overflow: hidden;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    width: 94%;
-    float: left;
-}
-.addetails .x-button{ @include background-image(linear-gradient(#611c8f, #8327c0));height: 50px;
-color: #fff;
-font-weight: bold;
-font-family: arial, sans-serif;
-text-transform: uppercase;}
-.addetails .x-button.x-button-pressing{background: #8327c0;}
-.fbProfilePic img {
-border: 1px solid #fcfcfc;
+
+.x-layout-card-item {
+  background: url($bg-body) !important;
 }
 
-.adDetailPrice{
+.x-toolbar {
+  @include background-image(linear-gradient(#611c8f, #8327c0));
+}
+
+.x-title .x-innerhtml {
+  color: #fff;
+  text-shadow: none;
+}
+
+.vbox-isk {
+  width: 100%;
+  float: left;
+  text-align: left !important;
+  padding: 0px !important;
+}
+
+.addetails .info {
+  display: block !important;
+}
+
+.addetails .title {
+  text-align: left !important;
+}
+
+.addetails .img {
+  padding-bottom: 15px;
+  background-position: 0 !important;
+  box-shadow: none !important;
+  min-height: 150px !important;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #F3f3f3;
+}
+
+.addetails .x-stretched.x-container {
+  width: 100%;
+  float: left;
+}
+
+.addetails .x-stretched.x-container > .x-inner {
+  margin: 15px;
+  color: #a1a1a1;
+  background: #fff;
+  padding: 3%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 94%;
+  float: left;
+}
+
+.addetails .x-button {
+  @include background-image(linear-gradient(#611c8f, #8327c0));
+  height: 50px;
+  color: #fff;
+  font-weight: bold;
+  font-family: arial, sans-serif;
+  text-transform: uppercase;
+}
+
+.addetails .x-button.x-button-pressing {
+  background: #8327c0;
+}
+
+.fbProfilePic img {
+  border: 1px solid #fcfcfc;
+}
+
+.adDetailPrice {
   @include spriteD;
-  background-position:5px 5px;
+  background-position: 5px 5px;
   font-size: 24px;
   color: #090909;
   padding-left: 50px;
@@ -77,168 +116,190 @@ border: 1px solid #fcfcfc;
   margin-top: 15px;
   margin-bottom: 15px;
 }
-.adDetailPhone{background: #fbfbfb;
 
-a{
-  @include spriteD;
-  background-position:5px -43px;
-  display: block;
-  padding: 10px 5px 10px 50px;
-  text-decoration: none;
-  color: #969696;
+.adDetailPhone {
+  background: #fbfbfb;
+
+  a {
+    @include spriteD;
+    background-position: 5px -43px;
+    display: block;
+    padding: 10px 5px 10px 50px;
+    text-decoration: none;
+    color: #969696;
+  }
 }
-}
-.adDetailDesc{
-  
+
+.adDetailDesc {
+
   margin-top: 20px;
   padding: 5px 5px 5px 0px;
-  span{
-  @include spriteD;
-  background-position: 5px -100px;
-  width: 50px;
-  height: 30px;
-  display: block;
-  float: left;
+  span {
+    @include spriteD;
+    background-position: 5px -100px;
+    width: 50px;
+    height: 30px;
+    display: block;
+    float: left;
   }
 }
-.addetails .fbProfilePic {
-    float: left;
-}
-.adDetailData {
-    font-size: 13px;float: right;
-    margin-top: 37px;
-}
-.x-button-icon.x-shown.list{color: #fff;}
-.insertadform {
-    .x-title{display: none;}
-    .x-toolbar{
-        background: none; 
-      padding: 0;
-      .x-button{
-        @include background-image(linear-gradient(#611c8f, #8327c0));height: 50px;
-        color: #fff;padding: 0px;
-        margin: 0px;
-        border-radius: 0;
-        -moz-box-shadow:
-                0px 0px 5px rgba(000,000,000,0.2);
-        -webkit-box-shadow:
-                0px 0px 5px rgba(000,000,000,0.2);
-        box-shadow:
-                0px 0px 5px rgba(000,000,000,0.2);
 
-      .x-button-icon{
+.addetails .fbProfilePic {
+  float: left;
+}
+
+.adDetailData {
+  font-size: 13px;
+  float: right;
+  margin-top: 37px;
+}
+
+.x-button-icon.x-shown.list {
+  color: #fff;
+}
+
+.insertadform {
+  .x-title {
+    display: none;
+  }
+  .x-toolbar {
+    background: none;
+    padding: 0;
+    .x-button {
+      @include background-image(linear-gradient(#611c8f, #8327c0));
+      height: 50px;
+      color: #fff;
+      padding: 0px;
+      margin: 0px;
+      border-radius: 0;
+      -moz-box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.2);
+      -webkit-box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.2);
+      box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.2);
+
+      .x-button-icon {
         position: absolute;
-top: 12px;
-left: 20px;
-        }  
+        top: 12px;
+        left: 20px;
       }
     }
+  }
 }
-#ext-menu-1{z-index: 1;}
-#appLoadingIndicator{z-index: 0}
-#ext-viewport{z-index: 2;}
-.fieldset1 {
-width: 100%;
+
+#ext-menu-1 {
+  z-index: 1;
 }
-.x-form-fieldset .x-form-fieldset-inner{padding: 15px;}
+
+#appLoadingIndicator {
+  z-index: 0
+}
+
+#ext-viewport {
+  z-index: 2;
+}
+
 .fieldset1 {
-    .x-layout-box.x-pack-start {
-        margin-left: 37%;
-        width: 63%;
-        }
-    .x-form-fieldset{margin: 0px !important; }
+  width: 100%;
+}
+
+.x-form-fieldset .x-form-fieldset-inner {
+  padding: 15px;
+}
+
+.fieldset1 {
+  .x-layout-box.x-pack-start {
+    margin-left: 37%;
+    width: 63%;
+  }
+  .x-form-fieldset {
+    margin: 0px !important;
+  }
 
 }
+
 #fieldset1 {
-    padding: 20px 15px;
-    input, textarea{
-        padding: 10px;
-        height: auto;
-       
-        @include border-radius(4px, 4px);
-        -moz-box-shadow:
-                0px 0px 5px rgba(000,000,000,0.3);
-        -webkit-box-shadow:
-                0px 0px 5px rgba(000,000,000,0.3);
-        box-shadow:
-                0px 0px 5px rgba(000,000,000,0.3);
-        }
-    textarea{
-        min-height: 100px;
-    }
-    .x-form-fieldset-inner{background: none;border: none;padding: 0;}
-    
-    .x-field-input{
-        padding-right: 0px !important;
-    }
-    .x-field{
-        border-bottom: none;
-        width: 62.5%;
-        float: left;
-        margin-left: 37%;
-        padding:10px 0px;
-        }
-    .x-component-outer{
-        border: none !important;
-        background-color: #fcfcfc;
-        @include border-radius(4px, 4px);
-    }
-}
-.x-toolbar .x-button.x-button-plain.x-button-pressing{background:#8327c0;}
+  padding: 20px 15px;
+  input, textarea {
+    padding: 10px;
+    height: auto;
 
-.picture-capture{
-    background: #fff;
-    @include border-radius(3px);
-    -moz-box-shadow:
-            0px 0px 5px rgba(000,000,000,0.3);
-    -webkit-box-shadow:
-            0px 0px 5px rgba(000,000,000,0.3);
-    box-shadow:
-            0px 0px 5px rgba(000,000,000,0.3);
-    border-width:1px;
+    @include border-radius(4px, 4px);
+    -moz-box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
+    -webkit-box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
+    box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
+  }
+  textarea {
+    min-height: 100px;
+  }
+  .x-form-fieldset-inner {
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .x-field-input {
+    padding-right: 0px !important;
+  }
+  .x-field {
+    border-bottom: none;
+    width: 62.5%;
     float: left;
-    position: absolute;
-    width: 30%;
-    top: 30px;
-    padding: 4px;
-    .image-tns{
-        position: relative;
-        width: 85px !important;
-        height: 85px !important;
-        background: url("../images/camera.jpg") no-repeat;
-        background-size: 85px 85px;
-        border: none !important;
-        margin: 0 auto;
-    }
-
-    .icon{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        color:#fff;
-        text-align: center;
-        font-size: 0.8em;
-        
-    }
+    margin-left: 37%;
+    padding: 10px 0px;
+  }
+  .x-component-outer {
+    border: none !important;
+    background-color: #fcfcfc;
+    @include border-radius(4px, 4px);
+  }
 }
 
-.saveAdForm {
-  background: #520a80;
-  @include background-image(linear-gradient(#520a80, #41016a));
-  color: #fff;
-  @include border-radius(4px, 4px !important);
-  border: 1px solid #280047 !important;
-  -webkit-box-shadow: inset 0 1px 1px 0px #6810A3;
-  box-shadow: inset 0 1px 1px 0px #6810A3;
+.x-toolbar .x-button.x-button-plain.x-button-pressing {
+  background: #8327c0;
+}
+
+.picture-capture {
+  background: #fff;
+  @include border-radius(3px);
+  -moz-box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
+  -webkit-box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
+  box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
+  border-width: 1px;
+  float: left;
+  position: absolute;
+  width: 30%;
+  top: 30px;
+  padding: 4px;
+  .image-tns {
+    position: relative;
+    width: 85px !important;
+    height: 85px !important;
+    background: url("../images/camera.jpg") no-repeat;
+    background-size: 85px 85px;
+    border: none !important;
+    margin: 0 auto;
+  }
+
+  .icon {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    text-align: center;
+    font-size: 0.8em;
+
+  }
+}
+
+.currencyAdFrom {
   padding: 8px 0;
-  text-shadow: 0 1px 0 #2A0047;
+  float: left;
+  width: 30%;
+}
+
+.priceAdFrom {
+  padding: 8px 0;
   width: 65%;
   float: right;
-  &.x-button-pressing,
-  &.x-button-pressed {
-    background: #41016a !important;
-    @include background-image(linear-gradient(#41016a, #520a80));
-  }
 }
 
 .reset {
@@ -260,52 +321,91 @@ width: 100%;
   }
 }
 
-.x-toolbar .x-field-select .x-input-el{color: #565656;-webkit-text-fill-color:#565656;}
-.x-picker-bar{background: rgba(122, 0, 170, 0.3);border-top: none;border-bottom:none;}
-.x-toolbar-dark .x-button{@include background-image(linear-gradient(#AA42F4, #B864EF));border: 1px solid #590A91;}
+.saveAdForm {
+  background: #520a80;
+  @include background-image(linear-gradient(#520a80, #41016a));
+  color: #fff;
+  @include border-radius(4px, 4px !important);
+  border: 1px solid #280047 !important;
+  -webkit-box-shadow: inset 0 1px 1px 0px #6810A3;
+  box-shadow: inset 0 1px 1px 0px #6810A3;
+  padding: 8px 0;
+  text-shadow: 0 1px 0 #2A0047;
+  width: 65%;
+  float: right;
+  &.x-button-pressing,
+  &.x-button-pressed {
+    background: #41016a !important;
+    @include background-image(linear-gradient(#41016a, #520a80));
+  }
+}
+
+.x-toolbar .x-field-select .x-input-el {
+  color: #565656;
+  -webkit-text-fill-color: #565656;
+}
+
+.x-picker-bar {
+  background: rgba(122, 0, 170, 0.3);
+  border-top: none;
+  border-bottom: none;
+}
+
+.x-toolbar-dark .x-button {
+  @include background-image(linear-gradient(#AA42F4, #B864EF));
+  border: 1px solid #590A91;
+}
 
 .icon-camera:before {
-font-style: normal;
-text-align: center;
-font-family: 'Pictos';
-content: "v";
+  font-style: normal;
+  text-align: center;
+  font-family: 'Pictos';
+  content: "v";
 }
-.x-form-fieldset-title{margin: 0px;}
-.buttons-adIn{float: left;
-width: 63%;
-margin-left: 37%;}
+
+.x-form-fieldset-title {
+  margin: 0px;
+}
+
+.buttons-adIn {
+  float: left;
+  width: 63%;
+  margin-left: 37%;
+}
 
 .x-toolbar .x-field-textarea .x-component-outer,
 .x-toolbar .x-field-text .x-component-outer, .x-toolbar .x-field-number .x-component-outer,
 .x-toolbar .x-field-search .x-component-outer,
-.x-toolbar .x-field-select .x-component-outer{
-    -moz-box-shadow:
-
-            inset 0px 0px 0px rgba(255,255,255,0) !important;
-    -webkit-box-shadow:
-
-            inset 0px 0px 0px rgba(255,255,255,0) !important;
-    box-shadow:
-
-            inset 0px 0px 0px rgba(255,255,255,0) !important;
+.x-toolbar .x-field-select .x-component-outer {
+  -moz-box-shadow: inset 0px 0px 0px rgba(255, 255, 255, 0) !important;
+  -webkit-box-shadow: inset 0px 0px 0px rgba(255, 255, 255, 0) !important;
+  box-shadow: inset 0px 0px 0px rgba(255, 255, 255, 0) !important;
 }
-.x-list,.x-form .x-scroll-container{background: none;}
-.grid .x-list-item .ad .img{box-shadow: none;width: 90px !important; height: 133px !important;}
+
+.x-list, .x-form .x-scroll-container {
+  background: none;
+}
+
+.grid .x-list-item .ad .img {
+  box-shadow: none;
+  width: 90px !important;
+  height: 133px !important;
+}
+
 .grid .x-list-item .ad {
-    padding: 4px;
-    background: white;
-     @include border-radius(4px, 4px);
-     -moz-box-shadow:
-            0px 0px 5px rgba(000,000,000,0.3);
-    -webkit-box-shadow:
-            0px 0px 5px rgba(000,000,000,0.3);
-    box-shadow:
-            0px 0px 5px rgba(000,000,000,0.3);
-    
+  padding: 4px;
+  background: white;
+  @include border-radius(4px, 4px);
+  -moz-box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
+  -webkit-box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
+  box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
+
 }
-.x-list .x-list-item .x-list-item-body, .x-list .x-list-item.x-list-item-tpl .x-innerhtml{
-    padding: 12px 6px !important;
+
+.x-list .x-list-item .x-list-item-body, .x-list .x-list-item.x-list-item-tpl .x-innerhtml {
+  padding: 12px 6px !important;
 }
-#adphoto>div {
-background: #f5f5f5;
+
+#adphoto > div {
+  background: #f5f5f5;
 }

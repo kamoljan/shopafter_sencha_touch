@@ -1,15 +1,8 @@
-Ext.define('ShopAfter.view.ad.InsertAdForm', {
-    extend: 'Ext.form.Panel',
+Ext.define('ShopAfter.form.InsertAdForm', {
+    extend: 'Ext.form.FormPanel',
     xtype: 'insertadform',
     id: 'insertadform',
     requires: [
-        'Ext.Toolbar',
-        'Ext.field.Text',
-        'Ext.field.Search',
-        'Ext.dataview.List',
-        'Ext.form.Panel',
-        'Ext.plugin.ListPaging',
-        // Insert Ad
         'Ext.MessageBox',
         'Ext.data.Errors',
         'ShopAfter.proxy.Ads',
@@ -19,13 +12,8 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
         layout: "vbox",
         title: 'Sell it now!',
         cls: "insertadform",
+        height: '100%',
         header: [
-            {
-                iconCls: "list",
-                ui: "plain",
-                docked: "top",
-                align: 'left'
-            },
             {
                 xtype: "formpanel",
                 scrollable: null,
@@ -34,8 +22,6 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
                     {
                         xtype: 'fieldset',
                         id: 'fieldset1',
-                        //title: 'Sell it now!',
-                        //instructions: 'Please enter the information above.',
                         defaults: {
                             labelWidth: '25%'
                         },
@@ -45,13 +31,10 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
                                 id: 'adphoto',
                                 name: 'adphoto',
                                 cls: 'picture-capture',
-
-                              //  width: 85,
                                 height: 93,
                                 html: [
                                     '<div class="icon"></div>',
                                     '<div class="image-tns"></div>',
-
                                 ].join('')
                             },
                             {
@@ -86,12 +69,40 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
                                 clearIcon: true
                             },
                             {
-                                xtype: 'numberfield',
-                                id: 'price',
-                                name: 'price',
-                                placeHolder: 'Price',
-                                required: true,
-                                clearIcon: true
+                                xtype: 'container',
+                                cls: 'buttons-adIn',
+                                defaults: {
+                                    style: 'margin: 10px 0px 25px',
+                                    flex: 1
+                                },
+                                items: [
+                                    {
+                                        xtype: 'selectfield',
+                                        cls: 'currencyAdFrom',
+                                        id: 'currency',
+                                        name: 'currency',
+
+                                        required: true,
+                                        autoSelect: true,
+                                        value: 'SGD',
+                                        options: [
+                                            {text: 'IDR', value: 'IDR'},
+                                            {text: 'MYR', value: 'MYR'},
+                                            {text: 'PHP', value: 'PHP'},
+                                            {text: 'SGD', value: 'SGD'},
+                                            {text: 'VND', value: 'VND'},
+                                        ]
+                                    },
+                                    {
+                                        xtype: 'numberfield',
+                                        cls: 'priceAdFrom',
+                                        id: 'price',
+                                        name: 'price',
+                                        placeHolder: 'Price',
+                                        required: true,
+                                        clearIcon: true
+                                    }
+                                ]
                             },
                             {
                                 xtype: 'numberfield',
@@ -109,7 +120,6 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
                                     style: 'margin: 10px 0px 25px',
                                     flex: 1
                                 },
-                                
                                 items: [
                                     {
                                         text: 'Reset',
@@ -133,9 +143,6 @@ Ext.define('ShopAfter.view.ad.InsertAdForm', {
     },
 
     _headerBar: null,
-    _list: null,
-    _store: null,
-    _itemTemplate: null,
 
     initialize: function () {
         this.create();
