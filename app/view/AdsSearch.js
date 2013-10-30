@@ -1,6 +1,6 @@
-Ext.define('ShopAfter.view.AdSearch', {
+Ext.define('ShopAfter.view.AdsSearch', {
     extend: 'ShopAfter.view.AdsListView',
-    xtype: 'adsearch',
+    xtype: 'adssearch',
     requires: [
         'Ext.Toolbar', 'Ext.field.Text', 'Ext.field.Search', 'Ext.dataview.List',
         'Ext.form.Panel', 'Ext.plugin.ListPaging',
@@ -8,7 +8,7 @@ Ext.define('ShopAfter.view.AdSearch', {
     config: {
         enablePaging: true,
         autoLoad: false,
-        cls: "adsearch",
+        cls: "adssearch",
         header: [
             {
                 iconCls: "list",

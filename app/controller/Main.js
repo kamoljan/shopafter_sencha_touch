@@ -7,8 +7,8 @@ Ext.define('ShopAfter.controller.Main', {
     config: {
         refs: {
             main: 'main',
-            adsList: 'adsearch > list',
-            searchField: 'adsearch > toolbar > formpanel > searchfield'
+            adsList: 'adssearch > list',
+            searchField: 'adssearch > toolbar > formpanel > searchfield'
         },
         control: {
             searchField: {

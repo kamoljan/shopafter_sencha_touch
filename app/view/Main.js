@@ -2,7 +2,7 @@ Ext.define('ShopAfter.view.Main', {
     extend: 'Ext.Panel',
     xtype: "main",
     requires: [
-        'ShopAfter.view.AdSearch',
+        'ShopAfter.view.AdsSearch',
         'ShopAfter.view.AdsListView',
         'ShopAfter.view.AdInsert'
     ],
@@ -26,7 +26,7 @@ Ext.define('ShopAfter.view.Main', {
             },
             {
                 menu: "search",
-                xtype: 'adsearch'
+                xtype: 'adssearch'
             },
             {
                 title: 'Sell it now!',
