@@ -72,7 +72,7 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                                 xtype: 'container',
                                 cls: 'buttons-adIn',
                                 defaults: {
-                                    style: 'margin: 10px 0px 25px',
+                                    style: 'margin: 0px',
                                     flex: 1
                                 },
                                 items: [

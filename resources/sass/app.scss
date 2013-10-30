@@ -369,8 +369,15 @@ $font-family: 'Roboto';
 
 .buttons-adIn {
   float: left;
-  width: 63%;
+  width: 62.5%;
   margin-left: 37%;
+}
+.priceAdFrom {
+    width: 65% !important;
+    float: right !important;
+}
+.currencyAdFrom {
+width: 30% !important;
 }
 
 .x-toolbar .x-field-textarea .x-component-outer,
