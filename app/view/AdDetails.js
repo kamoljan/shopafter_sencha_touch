@@ -75,13 +75,14 @@ Ext.define('ShopAfter.view.AdDetails', {
             this._headerTemplate = new Ext.XTemplate(
 
                 '<div class="img" style="background-image: url({image}); background-repeat: no-repeat;"></div>',
+                '<hr class="hr_" />',
                 '<div class="info">',
                 '<div class="fbProfilePic"><img src="https://graph.facebook.com/{profileId}/picture?type=square" /></div>',
                 '<span class="userName">&nbsp;</span>',
                 '<div class="adDetailData">Posted at: {date}</div>',
 
                 '<div class="vbox vbox-isk">',
-                '<div class="adDetailPrice">${price}</div>',
+                '<div class="adDetailPrice"><span>{currency}</span>{price}</div>',
                 '<p class="adDetailPhone"><a href="tel:+{phone}">{phone}</a></p>',
                 '<div class="adDetailDesc"><span></span>{description}</div>',
                 '</div>',

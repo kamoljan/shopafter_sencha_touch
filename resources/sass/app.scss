@@ -67,7 +67,7 @@ $font-family: 'Roboto';
   box-shadow: none !important;
   min-height: 150px !important;
   margin-bottom: 15px;
-  border-bottom: 1px solid #F3f3f3;
+
 }
 
 .addetails .x-stretched.x-container {
@@ -407,6 +407,14 @@ width: 30% !important;
   -webkit-box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
   box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
 
+}
+.adDetailPrice>span,.user>span {
+font-size: 11px;
+color: #646464;
+}
+.hr_ {
+    border-bottom: 1px solid #F3f3f3;
+    border-top: none;
 }
 
 .x-list .x-list-item .x-list-item-body, .x-list .x-list-item.x-list-item-tpl .x-innerhtml {
