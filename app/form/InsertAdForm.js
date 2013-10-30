@@ -6,7 +6,7 @@ Ext.define('ShopAfter.form.InsertAdForm', {
         'Ext.MessageBox',
         'Ext.data.Errors',
         'ShopAfter.proxy.Ads',
-        'ShopAfter.model.Ad'
+        'ShopAfter.model.InsertAd'
     ],
     config: {
         layout: "vbox",
@@ -31,11 +31,8 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                                 id: 'adphoto',
                                 name: 'adphoto',
                                 cls: 'picture-capture',
-                                height: 93,
-                                html: [
-                                    '<div class="icon"></div>',
-                                    '<div class="image-tns"></div>'
-                                ].join('')
+                                height: 93
+
                             },
                             {
                                 xtype: 'selectfield',

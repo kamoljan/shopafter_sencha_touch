@@ -106,7 +106,7 @@ Ext.define('ShopAfter.controller.AdInsert', {
         for (var i = 0; i < fields.length; i++) {
             fields[i].removeCls('invalidField');
         }
-        var model = Ext.create('ShopAfter.model.Ad', form.getValues());
+        var model = Ext.create('ShopAfter.model.InsertAd', form.getValues());
         var errors = model.validate();
         if (!errors.isValid()) {
             errors.each(function (errorObj) {
