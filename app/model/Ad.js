@@ -12,8 +12,8 @@ Ext.define('ShopAfter.model.Ad', {
             {
                 name: "date",
                 convert: function (value, record) {
-                    var arr = value.split(/[- :T]/),
-                        date = new Date(arr[0], arr[1] - 1, arr[2]);
+                    //2013-10-30T06:53:13.403Z
+                    var date = new Date(value);
                     return Ext.Date.format(date, 'M j, Y');
                 }
 
