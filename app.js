@@ -8,7 +8,8 @@ Ext.application({
         'Ext.form.FieldSet',
         'Ext.Img',
         'Ext.field.Select',
-        'Ext.field.Number'
+        'Ext.field.Number',
+        'Ext.plugin.PullRefresh'
     ],
     controllers: [
         'ShopAfter.controller.Main',
