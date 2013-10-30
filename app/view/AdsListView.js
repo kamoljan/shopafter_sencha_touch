@@ -97,7 +97,7 @@ Ext.define('ShopAfter.view.AdsListView', {
  //               '<div class="title">{description}</div>',
                 '<div class="img" style="background-image: url(\'{image}\')"></div>',
 //                '<div class="ratings">',
-                '<div class="user">${price}</div>',
+                '<div class="user">{currency} {price}</div>',
 //                '<div class="user<tpl if=\"ratings.audience_score &gt; 60\"> success</tpl><tpl if=\"ratings.audience_score &lt; 0\"> unknown</tpl>"><tpl if=\"ratings.audience_score &gt;= 0\">{ratings.audience_score}<tpl else>&nbsp;</tpl></div>',
                 '<div class="spacer"></div>',
 //                '<div class="critics<tpl if=\"ratings.critics_score &gt; 60\"> success</tpl><tpl if=\"ratings.critics_score &lt; 0\"> unknown</tpl>"><tpl if=\"ratings.critics_score &gt;= 0\">{ratings.critics_score}<tpl else>&nbsp;</tpl></div>',

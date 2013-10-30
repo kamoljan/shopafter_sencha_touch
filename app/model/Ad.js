@@ -1,7 +1,7 @@
 Ext.define('ShopAfter.model.Ad', {
     extend: 'Ext.data.Model',
     config: {
-        idProperty: '_id',  // avid duplicates
+        idProperty: '_id',  // avoid duplicates
         fields: [
             { name: "image", type: "string" },
             { name: "thumb", type: "string" },
@@ -9,7 +9,26 @@ Ext.define('ShopAfter.model.Ad', {
             { name: "price", type: "int" },
             { name: "phone", type: "string" },
             { name: "loc" },
-            { name: "date" }
+            {
+                name: "date",
+                convert: function (value, record) {
+                    var arr = value.split(/[- :T]/),
+                        date = new Date(arr[0], arr[1] - 1, arr[2]);
+                    return Ext.Date.format(date, 'M j, Y');
+                }
+
+            },
+            {
+                // FIXME: fix from db itself
+                name: "currency",
+                convert: function (value, record) {
+                    if (typeof value === 'undefined') {
+                        return 'SGD';
+                    } else {
+                        return value;
+                    }
+                }
+            }
         ],
         validations: [
             {
