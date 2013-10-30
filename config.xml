@@ -56,4 +56,8 @@
     <gap:plugin name="org.apache.cordova.camera"/>
     <gap:plugin name="org.apache.cordova.file-transfer"/>
     <gap:plugin name="org.apache.cordova.geolocation"/>
+    <gap:plugin name="com.phonegap.plugins.facebookconnect">
+        <param name="APP_ID" value="723097297716821"/>
+        <param name="APP_NAME" value="ShopAfter"/>
+    </gap:plugin>
 </widget>
