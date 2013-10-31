@@ -12,6 +12,7 @@ exports.posting = function (req, res, next) {
             var img = "http://" + conf.aws.s3_bucket + ".s3.amazonaws.com/" + req.body.image;
             console.log("(ad): img = " + img);
             var ad = new Ad({
+                profileId: req.body.profileId,
                 image: img,
                 thumb: img,
                 category: req.body.category,
