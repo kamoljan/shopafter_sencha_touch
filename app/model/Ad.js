@@ -3,6 +3,7 @@ Ext.define('ShopAfter.model.Ad', {
     config: {
         idProperty: '_id',  // avoid duplicates
         fields: [
+            { name: "profileId", type: "int" },
             { name: "image", type: "string" },
             { name: "thumb", type: "string" },
             { name: "description", type: "string" },
