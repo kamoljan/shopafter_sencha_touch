@@ -129,6 +129,15 @@ Ext.define('ShopAfter.controller.AdInsert', {
                 if (response.status === 'connected') {
                     var form = Ext.getCmp('insertadform'),
                         values = form.getValues();
+                    Ext.Ajax.on("beforerequest", function () {
+                        Ext.getCmp('insertadform').setMasked(true);
+                    });
+                    Ext.Ajax.on("requestcomplete", function () {
+                        Ext.getCmp('insertadform').setMasked(false);
+                    });
+                    Ext.Ajax.on("requestexception", function () {
+                        Ext.getCmp('insertadform').setMasked(false);
+                    });
                     Ext.Ajax.request({
                         url: 'http://shopafter.com:3000/ad',
                         scope: this,  //need this to be able access the controller scope
@@ -145,7 +154,6 @@ Ext.define('ShopAfter.controller.AdInsert', {
                             currency: values.currency
                         },
                         callback: function (success) {
-                            Ext.getCmp('insertadform').setMasked(false);
                             if (success) {
                                 alert('Hurrah! Your ad posted!');
                                 fn.set_name("");
@@ -156,11 +164,11 @@ Ext.define('ShopAfter.controller.AdInsert', {
                     });
                 } else {
                     alert('Posting an ad is allowed only for Facebook user!');
-                    Ext.getCmp('insertadform').setMasked(false);
                 }
             },
             { scope: "email" }
         );
+        Ext.getCmp('insertadform').setMasked(false);
         return true;
-    },
+    }
 });
