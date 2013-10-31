@@ -23,7 +23,6 @@ Ext.define('ShopAfter.controller.AdInsert', {
             }
         }
     },
-
     tabPhoto: function () {
         navigator.camera.getPicture(
             function (imageURI) {
@@ -41,7 +40,6 @@ Ext.define('ShopAfter.controller.AdInsert', {
                 sourceType: Camera.PictureSourceType.CAMERA
             }
         )
-
         function uploadPhoto(imageURI) {
             var img = Ext.getCmp('adphoto');
             img.setSrc(imageURI);
@@ -125,37 +123,44 @@ Ext.define('ShopAfter.controller.AdInsert', {
             xtype: 'loadmask',
             message: 'Posting your ad ...'
         });
-        // TODO: Geolocation, disabled for now
-        this.postAd(1.3427427, 103.8479989);
+        FB.login(
+            function (response) {
+                //alert('(view.AdInsert) response = ' + JSON.stringify(response));
+                if (response.status === 'connected') {
+                    var form = Ext.getCmp('insertadform'),
+                        values = form.getValues();
+                    Ext.Ajax.request({
+                        url: 'http://shopafter.com:3000/ad',
+                        scope: this,  //need this to be able access the controller scope
+                        method: 'POST',
+                        params: {
+                            profileId: response.authResponse.userId,
+                            image: fn.get_name(),
+                            category: values.category,
+                            description: values.description,
+                            price: values.price,
+                            phone: values.phone,
+                            latitude: 1.3427427,  // TODO: Geolocation, disabled for now
+                            longitude: 103.8479989,  // TODO: Geolocation, disabled for now
+                            currency: values.currency
+                        },
+                        callback: function (success) {
+                            Ext.getCmp('insertadform').setMasked(false);
+                            if (success) {
+                                alert('Hurrah! Your ad posted!');
+                                fn.set_name("");
+                            } else {
+                                alert('Error occurred. Please, check your connection');
+                            }
+                        }
+                    });
+                } else {
+                    alert('Posting an ad is allowed only for Facebook user!');
+                    Ext.getCmp('insertadform').setMasked(false);
+                }
+            },
+            { scope: "email" }
+        );
         return true;
     },
-
-    postAd: function (lat, lon) {
-        var form = Ext.getCmp('insertadform'),
-            values = form.getValues();
-        Ext.Ajax.request({
-            url: 'http://shopafter.com:3000/ad',
-            scope: this,  //need this to be able access the controller scope
-            method: 'POST',
-            params: {
-                image: fn.get_name(),
-                category: values.category,
-                description: values.description,
-                price: values.price,
-                phone: values.phone,
-                latitude: lat,
-                longitude: lon,
-                currency: values.currency
-            },
-            callback: function (success) {
-                Ext.getCmp('insertadform').setMasked(false);
-                if (success) {
-                    alert('Hurrah! Your ad posted!');
-                    fn.set_name("");
-                } else {
-                    alert('Error occurred. Please, check your connection');
-                }
-            }
-        });
-    }
 });

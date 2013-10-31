@@ -2,7 +2,8 @@ Ext.define('ShopAfter.view.AdInsert', {
     extend: 'ShopAfter.view.AdsListView',
     xtype: 'adinsert',
     requires: [
-        'ShopAfter.form.InsertAdForm'
+        'ShopAfter.form.InsertAdForm',
+        'ShopAfter.view.LoggedOut'
     ],
     config: {
         layout: "vbox",

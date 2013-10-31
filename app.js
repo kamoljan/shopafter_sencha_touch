@@ -12,6 +12,7 @@ Ext.application({
         'Ext.plugin.PullRefresh'
     ],
     controllers: [
+        'ShopAfter.controller.Facebook',
         'ShopAfter.controller.Main',
         'ShopAfter.controller.AdInsert'
     ],
