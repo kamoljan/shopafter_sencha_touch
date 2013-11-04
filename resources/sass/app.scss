@@ -398,7 +398,12 @@ width: 30% !important;
   -moz-box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
   -webkit-box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
   box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
-
+    
+}
+.grid .user {
+width: 90px;
+white-space: nowrap;
+overflow: hidden;
 }
 .adDetailPrice>span,.user>span {
 font-size: 11px;
