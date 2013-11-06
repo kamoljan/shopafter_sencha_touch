@@ -23,10 +23,69 @@ Ext.define('ShopAfter.controller.AdInsert', {
             }
         }
     },
-    tabPhoto: function () {
+
+    uploadPhoto: function (imageURI) {
+        var img = Ext.getCmp('adphoto');
+        img.setSrc(imageURI);
+        var fileName = "" + (new Date()).getTime() + ".jpg";  // consider an unique id
+        var ft = new FileTransfer(),
+            op = new FileUploadOptions();
+        op.fileKey = "file";
+        op.fileName = fileName;
+        op.mimeType = "image/jpeg";
+        op.chunkedMode = false;
+        op.httpMethod = "POST";
+        Ext.Ajax.request({
+            url: 'http://shopafter.com:3000/sign',
+            scope: this,  // need this to be able access the controller scope
+            method: 'POST',
+            params: {
+                "fileName": fileName
+            },
+            success: function (response, opts) {
+                var obj = Ext.decode(response.responseText);
+                var params = {
+                    "key": fileName,
+                    "AWSAccessKeyId": obj.awsKey,
+                    "acl": "public-read",
+                    "policy": obj.policy,
+                    "signature": obj.signature,
+                    "Content-Type": "image/jpeg"
+                };
+                op.params = params;
+                var aws_url = encodeURI("http://" + obj.bucket + ".s3.amazonaws.com/");
+                ft.upload(imageURI, aws_url, win, fail, op);
+                function win(r) {
+                    if (r.responseCode === 204) {
+                        fn.set_name(fileName);
+                    } else {
+                        fn.set_name("");
+                    }
+                }
+
+                function fail(error) {
+                    alert("Error = " + JSON.stringify(error));
+                    fn.set_name("");
+                }
+            },
+            failure: function (response, opts) {
+                console.log('server-side failure with status code ' + response.status);
+                alert('server-side failure with status code ' + response.status);
+            }
+        });
+    },
+
+    phoneGapCamera: function (isCamera) {
+        var that = this;
+        var sourceType;
+        if (isCamera) {
+            sourceType = Camera.PictureSourceType.CAMERA;
+        } else {
+            sourceType = Camera.PictureSourceType.PHOTOLIBRARY;
+        }
         navigator.camera.getPicture(
             function (imageURI) {
-                uploadPhoto(imageURI);
+                that.uploadPhoto(imageURI);
             },
             function (message) {
                 alert('Failed: ' + message);
@@ -37,60 +96,31 @@ Ext.define('ShopAfter.controller.AdInsert', {
                 targetHeight: 300,
                 destinationType: Camera.DestinationType.FILE_URI,
                 encodingType: Camera.EncodingType.JPEG,
-                sourceType: Camera.PictureSourceType.CAMERA
+                correctOrientation: true,
+                sourceType: sourceType
             }
-        )
-        function uploadPhoto(imageURI) {
-            var img = Ext.getCmp('adphoto');
-            img.setSrc(imageURI);
-            // consider a more reliable way to generate unique ids
-            var fileName = "" + (new Date()).getTime() + ".jpg";
-            var ft = new FileTransfer(),
-                op = new FileUploadOptions();
-            op.fileKey = "file";
-            op.fileName = fileName;
-            op.mimeType = "image/jpeg";
-            op.chunkedMode = false;
-            op.httpMethod = "POST";
-            Ext.Ajax.request({
-                url: 'http://shopafter.com:3000/sign',
-                scope: this,  // need this to be able access the controller scope
-                method: 'POST',
-                params: {
-                    "fileName": fileName
-                },
-                success: function (response, opts) {
-                    var obj = Ext.decode(response.responseText);
-                    var params = {
-                        "key": fileName,
-                        "AWSAccessKeyId": obj.awsKey,
-                        "acl": "public-read",
-                        "policy": obj.policy,
-                        "signature": obj.signature,
-                        "Content-Type": "image/jpeg"
-                    };
-                    op.params = params;
-                    var aws_url = encodeURI("http://" + obj.bucket + ".s3.amazonaws.com/");
-                    ft.upload(imageURI, aws_url, win, fail, op);
-                    function win(r) {
-                        if (r.responseCode === 204) {
-                            fn.set_name(fileName);
-                        } else {
-                            fn.set_name("");
-                        }
-                    }
+        );
+    },
 
-                    function fail(error) {
-                        alert("Error = " + JSON.stringify(error));
-                        fn.set_name("");
-                    }
+    tabPhoto: function () {
+        Ext.Msg.show({
+            scope: this,
+            title: null,
+            msg: null,
+            buttons: [
+                {
+                    itemId: 'ok',
+                    text: 'camera'
                 },
-                failure: function (response, opts) {
-                    console.log('server-side failure with status code ' + response.status);
-                    alert('server-side failure with status code ' + response.status);
+                {
+                    itemId: 'cancel',
+                    text: 'upload'
                 }
-            });
-        }
+            ],
+            fn: function (btn) {
+                this.phoneGapCamera((btn === 'ok'));
+            }
+        });
     },
 
     validateAdForm: function (button, e, options) {
@@ -150,7 +180,7 @@ Ext.define('ShopAfter.controller.AdInsert', {
                             price: values.price,
                             phone: values.phone,
                             latitude: 1.3427427,  // TODO: Geolocation, disabled for now
-                            longitude: 103.8479989,  // TODO: Geolocation, disabled for now
+                            longitude: 103.8479989,
                             currency: values.currency
                         },
                         callback: function (success) {

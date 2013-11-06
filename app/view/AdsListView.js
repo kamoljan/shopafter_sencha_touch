@@ -2,6 +2,7 @@ Ext.define('ShopAfter.view.AdsListView', {
     extend: 'Ext.Container',
     xtype: 'adslistview',
     requires: [
+        'Ext.Img',
         'Ext.dataview.DataView',
         'Ext.dataview.List',
         'ShopAfter.proxy.Ads',

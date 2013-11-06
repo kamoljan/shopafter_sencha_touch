@@ -3,7 +3,8 @@ Ext.define('ShopAfter.form.InsertAdForm', {
     xtype: 'insertadform',
     id: 'insertadform',
     requires: [
-        'Ext.MessageBox',
+        'Ext.field.Select',
+        'Ext.field.Number',
         'Ext.data.Errors',
         'ShopAfter.proxy.Ads',
         'ShopAfter.model.InsertAd'

@@ -6,9 +6,6 @@ Ext.application({
         'Ext.Menu',
         'ShopAfter.components.MenuButton',
         'Ext.form.FieldSet',
-        'Ext.Img',
-        'Ext.field.Select',
-        'Ext.field.Number',
         'Ext.plugin.PullRefresh'
     ],
     controllers: [
@@ -93,13 +90,15 @@ Ext.application({
                 } else if (!menu.isHidden()) {
                     Ext.Viewport.toggleMenu("left");
                 } else {
-                    Ext.Msg.confirm("Exit", "Do you want to exit the app?", function (answer) {
-                        if (answer == 'yes') {
-                            navigator.app.exitApp();
-                        } else {
-                            //do nothing
+                    Ext.Msg.confirm(
+                        "Exit",
+                        "Do you want to exit the app?",
+                        function (answer) {
+                            if (answer === 'yes') {
+                                navigator.app.exitApp();
+                            }
                         }
-                    });
+                    );
                 }
             }
         }
