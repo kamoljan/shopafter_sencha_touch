@@ -80,6 +80,26 @@ Ext.application({
             side: 'left',
             reveal: true
         });
+
+        // Handling Android Backbutton
+        if (Ext.os.is('Android')) {
+            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
+            function onBackKeyDown(e) {
+                e.preventDefault();
+                if (ShopAfter.app.getController('ShopAfter.controller.Main').getAdDetailsVisible()) {
+                    ShopAfter.app.getController('ShopAfter.controller.Main')._adDetails.hide();
+                    ShopAfter.app.getController('ShopAfter.controller.Main').setAdDetailsVisible(false);
+                } else {
+                    Ext.Msg.confirm("Exit", "Do you want to exit the app?", function (answer) {
+                        if (answer == 'yes') {
+                            navigator.app.exitApp();
+                        } else {
+                            //do nothing
+                        }
+                    });
+                }
+            }
+        }
     },
 
     onUpdated: function () {

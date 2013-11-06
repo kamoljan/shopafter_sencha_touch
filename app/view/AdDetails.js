@@ -6,7 +6,7 @@ Ext.define('ShopAfter.view.AdDetails', {
         fullscreen: true,
         tabBarPosition: "bottom",
         ui: 'light',
-        cls: " addetails",
+        cls: "addetails",
         record: null,
         layout: "vbox",
         hidden: true,
@@ -40,11 +40,9 @@ Ext.define('ShopAfter.view.AdDetails', {
             var header = this.getHeader(),
                 content = this.getContent(),
                 data = record.data;
-
             header.setHtml(this.getHeaderTemplate().apply(data));
             content.setHtml(record.get("synopsis"));
             content.getScrollable().getScroller().scrollTo(null, 0, false);
-
             this.add(this.getCloseButton());
             this.add(header);
         }
@@ -73,7 +71,6 @@ Ext.define('ShopAfter.view.AdDetails', {
     getHeaderTemplate: function () {
         if (!this._headerTemplate) {
             this._headerTemplate = new Ext.XTemplate(
-
                 '<div class="img" style="background-image: url({image}); background-repeat: no-repeat;"></div>',
                 '<hr class="hr_" />',
                 '<div class="info">',
@@ -91,6 +88,7 @@ Ext.define('ShopAfter.view.AdDetails', {
         }
         return this._headerTemplate;
     },
+
     getCloseButton: function () {
         if (!this._closeButton) {
             this._closeButton = Ext.create('Ext.Button', {
@@ -98,7 +96,7 @@ Ext.define('ShopAfter.view.AdDetails', {
                 action: "close"
             })
         }
-
         return this._closeButton;
     }
+
 });

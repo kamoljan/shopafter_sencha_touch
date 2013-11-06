@@ -5,6 +5,7 @@ Ext.define('ShopAfter.controller.Main', {
         "Ext.util.InputBlocker"
     ],
     config: {
+        adDetailsVisible: false,
         refs: {
             main: 'main',
             adsList: 'adssearch > list',
@@ -76,6 +77,7 @@ Ext.define('ShopAfter.controller.Main', {
                             single: true
                         }
                     });
+                    this.setAdDetailsVisible(true);  // Handling Android backbutton
                     this._adDetails.show();
                 }
             }
