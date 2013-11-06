@@ -76,6 +76,7 @@ Ext.application({
                 }
             ]
         });
+
         Ext.Viewport.setMenu(menu, {
             side: 'left',
             reveal: true
@@ -89,6 +90,8 @@ Ext.application({
                 if (ShopAfter.app.getController('ShopAfter.controller.Main').getAdDetailsVisible()) {
                     ShopAfter.app.getController('ShopAfter.controller.Main')._adDetails.hide();
                     ShopAfter.app.getController('ShopAfter.controller.Main').setAdDetailsVisible(false);
+                } else if (!menu.isHidden()) {
+                    Ext.Viewport.toggleMenu("left");
                 } else {
                     Ext.Msg.confirm("Exit", "Do you want to exit the app?", function (answer) {
                         if (answer == 'yes') {
