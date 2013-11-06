@@ -193,7 +193,8 @@ Ext.define('ShopAfter.controller.AdInsert', {
                         }
                     });
                 } else {
-                    alert('Posting an ad is allowed only for Facebook user!');
+                    alert("Sorry, please connect to Facebook account to post your ads." +
+                        "Don't worry, we won't share anything without your okay. Promise!");
                 }
             },
             { scope: "email" }
