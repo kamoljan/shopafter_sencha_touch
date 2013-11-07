@@ -91,7 +91,7 @@ Ext.define('ShopAfter.controller.AdInsert', {
                 alert('Failed: ' + message);
             },
             {
-                quality: 100,
+                quality: 85,
                 targetWidth: 300,
                 targetHeight: 300,
                 destinationType: Camera.DestinationType.FILE_URI,
