@@ -110,11 +110,11 @@ Ext.define('ShopAfter.controller.AdInsert', {
             buttons: [
                 {
                     itemId: 'ok',
-                    text: 'camera'
+                    text: 'Take a picture'
                 },
                 {
                     itemId: 'cancel',
-                    text: 'upload'
+                    text: 'Browse existing pictures'
                 }
             ],
             fn: function (btn) {
