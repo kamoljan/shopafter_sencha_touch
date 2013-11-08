@@ -185,7 +185,7 @@ Ext.define('ShopAfter.controller.AdInsert', {
                         },
                         callback: function (success) {
                             if (success) {
-                                alert('Hurrah! Your ad posted!');
+                                alert('Hooray, your ad has been posted successfully! Please go to the "Latest ads" to view your ad!');
                                 fn.set_name("");
                             } else {
                                 alert('Error occurred. Please, check your connection');
