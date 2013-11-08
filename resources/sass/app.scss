@@ -385,6 +385,11 @@ width: 30% !important;
   background: none;
 }
 
+// Hide scrollbar
+.x-scroll-bar-y.active {
+  width: 0px;
+}
+
 .grid .x-list-item .ad .img {
   box-shadow: none;
   width: 90px !important;
