@@ -3,21 +3,22 @@ Ext.define('ShopAfter.view.AdDetails', {
     xtype: "addetails",
     requires: [],
     config: {
+        scrollable: true,
         fullscreen: true,
         tabBarPosition: "bottom",
         ui: 'light',
-        cls: " addetails",
+        cls: "addetails",
         record: null,
         layout: "vbox",
         hidden: true,
         showAnimation: {
             type: "slideIn",
-            direction: "down",
+            direction: "left",
             duration: 500
         },
         hideAnimation: {
             type: "slideOut",
-            direction: "up",
+            direction: "right",
             duration: 500
         }
     },
@@ -40,11 +41,9 @@ Ext.define('ShopAfter.view.AdDetails', {
             var header = this.getHeader(),
                 content = this.getContent(),
                 data = record.data;
-
             header.setHtml(this.getHeaderTemplate().apply(data));
             content.setHtml(record.get("synopsis"));
             content.getScrollable().getScroller().scrollTo(null, 0, false);
-
             this.add(this.getCloseButton());
             this.add(header);
         }
@@ -73,24 +72,25 @@ Ext.define('ShopAfter.view.AdDetails', {
     getHeaderTemplate: function () {
         if (!this._headerTemplate) {
             this._headerTemplate = new Ext.XTemplate(
-
                 '<div class="img" style="background-image: url({image}); background-repeat: no-repeat;"></div>',
                 '<hr class="hr_" />',
                 '<div class="info">',
                 '<div class="fbProfilePic"><img src="https://graph.facebook.com/{profileId}/picture?type=square" /></div>',
                 '<span class="userName">&nbsp;</span>',
                 '<div class="adDetailData">Posted at: {date}</div>',
-
                 '<div class="vbox vbox-isk">',
                 '<div class="adDetailPrice"><span>{currency}</span> {price}</div>',
-                '<p class="adDetailPhone"><a href="tel:+{phone}">{phone}</a></p>',
                 '<div class="adDetailDesc"><span></span>{description}</div>',
+                '<br />',
+                '<p class="adDetailPhone"><a href="tel:+{phone}">{phone}</a></p>',
+                '<p class="adDetailPhone"><a href="SMS:{phone}">SMS</a></p>',
                 '</div>',
                 '</div>'
             )
         }
         return this._headerTemplate;
     },
+
     getCloseButton: function () {
         if (!this._closeButton) {
             this._closeButton = Ext.create('Ext.Button', {
@@ -98,7 +98,7 @@ Ext.define('ShopAfter.view.AdDetails', {
                 action: "close"
             })
         }
-
         return this._closeButton;
     }
+
 });

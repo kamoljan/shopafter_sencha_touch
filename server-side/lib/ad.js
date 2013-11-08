@@ -46,7 +46,7 @@ exports.searching = function (req, res, next) {
 
     // pagination
     var page = req.query.page || 1;
-    var limit = req.query.limit || 10;
+    var limit = req.query.limit || 9;
     // filter
     var filter = new RegExp(req.query.filter, 'i');  // 'i' makes it case insensitive
     var category = req.query.category || 0;

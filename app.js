@@ -6,12 +6,10 @@ Ext.application({
         'Ext.Menu',
         'ShopAfter.components.MenuButton',
         'Ext.form.FieldSet',
-        'Ext.Img',
-        'Ext.field.Select',
-        'Ext.field.Number',
         'Ext.plugin.PullRefresh'
     ],
     controllers: [
+        'ShopAfter.controller.Facebook',
         'ShopAfter.controller.Main',
         'ShopAfter.controller.AdInsert'
     ],
@@ -75,10 +73,35 @@ Ext.application({
                 }
             ]
         });
+
         Ext.Viewport.setMenu(menu, {
             side: 'left',
             reveal: true
         });
+
+        // Handling Android Backbutton
+        if (Ext.os.is('Android')) {
+            document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
+            function onBackKeyDown(e) {
+                e.preventDefault();
+                if (ShopAfter.app.getController('ShopAfter.controller.Main').getAdDetailsVisible()) {
+                    ShopAfter.app.getController('ShopAfter.controller.Main')._adDetails.hide();
+                    ShopAfter.app.getController('ShopAfter.controller.Main').setAdDetailsVisible(false);
+                } else if (!menu.isHidden()) {
+                    Ext.Viewport.toggleMenu("left");
+                } else {
+                    Ext.Msg.confirm(
+                        "Exit",
+                        "Do you want to exit the app?",
+                        function (answer) {
+                            if (answer === 'yes') {
+                                navigator.app.exitApp();
+                            }
+                        }
+                    );
+                }
+            }
+        }
     },
 
     onUpdated: function () {
