@@ -81,7 +81,7 @@ Ext.define('ShopAfter.view.AdDetails', {
                 '<div class="vbox vbox-isk">',
                 '<div class="adDetailPrice"><span>{currency}</span> {price}</div>',
                 '<div class="adDetailDesc"><span></span>{description}</div>',
-                '<br /><br />',
+                '<br />',
                 '<p class="adDetailPhone"><a href="tel:+{phone}">{phone}</a></p>',
                 '<p class="adDetailPhone"><a href="SMS:{phone}">SMS</a></p>',
                 '</div>',
