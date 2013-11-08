@@ -3,6 +3,7 @@ Ext.define('ShopAfter.view.AdDetails', {
     xtype: "addetails",
     requires: [],
     config: {
+        scrollable: true,
         fullscreen: true,
         tabBarPosition: "bottom",
         ui: 'light',
@@ -12,12 +13,12 @@ Ext.define('ShopAfter.view.AdDetails', {
         hidden: true,
         showAnimation: {
             type: "slideIn",
-            direction: "down",
+            direction: "left",
             duration: 500
         },
         hideAnimation: {
             type: "slideOut",
-            direction: "up",
+            direction: "right",
             duration: 500
         }
     },
@@ -77,11 +78,12 @@ Ext.define('ShopAfter.view.AdDetails', {
                 '<div class="fbProfilePic"><img src="https://graph.facebook.com/{profileId}/picture?type=square" /></div>',
                 '<span class="userName">&nbsp;</span>',
                 '<div class="adDetailData">Posted at: {date}</div>',
-
                 '<div class="vbox vbox-isk">',
                 '<div class="adDetailPrice"><span>{currency}</span> {price}</div>',
-                '<p class="adDetailPhone"><a href="tel:+{phone}">{phone}</a></p>',
                 '<div class="adDetailDesc"><span></span>{description}</div>',
+                '<br /><br />',
+                '<p class="adDetailPhone"><a href="tel:+{phone}">{phone}</a></p>',
+                '<p class="adDetailPhone"><a href="SMS:{phone}">SMS</a></p>',
                 '</div>',
                 '</div>'
             )
