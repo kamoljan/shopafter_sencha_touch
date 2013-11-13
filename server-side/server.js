@@ -25,7 +25,7 @@ app.get('/search', ad.searching);
 app.options('/search', ad.searching);  // FIXME: find out why it sends OPTIONS method?
 app.get('/ad/:id', ad.viewing);
 
-app.post('/report', report.reporting);
+app.put('/report/:id', report.reporting);
 
 app.listen(3000, function () {
     console.log('Server listening on port 3000');
