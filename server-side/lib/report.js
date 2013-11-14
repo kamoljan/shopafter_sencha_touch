@@ -1,18 +1,37 @@
-var async = require('async'),
-    handleError = require('./error').handleError;
-
 exports.reporting = function (req, res, next) {
     console.log("(report): reporting");
-    console.log("(report): req.params = " + JSON.stringify(req.params));
-    console.log("(report): req.body = " + JSON.stringify(req.body));
-    console.log("(report): req.query = " + JSON.stringify(req.query));
-    Ad.update(
-        { "_id": req.query.id},
-        { $inc: { "report": 1}},
-        function (error, result) {
-            console.log("(report) result = " + result);
-            console.log("(report) error = " + error);
-            res.json({ success: true });
+    var query = {
+        "_id": mongoose.Types.ObjectId(req.param('id'))
+    };
+    var update = {
+        $inc: {
+            "report": 1
+        }
+    };
+    /**
+     * new: boolean}} true to return the modified document rather than the original. defaults to true
+     * upsert: boolean}} creates the object if it doesn't exist. defaults to false.
+     * sort: if multiple docs are found by the conditions, sets the sort order to choose which doc to update
+     * select: sets the document fields to return
+     */
+    var options = {
+        select: 'report'
+    };
+    Ad.findOneAndUpdate(
+        query,
+        update,
+        options,
+        function (err, report) {
+            if (!err) {
+                res.json({ success: true });
+                console.log("(report) report = " + report);
+            } else {
+                res.json({ success: false });
+                console.log("(report) err = " + err);
+                console.log("(report) query = " + query);
+                console.log("(report) update = " + update);
+                console.log("(report) options = " + options);
+            }
         }
     );
 };
