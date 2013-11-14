@@ -14,6 +14,7 @@ Ext.define('ShopAfter.form.InsertAdForm', {
         title: 'Sell it now!',
         cls: "insertadform",
         height: '100%',
+        styleHtmlContent: true,
         header: [
             {
                 xtype: "formpanel",
