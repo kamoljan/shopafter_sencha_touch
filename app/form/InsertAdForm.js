@@ -135,7 +135,7 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                             {
                                 html: [
 //                                    '<br />By posting this ad, I agree with ShopAfter\'s <a href="#" onclick="window.open(\'http://shopafter.com:3000/term.html\', \'_system\')">Terms &amp; Conditions</a>'
-                                    '<br />By posting this ad, I agree with ShopAfter <a href="http://shopafter.com:3000/terms.html">Terms &amp; Conditions</a>'
+                                    '<br />By posting this ad, I agree with ShopAfter <a style="position:relative;" href="http://shopafter.com:3000/terms.html">Terms &amp; Conditions</a>'
                                 ].join('')
                             }
                         ]
