@@ -8,16 +8,13 @@ exports.reporting = function (req, res, next) {
             "report": 1
         }
     };
-    /**
-     * new: boolean}} true to return the modified document rather than the original. defaults to true
-     * upsert: boolean}} creates the object if it doesn't exist. defaults to false.
-     * sort: if multiple docs are found by the conditions, sets the sort order to choose which doc to update
-     * select: sets the document fields to return
-     */
     var options = {
         select: 'report'
     };
-    Ad.findOneAndUpdate(
+    /**
+     * http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate
+     **/
+    Ad.findByIdAndUpdate(
         query,
         update,
         options,
