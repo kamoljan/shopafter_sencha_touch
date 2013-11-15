@@ -7,7 +7,8 @@ Ext.define('ShopAfter.form.InsertAdForm', {
         'Ext.field.Number',
         'Ext.data.Errors',
         'ShopAfter.proxy.Ads',
-        'ShopAfter.model.InsertAd'
+        'ShopAfter.model.InsertAd',
+        'ShopAfter.view.Terms'
     ],
     config: {
         layout: "vbox",
@@ -135,15 +136,32 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                             },
                             {
                                 html: [
-//                                    '<br />By posting this ad, I agree with ShopAfter\'s <a href="#" onclick="window.open(\'http://shopafter.com:3000/term.html\', \'_system\')">Terms &amp; Conditions</a>'
-                                    '<br />By posting this ad, I agree with ShopAfter <a style="position:relative;" href="http://shopafter.com:3000/terms.html">Terms &amp; Conditions</a>'
+                                    '<br />By posting this ad, I agree with ShopAfter <a class="link" style="position:relative;" href="#">Terms &amp; Conditions</a>'
                                 ].join('')
                             }
                         ]
                     }
                 ]
             }
-        ]
+        ],
+        listeners: {
+            tap: {
+                fn: function(e) {
+                    if (e.getTarget('a.link')) {
+                        if (!this._termspanel) {
+                            this._termspanel = Ext.create('ShopAfter.view.Terms');
+                        }
+                        Ext.Viewport.add(this._termspanel);
+                        this._termspanel.show();
+                    }
+                },
+                element: 'element'
+            },
+            swipe: {
+                fn: function() {},
+                element: 'innerElement'
+            }
+        }
     },
 
     _headerBar: null,

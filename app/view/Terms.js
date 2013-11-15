@@ -1,15 +1,32 @@
 Ext.define('ShopAfter.view.Terms', {
     extend: 'Ext.Panel',
-    xtype: "main",
+    id: 'termspanel',
     config: {
-        cls: "welcomeOverlay",
-        html: [
-            "<div class='message'>",
-            "<h2>Welcome to <em>ShopAfter</em></h2>",
-            "<p>Browse any of our lists by selecting a tab at the bottom, or swiping across the app.</p>",
-            "<div class='tap'>Tap anywhere to begin</div>",
-            "</div>"
-        ].join(""),
+        scrollable: true,
+        styleHtmlContent: true,
+        items: [
+            {
+                title: 'Back',
+                xtype: 'toolbar',
+                name: 'backToolBar',
+                docked: 'top',
+                listeners: {
+                    tap: {
+                        fn: function (e) {
+                            if (!this._termspanel) {
+                                this._termspanel = Ext.getCmp('termspanel');
+                            }
+                            this._termspanel.hide();
+                        },
+                        element: 'element'
+                    }
+                }
+            },
+            {
+                id: 'termstab',
+                html: 'Loading top stories url...'
+            }
+        ],
         hidden: true,
         showAnimation: Ext.browser.is.ie || Ext.browser.is.AndroidStock ? null : {
             type: "fadeIn",
@@ -20,15 +37,15 @@ Ext.define('ShopAfter.view.Terms', {
             duration: 250
         }
     },
+
     initialize: function () {
-        this.element.on({
-            tap: {
-                fn: function () {
-                    this.hide();
-                },
-                single: true,
-                scope: this
+        Ext.Ajax.request({
+            url: 'http://shopafter.com:3000/terms.html',
+            method: 'GET',
+            useDefaultXhrHeader: false,
+            success: function (response, opts) {
+                Ext.ComponentQuery.query('#termstab')[0].setHtml(response.responseText);
             }
-        })
+        });
     }
 });
