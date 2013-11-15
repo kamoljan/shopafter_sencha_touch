@@ -12,6 +12,7 @@ conf = require('./lib/conf').conf;
 db = require('./lib/database');
 
 app.use(express.logger("dev"));  // Log output like "200"
+app.use(express.compress());
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -20,7 +21,6 @@ app.use(function(req, res, next) {
 app.use(express.static(__dirname + '/public'));
 app.use(express.methodOverride());
 app.use(express.bodyParser());
-app.use(express.compress());
 app.use(app.router);
 
 // FIXME: SECURE THIS ENDPOINT WITH APPROPRIATE AUTHENTICATION/AUTHORIZATION MECHANISM
