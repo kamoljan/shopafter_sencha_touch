@@ -23,9 +23,7 @@ app.post('/sign', sign.signing);
 
 app.post('/ad', ad.posting);
 app.get('/search', ad.searching);
-app.options('/search', ad.searching);  // FIXME: find out why it sends OPTIONS method?
 app.get('/ad/:id', ad.viewing);
-
 app.put('/report/:id', report.reporting);
 
 app.listen(3000, function () {

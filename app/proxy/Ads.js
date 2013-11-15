@@ -4,6 +4,12 @@ Ext.define('ShopAfter.proxy.Ads', {
     config: {
         type: 'ajax',
         url: "http://shopafter.com:3000/",
+        /**
+         * Set useDefaultXhrHeader to false to not send the default Xhr header (X-Requested-With) with every request.
+         * This should be set to false when making CORS (cross-domain) requests.
+         * Defaults to: true
+         */
+        useDefaultXhrHeader: false,
         reader: {
             type: "json",
             rootProperty: "ads"
