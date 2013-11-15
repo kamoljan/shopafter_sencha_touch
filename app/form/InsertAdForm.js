@@ -152,6 +152,7 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                             this._termspanel = Ext.create('ShopAfter.view.Terms');
                         }
                         Ext.Viewport.add(this._termspanel);
+                        this._termspanel.setTermsVisible(true);  // Handling Android backbutton
                         this._termspanel.show();
                     }
                 },
