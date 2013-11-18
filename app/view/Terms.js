@@ -2,6 +2,7 @@ Ext.define('ShopAfter.view.Terms', {
     extend: 'Ext.Panel',
     id: 'termspanel',
     config: {
+        termsVisible: false,  // Handling Android backbutton
         scrollable: true,
         styleHtmlContent: true,
         items: [

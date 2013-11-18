@@ -87,6 +87,9 @@ Ext.application({
                 if (ShopAfter.app.getController('ShopAfter.controller.Main').getAdDetailsVisible()) {
                     ShopAfter.app.getController('ShopAfter.controller.Main')._adDetails.hide();
                     ShopAfter.app.getController('ShopAfter.controller.Main').setAdDetailsVisible(false);
+                } else if (ShopAfter.app.getView('ShopAfter.view.Terms').getTermsVisible()) {
+                    ShopAfter.app.getView('ShopAfter.view.Terms')._termspanel.hide();
+                    ShopAfter.app.getView('ShopAfter.view.Terms').setTermsVisible(false);
                 } else if (!menu.isHidden()) {
                     Ext.Viewport.toggleMenu("left");
                 } else {

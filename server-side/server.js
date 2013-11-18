@@ -18,6 +18,7 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     next();
 });
+app.use(express.compress());
 app.use(express.static(__dirname + '/public'));
 app.use(express.methodOverride());
 app.use(express.bodyParser());
