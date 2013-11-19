@@ -50,7 +50,6 @@ Ext.define('ShopAfter.view.AdDetails', {
 
             var btnReport = Ext.Viewport.add({
                 xtype: 'button',
-                //centered: true,
                 text: "Report it!",
                 id: 'btnReport',
                 listeners: {
@@ -104,7 +103,7 @@ Ext.define('ShopAfter.view.AdDetails', {
                 '<p class="adDetailPhone"><a href="SMS:{phone}">SMS</a></p>',
                 '</div>',
                 '</div>'
-            )
+            );
         }
         return this._headerTemplate;
     },
@@ -114,23 +113,23 @@ Ext.define('ShopAfter.view.AdDetails', {
             this._closeButton = Ext.create('Ext.Button', {
                 text: "Back",
                 action: "close"
-            })
+            });
         }
         return this._closeButton;
     },
 
     setReport: function (ad_id) {
-        that = this;
+        var that = this;
         this.setMasked({xtype: 'loadmask', message: 'Reporting ...'});
         FB.getLoginStatus(
             function (response) {
                 if (response.status === 'connected') {
-                    that.setAjax(ad_id, response.authResponse.userId);
+                    that.ajaxPutReport(ad_id, response.authResponse.userId);
                 } else {
                     FB.login(
                         function (response) {
                             if (response.status === 'connected') {
-                                that.setAjax(ad_id, response.authResponse.userId);
+                                that.ajaxPutReport(ad_id, response.authResponse.userId);
                             } else {
                                 alert("Sorry, please connect to Facebook account to report." +
                                     "Don't worry, we won't share anything without your okay. Promise!");
@@ -139,33 +138,32 @@ Ext.define('ShopAfter.view.AdDetails', {
                         { scope: "email" }
                     );
                 }
-            });
-        this.setMasked(false);
-        var btnReport = Ext.getCmp('btnReport');
-        btnReport.getAt(1).setText('Thank you :)');
+            }
+        );
     },
 
-    setAjax: function (ad_id, user_id) {
-        Ext.Ajax.on("requestcomplete", function () {
-            this.setMasked(false);
-        });
-        Ext.Ajax.on("requestexception", function () {
-            this.setMasked(false);
-        });
+    onAfterPutReportSuccess: function (response) {
+        this.setMasked(false);
+        var btnReport = Ext.getCmp('btnReport');
+        btnReport.setText('Thank you');
+    },
+
+    onAfterPutReportFailure: function (response) {
+        this.setMasked(false);
+        alert('Error occurred. Please, check your connection');
+        alert('server-side failure with status code ' + response.status);
+    },
+
+    ajaxPutReport: function (ad_id, user_id) {
         Ext.Ajax.request({
             url: 'http://shopafter.com:3000/report/' + ad_id,
-            scope: this,  //need this to be able access the controller scope
             method: 'PUT',
             params: {
-                profileId: user_id  //TODO: Later, we will need to track reporters as well
+                profileId: user_id
             },
-            success: function (response, opts) {
-                alert('Thank you for your report!');  //FIXME: never appear this alert
-            },
-            failure: function (response, opts) {
-                alert('Error occurred. Please, check your connection');
-                alert('server-side failure with status code ' + response.status);
-            }
+            scope: this,
+            success: this.onAfterPutReportSuccess,
+            failure: this.onAfterPutReportFailure
         });
     }
 });
