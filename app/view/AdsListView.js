@@ -81,7 +81,7 @@ Ext.define('ShopAfter.view.AdsListView', {
         if (!this._store) {
             this._store = Ext.create("Ext.data.Store", {
                 model: "ShopAfter.model.Ad",
-                autoLoad: this.getAutoLoad() === true,
+                autoLoad: (this.getAutoLoad() === true),
                 remoteFilter: true,
                 pageSize: 9,
                 proxy: this.getProxy()
@@ -105,7 +105,7 @@ Ext.define('ShopAfter.view.AdsListView', {
 
     applyProxy: function (config) {
         if (Ext.isSimpleObject(config)) {
-            return Ext.factory(config, 'ShopAfter.proxy.Ads')
+            return Ext.factory(config, 'ShopAfter.proxy.Ads');
         }
         return config;
     },
@@ -118,7 +118,7 @@ Ext.define('ShopAfter.view.AdsListView', {
     },
 
     updateEnablePaging: function (currentValue, oldValue) {
-        if (currentValue != oldValue && (currentValue != false && oldValue != undefined)) {
+        if (currentValue !== oldValue && (currentValue !== false && oldValue !== undefined)) {
             this.create();
             this._store.load();
         }

@@ -142,18 +142,9 @@ Ext.define('ShopAfter.view.AdDetails', {
         );
     },
 
-    onAfterPutReportSuccess: function (response) {
-        this.setMasked(false);
-        var btnReport = Ext.getCmp('btnReport');
-        btnReport.setText('Thank you');
-    },
-
-    onAfterPutReportFailure: function (response) {
-        this.setMasked(false);
-        alert('Error occurred. Please, check your connection');
-        alert('server-side failure with status code ' + response.status);
-    },
-
+    // ----------------------------------
+    // PUT REPORT
+    // ----------------------------------
     ajaxPutReport: function (ad_id, user_id) {
         Ext.Ajax.request({
             url: 'http://shopafter.com:3000/report/' + ad_id,
@@ -165,5 +156,19 @@ Ext.define('ShopAfter.view.AdDetails', {
             success: this.onAfterPutReportSuccess,
             failure: this.onAfterPutReportFailure
         });
+    },
+
+    onAfterPutReportSuccess: function (response) {
+        this.setMasked(false);
+        var btnReport = Ext.getCmp('btnReport');
+        btnReport.setText('Thank you');
+    },
+
+    onAfterPutReportFailure: function (response) {
+        this.setMasked(false);
+        alert('Error occurred. Please, check your connection');
+        alert('server-side failure with status code ' + response.status);
     }
+    // ----------------------------------
+
 });

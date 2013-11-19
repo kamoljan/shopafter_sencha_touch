@@ -91,7 +91,9 @@ Ext.define('ShopAfter.controller.Main', {
 
     doSearch: function (search) {
         search = search.replace(/^\s+|\s+$/g, '');
-        if (search.length <= 0) return;
+        if (search.length <= 0) {
+            return;
+        }
         var adsList = this.getAdsList(),
             adsStore = adsList.getStore();
         adsStore.currentPage = 1;

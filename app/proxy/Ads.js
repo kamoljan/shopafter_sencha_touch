@@ -20,7 +20,6 @@ Ext.define('ShopAfter.proxy.Ads', {
         return this._url + this.getService();
     },
     encodeFilters: function (filters) {
-        if (Ext.isArray(filters) && filters.length > 0) return filters[0].getValue();
-        return "";
+        return (Ext.isArray(filters) && filters.length > 0) ? filters[0].getValue() : '';
     }
 });
