@@ -157,10 +157,6 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                     }
                 },
                 element: 'element'
-            },
-            swipe: {
-                fn: function() {},
-                element: 'innerElement'
             }
         }
     },
