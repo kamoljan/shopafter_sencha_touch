@@ -9,7 +9,6 @@ Ext.define('ShopAfter.controller.Facebook', {
     },
 
     init: function () {
-        console.log('(controller.Facebook) init');
         try {
             //alert('(controller.Facebook) Device is ready! Make sure you set your app_id below this alert.');
             FB.init(
@@ -35,7 +34,6 @@ Ext.define('ShopAfter.controller.Facebook', {
     },
 
     onFacebookLogin: function () {
-        console.log('(controller.Facebook) onFacebookLogin');
         FB.login(
             function (response) {
                 //alert('(controller.Facebook) response = ' + JSON.stringify(response));
