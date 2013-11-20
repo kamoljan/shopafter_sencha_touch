@@ -31,15 +31,17 @@ Ext.define('ShopAfter.view.AdsSearch', {
         if (!this._store) {
             this.callParent();
             this._store.setRemoteFilter(true);
-
             //Intercept the load function and short circuit it when there is no query
             this._store.load = Ext.Function.createInterceptor(this._store.load, function () {
                 var filters = this.getFilters(),
                     len = filters.length,
-                    filter;
-                for (var i = 0; i < len; i++) {
+                    filter,
+                    i;
+                for (i = 0; i < len; i++) {
                     filter = filters[i];
-                    if (filter.getId() === "query" && filter.getValue().length > 0) return true;
+                    if (filter.getId() === "query" && filter.getValue().length > 0) {
+                        return true;
+                    }
                 }
                 return false;
             }, this._store)
