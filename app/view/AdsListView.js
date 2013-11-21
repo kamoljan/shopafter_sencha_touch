@@ -81,7 +81,7 @@ Ext.define('ShopAfter.view.AdsListView', {
         if (!this._store) {
             this._store = Ext.create("Ext.data.Store", {
                 model: "ShopAfter.model.Ad",
-                autoLoad: (this.getAutoLoad() === true),
+                autoLoad: false,
                 remoteFilter: true,
                 pageSize: 9,
                 proxy: this.getProxy()
