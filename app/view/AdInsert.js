@@ -6,10 +6,10 @@ Ext.define('ShopAfter.view.AdInsert', {
         'ShopAfter.view.LoggedOut'
     ],
     config: {
-        layout: "vbox",
+        layout: 'vbox',
         header: {
-            iconCls: "list",
-            ui: "plain",
+            iconCls: 'list',
+            ui: 'plain',
             left: 0
         }
     },
@@ -28,8 +28,8 @@ Ext.define('ShopAfter.view.AdInsert', {
 
     getHeaderBar: function () {
         if (!this._headerBar) {
-            this._headerBar = Ext.create("Ext.Toolbar", {
-                xtype: "toolbar",
+            this._headerBar = Ext.create('Ext.Toolbar', {
+                xtype: 'toolbar',
                 layout: {
                     type: 'hbox',
                     pack: 'center'
