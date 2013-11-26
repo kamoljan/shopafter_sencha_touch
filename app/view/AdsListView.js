@@ -83,7 +83,7 @@ Ext.define('ShopAfter.view.AdsListView', {
                 model: "ShopAfter.model.Ad",
                 autoLoad: false,
                 remoteFilter: true,
-                pageSize: 9,
+                pageSize: 10,
                 proxy: this.getProxy()
             });
         }
