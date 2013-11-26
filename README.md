@@ -39,6 +39,7 @@ However, if you wish to upgrate to latest phonegap plugins run the following cod
     phonegap local plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-camera.git
     phonegap local plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-transfer.git
     phonegap local plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-geolocation.git
+    phonegap local plugin add https://github.com/phonegap-build/FacebookConnect.git
 
 #### MongoDb setup
 ##### Index by MongoDB 2d 
