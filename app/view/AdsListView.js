@@ -94,11 +94,12 @@ Ext.define('ShopAfter.view.AdsListView', {
         if (!this._itemTemplate) {
             this._itemTemplate = new Ext.XTemplate(
                 '<div class="ad">',
+                '<div class="title">{title}</div>',
                 '<div class="img" style="background-image: url(\'{image}\')"></div>',
                 '<div class="user"><span>{currency}</span> {price}</div>',
                 '<div class="spacer"></div>',
                 '</div>'
-            )
+            );
         }
         return this._itemTemplate;
     },
