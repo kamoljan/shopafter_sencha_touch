@@ -35,7 +35,6 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                                 name: 'adphoto',
                                 cls: 'picture-capture',
                                 height: 93
-
                             },
                             {
                                 xtype: 'selectfield',
@@ -59,6 +58,14 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                                     {text: 'Houses', value: 11},
                                     {text: 'Sports', value: 12}
                                 ]
+                            },
+                            {
+                                xtype: 'textfield',
+                                id: 'title',
+                                name: 'title',
+                                placeHolder: 'What are you selling?',
+                                required: true,
+                                clearIcon: true
                             },
                             {
                                 xtype: 'textareafield',

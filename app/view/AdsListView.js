@@ -81,9 +81,9 @@ Ext.define('ShopAfter.view.AdsListView', {
         if (!this._store) {
             this._store = Ext.create("Ext.data.Store", {
                 model: "ShopAfter.model.Ad",
-                autoLoad: (this.getAutoLoad() === true),
+                autoLoad: false,
                 remoteFilter: true,
-                pageSize: 9,
+                pageSize: 10,
                 proxy: this.getProxy()
             });
         }
@@ -94,11 +94,12 @@ Ext.define('ShopAfter.view.AdsListView', {
         if (!this._itemTemplate) {
             this._itemTemplate = new Ext.XTemplate(
                 '<div class="ad">',
+                '<div class="title">{title}</div>',
                 '<div class="img" style="background-image: url(\'{image}\')"></div>',
                 '<div class="user"><span>{currency}</span> {price}</div>',
                 '<div class="spacer"></div>',
                 '</div>'
-            )
+            );
         }
         return this._itemTemplate;
     },

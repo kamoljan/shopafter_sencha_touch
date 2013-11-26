@@ -1,32 +1,32 @@
 Ext.define('ShopAfter.view.AdDetails', {
     extend: 'Ext.Container',
-    xtype: "addetails",
+    xtype: 'addetails',
     requires: [],
     config: {
         scrollable: true,
         fullscreen: true,
-        tabBarPosition: "bottom",
+        tabBarPosition: 'bottom',
         ui: 'light',
-        cls: "addetails",
+        cls: 'addetails',
         record: null,
-        layout: "vbox",
+        layout: 'vbox',
         hidden: true,
         showAnimation: {
-            type: "slideIn",
-            direction: "left",
+            type: 'slideIn',
+            direction: 'left',
             duration: 500
         },
         hideAnimation: {
-            type: "slideOut",
-            direction: "right",
+            type: 'slideOut',
+            direction: 'right',
             duration: 500
         }
     },
 
     initialize: function () {
-        var me = this;
-        this.element.on("swipe", function (e) {
-            me.fireEvent("swipe", me, e);
+        var that = this;
+        this.element.on('swipe', function (e) {
+            that.fireEvent('swipe', that, e);
         });
     },
 
@@ -43,33 +43,39 @@ Ext.define('ShopAfter.view.AdDetails', {
                 content = this.getContent(),
                 data = record.data;
             header.setHtml(this.getHeaderTemplate().apply(data));
-            content.setHtml(record.get("synopsis"));
+            content.setHtml(record.get('synopsis'));
             content.getScrollable().getScroller().scrollTo(null, 0, false);
             this.add(this.getCloseButton());
             this.add(header);
+            this.add(this.getBtnReport(record.data._id));
+        }
+    },
 
-            var btnReport = Ext.Viewport.add({
-                xtype: 'button',
+    getBtnReport: function (ad_id) {
+        var that = this;
+        if (!this._btnReport) {
+            this._btnReport = Ext.create('Ext.Button', {
                 text: "Report it!",
                 id: 'btnReport',
                 listeners: {
                     tap: {
-                        single: true,
+                        //single: true,  // It is ok, for user to send several times
                         fn: function (e) {
-                            that.setReport(record.data._id);
+                            that.setReport(ad_id);
                         }
                     }
                 }
             });
-
-            this.add(btnReport);
+        } else {
+            this._btnReport.setText("Report it!");
         }
+        return this._btnReport;
     },
 
     getHeader: function () {
         if (!this._header) {
-            this._header = Ext.create("Ext.Container", {
-                layout: "vbox"
+            this._header = Ext.create('Ext.Container', {
+                layout: 'vbox'
             });
         }
         return this._header;
@@ -77,10 +83,10 @@ Ext.define('ShopAfter.view.AdDetails', {
 
     getContent: function () {
         if (!this._content) {
-            this._content = Ext.create("Ext.Container", {
+            this._content = Ext.create('Ext.Container', {
                 scrollable: true,
                 flex: 1,
-                cls: "content"
+                cls: 'content'
             });
         }
         return this._content;
@@ -112,7 +118,7 @@ Ext.define('ShopAfter.view.AdDetails', {
         if (!this._closeButton) {
             this._closeButton = Ext.create('Ext.Button', {
                 text: "Back",
-                action: "close"
+                action: 'close'
             });
         }
         return this._closeButton;
@@ -135,7 +141,7 @@ Ext.define('ShopAfter.view.AdDetails', {
                                     "Don't worry, we won't share anything without your okay. Promise!");
                             }
                         },
-                        { scope: "email" }
+                        { scope: 'email' }
                     );
                 }
             }
@@ -161,13 +167,13 @@ Ext.define('ShopAfter.view.AdDetails', {
     onAfterPutReportSuccess: function (response) {
         this.setMasked(false);
         var btnReport = Ext.getCmp('btnReport');
-        btnReport.setText('Thank you');
+        btnReport.setText("Thank you :)");
     },
 
     onAfterPutReportFailure: function (response) {
         this.setMasked(false);
-        alert('Error occurred. Please, check your connection');
-        alert('server-side failure with status code ' + response.status);
+        alert("Error occurred. Please, check your connection");
+        alert("server-side failure with status code " + response.status);
     }
     // ----------------------------------
 

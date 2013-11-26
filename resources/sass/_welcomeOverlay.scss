@@ -17,19 +17,6 @@
       @include st-box-align(center);
       @include st-box-pack(center);
       @include text-shadow(1px 1px 0px rgba(0, 0, 0, .7));
-      // FIXME have no idea what is that
-      @include query-medium;
-      //@include query-medium {
-      //  font-size: 2em;
-      //}
-      @include query-large;
-      //@include query-large {
-      //  font-size: 2.2em;
-      //}
-      @include query-small-landscape;
-      //@include query-small-landscape {
-      //  font-size: .8em;
-      //}
       h2 {
         text-align: center;
         font-weight: 300;

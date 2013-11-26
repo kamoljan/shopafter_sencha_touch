@@ -13,6 +13,7 @@ exports.posting = function (req, res, next) {
             console.log("(ad): img = " + img);
             var ad = new Ad({
                 profileId: req.body.profileId,
+                title: req.body.title,
                 image: img,
                 thumb: img,
                 category: req.body.category,
@@ -20,11 +21,9 @@ exports.posting = function (req, res, next) {
                 price: req.body.price,
                 phone: req.body.phone,
                 loc: [req.body.longitude, req.body.latitude],
-                date: new Date,
+                date: new Date(),
                 currency: req.body.currency
             });
-
-            // Save the ad to the database
             ad.save(function (err) {
                 if (err) {
                     handleError('Could not save ad', err, req, res);
@@ -32,7 +31,7 @@ exports.posting = function (req, res, next) {
                 }
                 console.log("Successfully saved new ad");
                 res.json({ success: true });
-            })
+            });
         }
     ]);
 };
