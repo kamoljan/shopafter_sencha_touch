@@ -15,8 +15,6 @@ $font-family: 'Roboto';
 @import "media-queries";
 @import "sencha";
 
-//@import 'sencha-touch/base';
-//@import 'sencha-touch/base/all';
 @import 'sencha-touch/default';
 @import 'sencha-touch/default/all';
 @include icon("bank");
@@ -25,7 +23,6 @@ $font-family: 'Roboto';
 @import "welcomeOverlay";
 @import "list";
 @import "details";
-@import "windows";
 
 @mixin spriteD {
   background: url($icon-sprite-detail) no-repeat;
@@ -119,7 +116,6 @@ $font-family: 'Roboto';
 
 .adDetailPhone {
   background: #fbfbfb;
-
   a {
     @include spriteD;
     background-position: 5px -43px;
@@ -131,7 +127,6 @@ $font-family: 'Roboto';
 }
 
 .adDetailDesc {
-
   margin-top: 20px;
   padding: 5px 5px 5px 0px;
   span {
@@ -221,7 +216,6 @@ $font-family: 'Roboto';
   input, textarea {
     padding: 10px;
     height: auto;
-
     @include border-radius(4px, 4px);
     -moz-box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
     -webkit-box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
@@ -269,18 +263,8 @@ $font-family: 'Roboto';
   width: 30%;
   top: 30px;
   padding: 4px;
-  border: 4px solid #fff; 
- // .image-tns {
-//    position: relative;
- //   width: 85px !important;
- //   height: 85px !important;
- //   background: url("../images/camera.jpg") no-repeat;
- //   background-size: 85px 85px;
- //   border: none !important;
- //   margin: 0 auto;
- // }
-
- }
+  border: 4px solid #fff;
+}
 
 .currencyAdFrom {
   padding: 8px 0;
@@ -364,12 +348,14 @@ $font-family: 'Roboto';
   width: 62.5%;
   margin-left: 37%;
 }
+
 .priceAdFrom {
-    width: 65% !important;
-    float: right !important;
+  width: 65% !important;
+  float: right !important;
 }
+
 .currencyAdFrom {
-width: 30% !important;
+  width: 30% !important;
 }
 
 .x-toolbar .x-field-textarea .x-component-outer,
@@ -390,33 +376,14 @@ width: 30% !important;
   width: 0px;
 }
 
-.grid .x-list-item .ad .img {
-  box-shadow: none;
-  width: 90px !important;
-  height: 133px !important;
+.adDetailPrice > span, .user > span {
+  font-size: 11px;
+  color: #646464;
 }
 
-.grid .x-list-item .ad {
-  padding: 4px;
-  background: white;
-  @include border-radius(4px, 4px);
-  -moz-box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
-  -webkit-box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
-  box-shadow: 0px 0px 5px rgba(000, 000, 000, 0.3);
-    
-}
-.grid .user {
-width: 90px;
-white-space: nowrap;
-overflow: hidden;
-}
-.adDetailPrice>span,.user>span {
-font-size: 11px;
-color: #646464;
-}
 .hr_ {
-    border-bottom: 1px solid #F3f3f3;
-    border-top: none;
+  border-bottom: 1px solid #F3f3f3;
+  border-top: none;
 }
 
 .x-list .x-list-item .x-list-item-body, .x-list .x-list-item.x-list-item-tpl .x-innerhtml {
@@ -424,6 +391,5 @@ color: #646464;
 }
 
 #adphoto > div {
-
   display: none;
 }
