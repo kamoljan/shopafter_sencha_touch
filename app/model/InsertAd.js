@@ -3,6 +3,7 @@ Ext.define('ShopAfter.model.InsertAd', {
     config: {
         idProperty: '_id',  // avoid duplicates
         fields: [
+            { name: "title", type: "string" },
             { name: "image", type: "string" },
             { name: "thumb", type: "string" },
             { name: "description", type: "string" },
@@ -11,6 +12,11 @@ Ext.define('ShopAfter.model.InsertAd', {
             { name: "loc" }
         ],
         validations: [
+            {
+                type: 'presence',
+                field: 'title',
+                message: "Tell people what you are selling!"
+            },
             {
                 type: 'presence',
                 field: 'description',

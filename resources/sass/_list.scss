@@ -11,6 +11,7 @@
 .ad .img {
   background-size: contain;
   background-repeat: no-repeat;
+  @include border-radius(4px, 4px);
 }
 
 .grid .x-list-item {
