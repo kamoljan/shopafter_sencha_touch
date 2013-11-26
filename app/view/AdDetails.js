@@ -99,13 +99,14 @@ Ext.define('ShopAfter.view.AdDetails', {
                 '<hr class="hr_" />',
                 '<div class="info">',
                 '<div class="fbProfilePic"><img src="https://graph.facebook.com/{profileId}/picture?type=square" /></div>',
-                '<span class="userName">&nbsp;</span>',
+                '<strong>&nbsp;{title}</strong><br />',  // FIXME: refactor it
+                '<span class="userName">&nbsp;</span>',  // TODO: pull from FB
                 '<div class="adDetailData">Posted at: {date}</div>',
                 '<div class="vbox vbox-isk">',
                 '<div class="adDetailPrice"><span>{currency}</span> {price}</div>',
                 '<div class="adDetailDesc"><span></span>{description}</div>',
                 '<br />',
-                '<p class="adDetailPhone"><a href="tel:+{phone}">{phone}</a></p>',
+                '<p class="adDetailPhone"><a href="tel:{phone}">{phone}</a></p>',
                 '<p class="adDetailPhone"><a href="SMS:{phone}">SMS</a></p>',
                 '</div>',
                 '</div>'

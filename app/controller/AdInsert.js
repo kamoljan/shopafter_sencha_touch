@@ -151,6 +151,7 @@ Ext.define('ShopAfter.controller.AdInsert', {
             url: 'http://shopafter.com:3000/ad',
             method: 'POST',
             params: {
+                title: values.title,
                 profileId: userId,
                 image: fn.get_name(),
                 category: values.category,
