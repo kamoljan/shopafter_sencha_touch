@@ -47,8 +47,9 @@ Ext.define('ShopAfter.view.AdDetails', {
             content.getScrollable().getScroller().scrollTo(null, 0, false);
             this.add(this.getCloseButton());
             this.add(header);
-            this.add(this.getBtnReport(record.data._id));
+            this.add(this.getBtnReport(data._id));
         }
+        this.ajaxGetUserInfo(data.profileId);
     },
 
     getBtnReport: function (ad_id) {
@@ -99,16 +100,14 @@ Ext.define('ShopAfter.view.AdDetails', {
                 '<hr class="hr_" />',
                 '<div class="info">',
                 '<div class="fbProfilePic"><img src="https://graph.facebook.com/{profileId}/picture?type=square" /></div>',
-                '<strong>&nbsp;{title}</strong><br />',  // FIXME: refactor it
-                '<span class="userName">&nbsp;</span>',  // TODO: pull from FB
+                '<strong>{title}</strong><br />',  // FIXME: refactor it w/ proper CSS
+                '<div id="userName"></div>',
                 '<div class="adDetailData">Posted at: {date}</div>',
-                '<div class="vbox vbox-isk">',
                 '<div class="adDetailPrice"><span>{currency}</span> {price}</div>',
                 '<div class="adDetailDesc"><span></span>{description}</div>',
                 '<br />',
                 '<p class="adDetailPhone"><a href="tel:{phone}">{phone}</a></p>',
                 '<p class="adDetailPhone"><a href="SMS:{phone}">SMS</a></p>',
-                '</div>',
                 '</div>'
             );
         }
@@ -175,7 +174,32 @@ Ext.define('ShopAfter.view.AdDetails', {
         this.setMasked(false);
         alert("Error occurred. Please, check your connection");
         alert("server-side failure with status code " + response.status);
-    }
-    // ----------------------------------
+    },
 
+    // ----------------------------------
+    // GET FB USER INFO
+    // ----------------------------------
+    ajaxGetUserInfo: function (profileId) {
+        Ext.Ajax.request({
+            url: 'https://graph.facebook.com/' + profileId,
+            method: 'GET',
+            scope: this,
+            success: this.onAfterGetUserInfoSuccess,
+            failure: this.onAfterGetUserInfoFailure
+        });
+    },
+
+    onAfterGetUserInfoSuccess: function (response) {
+        this.setMasked(false);
+        var data = Ext.JSON.decode(response.responseText.trim());
+        //http://www.mysamplecode.com/2012/03/documentgetelementbyid-in-extjs.html
+        var el = Ext.getDom('userName');
+        el.innerHTML = data.name;
+    },
+
+    onAfterGetUserInfoFailure: function (response) {
+        this.setMasked(false);
+        alert("Error occurred. Please, check your connection");
+        alert("server-side failure with status code " + response.status);
+    }
 });
