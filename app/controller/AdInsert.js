@@ -1,34 +1,33 @@
-var fN = function () {
-    var name = '',
-        img_uri = '';
-    return {
-        set_name: function (p) {
-            name = p;
-        },
-        get_name: function () {
-            return name;
-        },
-        set_img_uri: function (p) {
-            img_uri = p;
-        },
-        get_img_uri: function () {
-            return img_uri;
-        }
-    };
-};
-var fn = fN();
-
 Ext.define('ShopAfter.controller.AdInsert', {
     extend: 'Ext.app.Controller',
     config: {
+        name: '',
+        imgUri: '',
         control: {
             '#saveAdForm': {
                 tap: 'validateAdForm'
             },
             '#adphoto': {
                 tap: 'tabPhoto'
+            },
+            '#currency': {
+                change: 'onCurrencyChange'
             }
+        },
+        refs: {
+            phone: '#phone'
         }
+    },
+
+    onCurrencyChange: function (field) {
+        var codes = [];
+        var currency = field.getRecord().data.value;
+        codes['IDR'] = 62;
+        codes['MYR'] = 60;
+        codes['PHP'] = 63;
+        codes['SGD'] = 65;
+        codes['VND'] = 84;
+        this.getPhone().setValue(codes[currency]);
     },
 
     tabPhoto: function () {
@@ -60,8 +59,8 @@ Ext.define('ShopAfter.controller.AdInsert', {
             },
             function (message) {
                 alert('Failed: ' + message);
-                fn.set_name('');
-                fn.set_img_uri('');
+                this.setName('');
+                this.setImgUri('');
             },
             {
                 quality: 85,
@@ -77,9 +76,9 @@ Ext.define('ShopAfter.controller.AdInsert', {
 
     uploadPhoto: function (img_uri) {
         var img = Ext.getCmp('adphoto');
-        fn.set_name((new Date()).getTime() + ".jpg");  // consider an unique id
-        fn.set_img_uri(img_uri);  // initializing img_uri for later upload to s3
-        img.setSrc(fn.get_img_uri());
+        this.setName((new Date()).getTime() + ".jpg");  // consider an unique id
+        this.setImgUri(img_uri);
+        img.setSrc(this.getImgUri());
         this.ajaxPostSign();
     },
 
@@ -91,7 +90,7 @@ Ext.define('ShopAfter.controller.AdInsert', {
             url: 'http://shopafter.com:3000/sign',
             method: 'POST',
             params: {
-                "fileName": fn.get_name()
+                "fileName": this.getName()
             },
             scope: this,
             success: this.onAfterPostSignSuccess,
@@ -103,14 +102,13 @@ Ext.define('ShopAfter.controller.AdInsert', {
         var obj = Ext.decode(response.responseText),
             ft = new FileTransfer(),
             op = new FileUploadOptions();
-
         op.fileKey = "file";
-        op.fileName = fn.get_name();
+        op.fileName = this.getName();
         op.mimeType = "image/jpeg";
         op.chunkedMode = false;
         op.httpMethod = "POST";
         var params = {
-            "key": fn.get_name(),
+            "key": this.getName(),
             "AWSAccessKeyId": obj.awsKey,
             "acl": "public-read",
             "policy": obj.policy,
@@ -120,19 +118,19 @@ Ext.define('ShopAfter.controller.AdInsert', {
         op.params = params;
         function win(r) {
             if (r.responseCode !== 204) {
-                fn.set_name('');
-                fn.set_img_uri('');
+                this.setName('');
+                this.setImgUri('');
             }
         }
 
         function fail(error) {
             alert("Error = " + JSON.stringify(error));
-            fn.set_name('');
-            fn.set_img_uri('');
+            this.setName('');
+            this.setImgUri('');
         }
 
-        if (fn.get_img_uri() !== '') {
-            ft.upload(fn.get_img_uri(), encodeURI("http://" + obj.bucket + ".s3.amazonaws.com/"), win, fail, op);
+        if (this.getImgUri() !== '') {
+            ft.upload(this.getImgUri(), encodeURI("http://" + obj.bucket + ".s3.amazonaws.com/"), win, fail, op);
         } else {
             alert('Please, retake/reupload your picture');
         }
@@ -141,7 +139,6 @@ Ext.define('ShopAfter.controller.AdInsert', {
     onAfterPostSignFailure: function (response) {
         alert('server-side failure with status code ' + response.status);
     },
-    // ----------------------------------
 
     // ----------------------------------
     // POST AD
@@ -153,7 +150,7 @@ Ext.define('ShopAfter.controller.AdInsert', {
             params: {
                 title: values.title,
                 profileId: userId,
-                image: fn.get_name(),
+                image: this.getName(),
                 category: values.category,
                 description: values.description,
                 price: values.price,
@@ -170,8 +167,8 @@ Ext.define('ShopAfter.controller.AdInsert', {
 
     onAfterPostAdSuccess: function (response) {
         alert('Hooray, your ad has been posted successfully! Please go to the "Latest ads" to view your ad!');
-        fn.set_name('');
-        fn.set_img_uri('');
+        this.setName('');
+        this.setImgUri('');
         Ext.getCmp('insertadform').setMasked(false);
     },
 
@@ -185,7 +182,7 @@ Ext.define('ShopAfter.controller.AdInsert', {
         var that = this;
         var errorString = '',
             form = Ext.getCmp('insertadform');
-        if (fn.get_name() === "") {
+        if (this.getName() === "") {
             alert('The pictures help you sell better, please upload them now!');
             return false;
         }
@@ -205,7 +202,8 @@ Ext.define('ShopAfter.controller.AdInsert', {
         FB.login(
             function (response) {
                 if (response.status === 'connected') {
-                    that.ajaxPostAd(response.authResponse.userId, form.getValues());
+                    //http://stackoverflow.com/questions/13944940/facebook-javascript-sdk-uncaught-typeerror-cannot-read-property-userid-of-und
+                    that.ajaxPostAd(response.authResponse.userID || response.authResponse.userId, form.getValues());
                 } else {
                     alert("Sorry, please connect to Facebook account to post your ads." +
                         "Don't worry, we won't share anything without your okay. Promise!");

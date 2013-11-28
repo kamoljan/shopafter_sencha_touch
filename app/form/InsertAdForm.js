@@ -114,6 +114,7 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                                 xtype: 'numberfield',
                                 id: 'phone',
                                 name: 'phone',
+                                value: 65,
                                 placeHolder: 'Phone number',
                                 required: true,
                                 clearIcon: true
