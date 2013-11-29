@@ -30,5 +30,9 @@ Ext.define('ShopAfter.view.WelcomeOverlay', {
                 scope: this
             }
         });
+
+        this.on('hide', function () {
+            this.destroy();
+        });
     }
 });
