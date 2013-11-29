@@ -21,8 +21,8 @@ $font-family: 'Roboto';
 
 @import "menu";
 @import "welcomeOverlay";
-@import "list";
-@import "details";
+@import "adList";
+@import "adDetails";
 @import "adForm";
 
 @mixin spriteD {
@@ -40,7 +40,6 @@ $font-family: 'Roboto';
 
 .x-title .x-innerhtml {
   color: #fff;
-  text-shadow: none;
 }
 
 .vbox-isk {
@@ -61,7 +60,6 @@ $font-family: 'Roboto';
 .addetails .img {
   padding-bottom: 15px;
   background-position: 0 !important;
-  box-shadow: none !important;
   min-height: 230px !important;
   margin-bottom: 15px;
 
@@ -217,15 +215,6 @@ $font-family: 'Roboto';
 
 .currencyAdFrom {
   width: 30% !important;
-}
-
-.x-toolbar .x-field-textarea .x-component-outer,
-.x-toolbar .x-field-text .x-component-outer, .x-toolbar .x-field-number .x-component-outer,
-.x-toolbar .x-field-search .x-component-outer,
-.x-toolbar .x-field-select .x-component-outer {
-  -moz-box-shadow: inset 0px 0px 0px rgba(255, 255, 255, 0) !important;
-  -webkit-box-shadow: inset 0px 0px 0px rgba(255, 255, 255, 0) !important;
-  box-shadow: inset 0px 0px 0px rgba(255, 255, 255, 0) !important;
 }
 
 .x-list, .x-form .x-scroll-container {

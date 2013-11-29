@@ -2,7 +2,6 @@
   background-color: rgba(0, 0, 0, .5);
 }
 .welcomeOverlay.x-panel {
-  @include background-image(radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)));
   background-color: transparent;
   .x-innerhtml {
     @include st-box;
@@ -10,13 +9,12 @@
     @include st-box-align(center);
     @include st-box-pack(center);
     height: 100%;
-    color: white;
+    color: #7e26ba;
     .message {
       @include st-box;
       @include st-box-orient(vertical);
       @include st-box-align(center);
       @include st-box-pack(center);
-      @include text-shadow(1px 1px 0px rgba(0, 0, 0, .7));
       h2 {
         text-align: center;
         font-weight: 300;

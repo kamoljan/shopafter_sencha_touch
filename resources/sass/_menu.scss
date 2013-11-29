@@ -1,14 +1,9 @@
 .x-menu {
   background-color: #efefef;
-  @include st-box-shadow(inset -3px 0px 20px -10px black);
-  background-color: #efefef;
-  -webkit-box-shadow: inset -3px 0px 20px -10px black;
-  box-shadow: inset -3px 0px 20px -10px black;
   padding: 0px;
   .x-button {
     padding: 1em;
     border: none;
-    padding-right: 1em;
     border-radius: 0;
     border-bottom: 1px solid rgba(0, 0, 0, .1);
     text-align: right;
