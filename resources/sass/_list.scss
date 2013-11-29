@@ -24,6 +24,18 @@
       @include transform(translateZ(20px));
     }
   }
+  @include query-small() {
+    width: 50%;
+  }
+  @include query-small-landscape {
+    width: 33%;
+  }
+  @include query-medium {
+    width: 33%;
+  }
+  @include query-large {
+    width: 25%
+  }
   .ad {
     @include st-box;
     @include st-box-orient(vertical);
