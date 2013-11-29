@@ -99,10 +99,10 @@ Ext.define('ShopAfter.view.AdDetails', {
                 '<div class="img" style="background-image: url({image}); background-repeat: no-repeat;"></div>',
                 '<hr class="hr_" />',
                 '<div class="info">',
-                '<div class="fbProfilePic"><img src="https://graph.facebook.com/{profileId}/picture?type=square" /></div>',
+                '<div class="adDetailFBPicture"><img src="https://graph.facebook.com/{profileId}/picture?type=square" /></div>',
                 '<strong>{title}</strong><br />',  // FIXME: refactor it w/ proper CSS
-                '<div id="userName"></div>',
-                '<div class="adDetailData">Posted at: {date}</div>',
+                '<div class="adDetailName" id="userName"></div>',
+                '<div class="adDetailDate">Posted at: {date}</div>',
                 '<div class="adDetailPrice"><span>{currency}</span> {price}</div>',
                 '<div class="adDetailDesc"><span></span>{description}</div>',
                 '<br />',

@@ -41,7 +41,7 @@
     @include st-box-orient(vertical);
     @include st-box-align(center);
     @include transition-duration(.3s);
-    $width: (320/2) - ($list-item-padding);
+    $width: (320/2) - ($list-item-padding * 2);
     $height: $width * (266/180);
     .title {
       white-space: nowrap;

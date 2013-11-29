@@ -29,6 +29,6 @@ Ext.define('ShopAfter.view.WelcomeOverlay', {
                 single: true,
                 scope: this
             }
-        })
+        });
     }
 });

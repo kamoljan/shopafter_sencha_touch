@@ -1,17 +1,21 @@
+$icon-sprite-detail: "../images/spriteD.png";
+@mixin spriteD {
+  background: url($icon-sprite-detail) no-repeat;
+  background-size: 36px 177px !important;
+}
+
 .addetails {
   z-index: 9999;
   .x-button {
     border: 0;
     border-radius: 0;
-    background-color: rgb(246, 255, 148);
-    font-weight: 100;
     &.x-button-pressing {
       background-color: #F8E766;
       background-image: none;
     }
-    .x-button-label {
-      font-weight: 100;
-    }
+    @include background-image(linear-gradient(#611c8f, #8327c0));
+    height: 47px;
+    color: #fff;
   }
   .title {
     text-align: center;
@@ -23,36 +27,80 @@
     overflow: hidden;
   }
   .img {
-    width: 100%;
-    height: 75px;
-    background-position: 50%;
-    background-size: contain;
+    min-height: 230px !important;
+  }
+  .adDetailFBPicture img {
+    border: 1px solid #fcfcfc;
+    float: left;
   }
 }
 
-ul.cast {
-  padding: 3px;
-  background-color: #d3d3d3;
-  @include st-box;
-  @include st-box-orient(horizontal);
+.addetails .x-stretched.x-container > .x-inner {
+  margin: 15px;
+  color: #a1a1a1;
+  background: #fff;
+  padding: 3%;
+  position: relative;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  li {
-    font-size: .4em;
-    font-weight: 300;
-    &:before {
-      content: ", ";
-    }
-    &:first-child:before {
-      content: ""
-    }
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 94%;
+  float: left;
+}
+
+.addetails .x-button.x-button-pressing {
+  background: #8327c0;
+}
+
+.adDetailPrice {
+  @include spriteD;
+  background-position: 5px 5px;
+  font-size: 20px;
+  color: #090909;
+  padding-left: 50px;
+  height: 40px;
+  line-height: 40px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.adDetailPhone {
+  background: #fbfbfb;
+  a {
+    @include spriteD;
+    background-position: 5px -43px;
+    display: block;
+    padding: 10px 5px 10px 50px;
+    text-decoration: none;
+    color: #969696;
   }
 }
 
-.content .x-innerhtml {
-  text-align: justify;
-  padding: 10px;
-  font-weight: 300;
-  font-size: .8em;
+.adDetailDesc {
+  margin-top: 20px;
+  padding: 5px 5px 5px 0px;
+  font-size: 15px;
+  span {
+    @include spriteD;
+    background-position: 5px -100px;
+    width: 50px;
+    height: 30px;
+    display: block;
+    float: left;
+  }
+}
+
+.adDetailName {
+  font-size: 15px;
+}
+
+.adDetailDate {
+  font-size: 10px;
+  float: right;
+  margin-top: 37px;
+}
+
+.adDetailPrice > span, .user > span {
+  font-size: 11px;
+  color: #646464;
 }

@@ -9,7 +9,7 @@
     @include st-box-align(center);
     @include st-box-pack(center);
     height: 100%;
-    color: #7e26ba;
+    color: white;
     .message {
       @include st-box;
       @include st-box-orient(vertical);

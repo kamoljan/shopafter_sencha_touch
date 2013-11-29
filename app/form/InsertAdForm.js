@@ -20,11 +20,11 @@ Ext.define('ShopAfter.form.InsertAdForm', {
             {
                 xtype: "formpanel",
                 scrollable: null,
-                cls: 'fieldset1',
+                cls: 'adFormFormPanel',
                 items: [
                     {
                         xtype: 'fieldset',
-                        id: 'fieldset1',
+                        id: 'adFormFieldSet',
                         defaults: {
                             labelWidth: '25%'
                         },
@@ -33,7 +33,7 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                                 xtype: 'image',
                                 id: 'adphoto',
                                 name: 'adphoto',
-                                cls: 'picture-capture',
+                                cls: 'adFormAdPhoto',
                                 height: 93
                             },
                             {
@@ -77,7 +77,7 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                             },
                             {
                                 xtype: 'container',
-                                cls: 'buttons-adIn',
+                                cls: 'adFormContainer',
                                 defaults: {
                                     style: 'margin: 0px',
                                     flex: 1
@@ -85,7 +85,7 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                                 items: [
                                     {
                                         xtype: 'selectfield',
-                                        cls: 'currencyAdFrom',
+                                        cls: 'adFormCurrency',
                                         id: 'currency',
                                         name: 'currency',
                                         required: true,
@@ -101,7 +101,7 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                                     },
                                     {
                                         xtype: 'numberfield',
-                                        cls: 'priceAdFrom',
+                                        cls: 'adFomrPrice',
                                         id: 'price',
                                         name: 'price',
                                         placeHolder: 'Price',
@@ -121,7 +121,7 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                             },
                             {
                                 xtype: 'container',
-                                cls: 'buttons-adIn',
+                                cls: 'adFormContainer',
                                 defaults: {
                                     xtype: 'button',
                                     style: 'margin: 10px 0px 25px',
@@ -130,7 +130,7 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                                 items: [
                                     {
                                         text: 'Reset',
-                                        cls: 'reset',
+                                        cls: 'adFormBtnReset',
                                         handler: function () {
                                             Ext.getCmp('insertadform').reset();
                                         }
@@ -138,7 +138,7 @@ Ext.define('ShopAfter.form.InsertAdForm', {
                                     {
                                         text: 'Sell',
                                         id: 'saveAdForm',
-                                        cls: 'saveAdForm'
+                                        cls: 'adFromBtnSave'
                                     }
                                 ]
                             },
