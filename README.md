@@ -1,10 +1,11 @@
-# ShopAfter - Native Apps
+# ShopAfter - Native Apps packaging with PhoneGap
 
 ## Prerequisites
 #### Platform requirements:
-* ST 2.3
+* ST 2.3.1
 * CMD 4
-* PhoneGap
+* PhoneGap 3.1
+* Ruby 2
 
 #### Server Side
 In `server-side` run
@@ -23,18 +24,19 @@ Login into mongodb by `mongo` command and run
 
     sencha app build -run native
     
-Scan the qrcode or to install apk file into your local emulator/device, run
+To install apk file into your local emulator/device, run
 
     adb uninstall com.shopafter.ShopAfter; sencha app build native; adb install ./phonegap/platforms/android/bin/ShopAfter-debug.apk
     
-## Notes (not ciritical but good to know)
+## Notes (not critical but good to know)
 #### PhoneGap plugins
-The following plugins are installed and commited into the source code:
+The following plugins are installed and committed into the source code:
 * Camera
 * FileTransfer
 * Geolocation
+* FacebookConnect
 
-However, if you wish to upgrate to latest phonegap plugins run the following code from `phonegap/plugins` dir
+However, if you wish to upgrade to latest Phonegap plugins run the following code from `phonegap/plugins` dir
 
     phonegap local plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-camera.git
     phonegap local plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-transfer.git
