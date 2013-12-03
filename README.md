@@ -57,6 +57,7 @@ Index by ads.description for full text search index
 
     sudo mongod --setParameter textSearchEnabled=true
     db.ads.ensureIndex( {description: "text"} )
+    db.ads.ensureIndex( {title: "text"} )
 
 
 
