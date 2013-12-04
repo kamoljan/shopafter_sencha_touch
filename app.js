@@ -68,7 +68,7 @@ Ext.application({
                     text: 'Feedback',
                     iconCls: 'team',
                     handler: function () {
-                        window.location = 'mailto:kamol701@gmail.com';
+                        window.location = 'mailto:kamoljan@gmail.com';
                     }
                 }
             ]
