@@ -1,7 +1,5 @@
-Ext.define('ShopAfter.view.AdDetails', {
-    extend: 'Ext.Container',
-    xtype: 'addetails',
-    requires: [],
+Ext.define('ShopAfter.controller.AdDetails', {
+    extend: 'Ext.app.Controller',
     config: {
         scrollable: true,
         fullscreen: true,
@@ -47,8 +45,8 @@ Ext.define('ShopAfter.view.AdDetails', {
             this.add(this.getCloseButton());
             this.add(header);
             this.add(this.getBtnReport(data._id));
-            this.ajaxGetUserInfo(data.profileId);
         }
+        this.ajaxGetUserInfo(data.profileId);
     },
 
     getBtnReport: function (ad_id) {

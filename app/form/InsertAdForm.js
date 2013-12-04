@@ -154,7 +154,7 @@ Ext.define('ShopAfter.form.InsertAdForm', {
         ],
         listeners: {
             tap: {
-                fn: function(e) {
+                fn: function (e) {
                     if (e.getTarget('a.link')) {
                         if (!this._termspanel) {
                             this._termspanel = Ext.create('ShopAfter.view.Terms');

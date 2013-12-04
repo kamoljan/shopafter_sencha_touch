@@ -20,13 +20,13 @@ Ext.define('ShopAfter.controller.AdInsert', {
     },
 
     onCurrencyChange: function (field) {
-        var codes = [];
-        var currency = field.getRecord().data.value;
-        codes['IDR'] = 62;
-        codes['MYR'] = 60;
-        codes['PHP'] = 63;
-        codes['SGD'] = 65;
-        codes['VND'] = 84;
+        var codes = [],
+            currency = field.getRecord().data.value;
+        codes.IDR = 62;
+        codes.MYR = 60;
+        codes.PHP = 63;
+        codes.SGD = 65;
+        codes.VND = 84;
         this.getPhone().setValue(codes[currency]);
     },
 
@@ -107,7 +107,7 @@ Ext.define('ShopAfter.controller.AdInsert', {
         op.mimeType = "image/jpeg";
         op.chunkedMode = false;
         op.httpMethod = "POST";
-        var params = {
+        op.params = {
             "key": this.getName(),
             "AWSAccessKeyId": obj.awsKey,
             "acl": "public-read",
@@ -115,7 +115,6 @@ Ext.define('ShopAfter.controller.AdInsert', {
             "signature": obj.signature,
             "Content-Type": "image/jpeg"
         };
-        op.params = params;
         function win(r) {
             if (r.responseCode !== 204) {
                 this.setName('');
@@ -179,15 +178,15 @@ Ext.define('ShopAfter.controller.AdInsert', {
     // ----------------------------------
 
     validateAdForm: function (button, e, options) {
-        var that = this;
-        var errorString = '',
-            form = Ext.getCmp('insertadform');
+        var that = this,
+            errorString = '',
+            form = Ext.getCmp('insertadform'),
+            model = Ext.create('ShopAfter.model.InsertAd', form.getValues()),
+            errors = model.validate();
         if (this.getName() === "") {
             alert('The pictures help you sell better, please upload them now!');
             return false;
         }
-        var model = Ext.create('ShopAfter.model.InsertAd', form.getValues());
-        var errors = model.validate();
         if (!errors.isValid()) {
             errors.each(function (errorObj) {
                 errorString += '* ' + errorObj.getMessage() + '\n\n';

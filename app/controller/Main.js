@@ -49,7 +49,9 @@ Ext.define('ShopAfter.controller.Main', {
             'addetails': {
                 swipe: function (addetails, e) {
                     var target = Ext.fly(e.target);
-                    if (target.findParent('.x-scroll-container', 10, true)) return;
+                    if (target.findParent('.x-scroll-container', 10, true)) {
+                        return;
+                    }
                     if (e.direction === "up") {
                         addetails.hide();
                     }

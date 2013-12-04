@@ -26,22 +26,17 @@ Ext.define('ShopAfter.view.MyCorner', {
     },
 
     setCreateIfConnected: function () {
-        var profile = this.getProfileBox();
-        var data = {
-            profileId: 633194612,
-            date: "Today",
-            price: 232
-        };
-
+        var profile = this.getProfileBox(),
+            data = {
+                profileId: 633194612,
+                date: "Today",
+                price: 232
+            };
         this.removeAll(false);
         this.add(this.getHeaderBar());
         this.add(profile.setHtml(this.getProfileTemplate().apply(data)));
         this.add(this.getList());
         this.down("list").getStore().load();
-    },
-
-    setCreateIfNotConnected: function () {
-
     },
 
     getProfileBox: function () {
@@ -56,7 +51,7 @@ Ext.define('ShopAfter.view.MyCorner', {
     getProfileTemplate: function () {
         if (!this._headerTemplate) {
             this._headerTemplate = new Ext.XTemplate(
-                '<div class="img" style="background-image: url({image}); background-repeat: no-repeat;"></div>',
+                '<div class="img" style="background: url({image}) no-repeat;"></div>',
                 '<hr class="hr_" />',
                 '<div class="info">',
                 '<div class="fbProfilePic"><img src="https://graph.facebook.com/{profileId}/picture?type=square" /></div>',
@@ -69,20 +64,4 @@ Ext.define('ShopAfter.view.MyCorner', {
         }
         return this._headerTemplate;
     }
-
-//    getUserInfo: function () {
-//        FB.api(
-//            '/me',
-//            {
-//                fields: 'name,first_name,picture'
-//            },
-//            function (response) {
-//                console.log(response);
-//                var output = '';
-//                output += '<img src="' + response.picture.data.url + '" width="25" height="25"></img>';
-//                output += ' ' + response.first_name;
-//                alert("output = " + output);
-//            }
-//        );
-//    }
 });
