@@ -11,7 +11,8 @@ Ext.application({
     controllers: [
         'ShopAfter.controller.Facebook',
         'ShopAfter.controller.Main',
-        'ShopAfter.controller.AdInsert'
+        'ShopAfter.controller.AdInsert',
+        'ShopAfter.controller.AdDetails'
     ],
     views: [
         'ShopAfter.view.Main',
@@ -84,12 +85,10 @@ Ext.application({
             document.addEventListener("backbutton", Ext.bind(onBackKeyDown, this), false);
             function onBackKeyDown(e) {
                 e.preventDefault();
-
                 var terms = Ext.getCmp('termspanel');
-
-                if (ShopAfter.app.getController('ShopAfter.controller.Main').getAdDetailsVisible()) {
-                    ShopAfter.app.getController('ShopAfter.controller.Main')._adDetails.hide();
-                    ShopAfter.app.getController('ShopAfter.controller.Main').setAdDetailsVisible(false);
+                if (ShopAfter.app.getController('ShopAfter.controller.AdDetails').getAdDetailsVisible()) {
+                    ShopAfter.app.getController('ShopAfter.controller.AdDetails')._adDetails.hide();
+                    ShopAfter.app.getController('ShopAfter.controller.AdDetails').setAdDetailsVisible(false);
                 } else if (terms && terms.getTermsVisible()) {
                     terms.hide();
                     terms.setTermsVisible(false);

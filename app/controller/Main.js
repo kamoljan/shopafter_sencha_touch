@@ -1,11 +1,6 @@
 Ext.define('ShopAfter.controller.Main', {
     extend: 'Ext.app.Controller',
-    requires: [
-        "ShopAfter.view.AdDetails",
-        "Ext.util.InputBlocker"
-    ],
     config: {
-        adDetailsVisible: false,  // Handling Android backbutton
         refs: {
             main: 'main',
             adsList: 'adssearch > list',
@@ -45,43 +40,6 @@ Ext.define('ShopAfter.controller.Main', {
                         }, this, {single: true});
                     }
                 }
-            },
-            'addetails': {
-                swipe: function (addetails, e) {
-                    var target = Ext.fly(e.target);
-                    if (target.findParent('.x-scroll-container', 10, true)) {
-                        return;
-                    }
-                    if (e.direction === "up") {
-                        addetails.hide();
-                    }
-                }
-            },
-            'addetails > button[action="close"]': {
-                tap: function (button) {
-                    var details = button.up("addetails");
-                    details.hide();
-                    Ext.util.InputBlocker.unblockInputs();
-                }
-            },
-            'adslistview > list': {
-                itemtap: function (list, index, item, record, event) {
-                    this._adDetails = this.getAdDetails();
-                    this._adDetails.setRecord(record);
-                    Ext.Viewport.add(this._adDetails);
-                    Ext.util.InputBlocker.blockInputs();
-                    this._adDetails.on({
-                        show: {
-                            fn: function () {
-                                list.deselectAll(true);
-                            },
-                            scope: this,
-                            single: true
-                        }
-                    });
-                    this.setAdDetailsVisible(true);  // Handling Android backbutton
-                    this._adDetails.show();
-                }
             }
         }
     },
@@ -102,12 +60,5 @@ Ext.define('ShopAfter.controller.Main', {
         adsStore.filter('query', search);
         adsList.setScrollToTopOnRefresh(true);
         adsStore.load();
-    },
-
-    getAdDetails: function () {
-        if (!this._adDetails) {
-            this._adDetails = Ext.create("ShopAfter.view.AdDetails");
-        }
-        return this._adDetails;
     }
 });
