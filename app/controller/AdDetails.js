@@ -8,8 +8,9 @@ Ext.define('ShopAfter.controller.AdDetails', {
         adDetailsVisible: false,  // Handling Android backbutton
         adId: null,
         refs: {
-            btnReport: 'button[action="report"]',
-            adDetails: '#addetails'
+            adDetails: '#addetails',
+            message: '#message',
+            chatlist: '#adchatlist'
         },
         control: {
             'adslistview > list': {
@@ -30,6 +31,7 @@ Ext.define('ShopAfter.controller.AdDetails', {
                     this.setAdDetailsVisible(true);  // Handling Android backbutton
                     this._adDetails.show();
                     this.setAdId(record.data._id);
+                    this.getPubNubHistory(this.getAdId());
                 }
             },
             'addetails > button[action="report"]': {
@@ -41,8 +43,55 @@ Ext.define('ShopAfter.controller.AdDetails', {
                     details.hide();
                     Ext.util.InputBlocker.unblockInputs();
                 }
+            },
+            'button[action="chat"]': {
+                tap: function (button) {
+                    this.publishPubNub(this.getAdId(), this.getMessage().getValue());
+                    this.getPubNubHistory(this.getAdId());
+                }
             }
         }
+    },
+
+    subscribePubNub: function (channel) {
+        console.log("subscribePubNub channel = " + channel);
+        var that = this;
+        pubnub.subscribe({
+            channel: channel,
+            callback: function (message) {
+                console.log(JSON.stringify(message));
+                that.getPubNubHistory(channel);
+            }
+        });
+    },
+
+    publishPubNub: function (channel, message) {
+        console.log("publishPubNub channel = " + channel);
+        pubnub.publish({
+            channel: channel,
+            message: message
+        });
+    },
+
+    getPubNubHistory: function (channel) {
+        console.log("getPubNubHistory channel = " + channel);
+        var that = this;
+        pubnub.history({
+            channel: channel,
+            //count: 10,
+            //start: start,
+            //end: end,
+            //reverse: reverse ? 'true' : 'false',
+            reverse: true,
+            callback: function (response) {
+                var msg = "";
+                for (x in response[0]) {
+                    msg = msg + JSON.stringify(response[0][x]) + "<br />";
+                }
+                that.getChatlist().setHtml(msg);
+                console.log("msg = " + msg);
+            }
+        });
     },
 
     openAdDetails: function () {

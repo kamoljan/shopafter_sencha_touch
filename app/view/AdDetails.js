@@ -1,5 +1,15 @@
 Ext.define('ShopAfter.view.AdDetails', {
     extend: 'Ext.Container',
+    requires: [
+        'Ext.field.Text',
+        'Ext.field.Search',
+        'Ext.field.Select',
+        'Ext.Button',
+        'Ext.List',
+        'Ext.Img',
+        'ShopAfter.store.Chats',
+        'ShopAfter.view.ChatList'
+    ],
     xtype: 'addetails',
     id: 'addetails',
     config: {
@@ -62,6 +72,24 @@ Ext.define('ShopAfter.view.AdDetails', {
                 itemId: 'adreport',
                 action: 'report',
                 text: 'Report it!'
+            },
+            {
+                itemId: 'adchatlist'
+            },
+            {
+                xtype: 'titlebar',
+                docked: 'bottom',
+                items: [
+                    {
+                        xtype: 'textfield',
+                        itemId: 'message'
+                    },
+                    {
+                        xtype: 'button',
+                        action: 'chat',
+                        text: 'Chat'
+                    }
+                ]
             }
         ]
     },
@@ -70,11 +98,11 @@ Ext.define('ShopAfter.view.AdDetails', {
         var data = this.getRecord().data;
         this.getAdContent(data);
         this.ajaxGetUserInfo(data.profileId);
+
     },
 
     getAdContent: function (data) {
         if (data !== null) {
-            console.dir(this.down);
             this.down('#adfbpicture').setHtml('<div class="adDetailFBPicture"><img src="https://graph.facebook.com/' + data.profileId + '/picture?type=square" /></div>');
             this.down('#adimage').setHtml('<img src="' + data.image + '" />');
             this.down('#addate').setHtml("Posted at: " + data.date);
