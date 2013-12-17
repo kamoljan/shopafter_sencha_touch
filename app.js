@@ -1,13 +1,15 @@
 var pubnub = PUBNUB({
-    publish_key : 'pub-c-9935d7db-1e0f-4d08-be4a-4bf95690cce1',
-    subscribe_key : 'sub-c-df2e4f1a-2cb8-11e3-849c-02ee2ddab7fe',
-    ssl : false,
-    origin : 'pubsub.pubnub.com'
+    publish_key: 'pub-c-9935d7db-1e0f-4d08-be4a-4bf95690cce1',
+    subscribe_key: 'sub-c-df2e4f1a-2cb8-11e3-849c-02ee2ddab7fe',
+    ssl: false,
+    origin: 'pubsub.pubnub.com'
 });
-
 
 Ext.application({
     name: 'ShopAfter',
+    stores: [
+        'ShopAfter.store.Chats'
+    ],
     requires: [
         'Ext.MessageBox',
         'Ext.device.Storage',
@@ -40,67 +42,6 @@ Ext.application({
         '748x1024': 'resources/startup/748x1024.png',
         '1536x2008': 'resources/startup/1536x2008.png',
         '1496x2048': 'resources/startup/1496x2048.png'
-    },
-
-    launch1: function () {
-        var myStore = Ext.create('Ext.data.Store', {
-            storeId: 'list',
-            fields: ['txt']
-        }); // create()
-
-        Ext.create('Ext.List', {
-            fullscreen: true,
-            store: 'list',
-            itemTpl: '{txt}',
-            items: [
-                {
-                    xtype: 'titlebar',
-                    docked: 'top',
-                    items: [
-                        {
-                            xtype: 'textfield',
-                            label: 'Channel',
-                            name: 'channel',
-                            id: 'channel',
-                            align: 'left',
-                        },
-                        {
-                            text: 'Subscribe',
-                            align: 'left',
-                            handler: function () {
-                                var channel = Ext.getCmp('channel').getValue() || 'sencha-demo-channel';
-                                //myStore.removeAll();
-                                pubnub.subscribe({
-                                    channel: channel,
-                                    callback: function (message) {
-                                        myStore.insert(0, {txt: JSON.stringify(message)});
-                                    }
-                                });
-                            }
-                        },
-                        {
-                            xtype: 'textfield',
-                            label: 'Message',
-                            name: 'message',
-                            id: 'message',
-                            align: 'right'
-                        },
-                        {
-                            text: 'Publish',
-                            align: 'right',
-                            handler: function () {
-                                var channel = Ext.getCmp('channel').getValue() || 'sencha-demo-channel';
-                                var message = Ext.getCmp('message').getValue() || 'default-dummy-message';
-                                pubnub.publish({
-                                    channel: channel,
-                                    message: message
-                                });
-                            }
-                        }
-                    ]
-                }
-            ]
-        });
     },
 
     launch: function () {

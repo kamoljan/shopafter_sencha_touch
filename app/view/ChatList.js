@@ -5,7 +5,8 @@ Ext.define('ShopAfter.view.ChatList', {
         'ShopAfter.store.Chats'
     ],
     config: {
-        store: 'chatstore',
-        itemTpl: '{txt}'
+        store: 'Chats',
+        itemTpl: '{txt}',
+        flex: 1
     }
 });

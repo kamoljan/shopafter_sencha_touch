@@ -74,7 +74,8 @@ Ext.define('ShopAfter.view.AdDetails', {
                 text: 'Report it!'
             },
             {
-                itemId: 'adchatlist'
+                xtype: 'chatlist',
+                itemId: 'chatlist'
             },
             {
                 xtype: 'titlebar',

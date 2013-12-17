@@ -10,7 +10,7 @@ Ext.define('ShopAfter.controller.AdDetails', {
         refs: {
             adDetails: '#addetails',
             message: '#message',
-            chatlist: '#adchatlist'
+            chatlist: '#chatlist'
         },
         control: {
             'adslistview > list': {
@@ -32,6 +32,7 @@ Ext.define('ShopAfter.controller.AdDetails', {
                     this._adDetails.show();
                     this.setAdId(record.data._id);
                     this.getPubNubHistory(this.getAdId());
+                    this.subscribePubNub(this.getAdId());
                 }
             },
             'addetails > button[action="report"]': {
@@ -47,7 +48,6 @@ Ext.define('ShopAfter.controller.AdDetails', {
             'button[action="chat"]': {
                 tap: function (button) {
                     this.publishPubNub(this.getAdId(), this.getMessage().getValue());
-                    this.getPubNubHistory(this.getAdId());
                 }
             }
         }
@@ -55,12 +55,12 @@ Ext.define('ShopAfter.controller.AdDetails', {
 
     subscribePubNub: function (channel) {
         console.log("subscribePubNub channel = " + channel);
-        var that = this;
+        var myStore = Ext.getStore('Chats');
         pubnub.subscribe({
             channel: channel,
             callback: function (message) {
                 console.log(JSON.stringify(message));
-                that.getPubNubHistory(channel);
+                myStore.insert(0, {txt: JSON.stringify(message)});
             }
         });
     },
@@ -75,21 +75,20 @@ Ext.define('ShopAfter.controller.AdDetails', {
 
     getPubNubHistory: function (channel) {
         console.log("getPubNubHistory channel = " + channel);
-        var that = this;
+        var myStore = Ext.getStore('Chats');
+        myStore.removeAll();
         pubnub.history({
             channel: channel,
-            //count: 10,
+            count: 10,
             //start: start,
             //end: end,
             //reverse: reverse ? 'true' : 'false',
             reverse: true,
             callback: function (response) {
-                var msg = "";
+                console.dir(JSON.stringify(response[0]));
                 for (x in response[0]) {
-                    msg = msg + JSON.stringify(response[0][x]) + "<br />";
+                    myStore.insert(0, {txt: JSON.stringify(response[0][x])});
                 }
-                that.getChatlist().setHtml(msg);
-                console.log("msg = " + msg);
             }
         });
     },
