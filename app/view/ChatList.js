@@ -6,7 +6,7 @@ Ext.define('ShopAfter.view.ChatList', {
     ],
     config: {
         store: 'Chats',
-        itemTpl: '{txt}',
+        itemTpl: '<div class="adDetailFBPicture"><img src="https://graph.facebook.com/{user}/picture?type=square" /></div>{message}',
         flex: 1
     }
 });
