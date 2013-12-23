@@ -47,7 +47,30 @@ Ext.define('ShopAfter.controller.AdDetails', {
             },
             'button[action="chat"]': {
                 tap: function (button) {
-                    this.publishPubNub(this.getAdId(), this.getMessage().getValue());
+                    alert('0');
+                    var that = this,
+                        msg = this.getMessage().getValue(),
+                        channel = this.getAdId();
+                    FB.getLoginStatus(
+                        function (response) {
+                            alert(JSON.stringify(response));
+                            if (response.status === 'connected') {
+                                alert(JSON.stringify(response));
+                                that.publishPubNub(channel, msg, response.authResponse.userID || response.authResponse.userId);
+                            } else {
+                                FB.login(
+                                    function (response) {
+                                        if (response.status === 'connected') {
+                                            that.publishPubNub(channel, msg, response.authResponse.userID || response.authResponse.userId);
+                                        } else {
+                                            alert("Sorry, please connect to Facebook account to report.");
+                                        }
+                                    },
+                                    { scope: 'email' }
+                                );
+                            }
+                        }
+                    );
                 }
             }
         }
@@ -65,11 +88,12 @@ Ext.define('ShopAfter.controller.AdDetails', {
         });
     },
 
-    publishPubNub: function (channel, message) {
+    publishPubNub: function (channel, message, user) {
         console.log("publishPubNub channel = " + channel);
         pubnub.publish({
             channel: channel,
-            message: message
+            message: message,
+            user: user
         });
     },
 
@@ -79,7 +103,7 @@ Ext.define('ShopAfter.controller.AdDetails', {
         myStore.removeAll();
         pubnub.history({
             channel: channel,
-            count: 10,
+            count: 100,
             //start: start,
             //end: end,
             //reverse: reverse ? 'true' : 'false',
@@ -109,15 +133,14 @@ Ext.define('ShopAfter.controller.AdDetails', {
         FB.getLoginStatus(
             function (response) {
                 if (response.status === 'connected') {
-                    that.ajaxPutReport(that.getAdId(), response.authResponse.userId);
+                    that.ajaxPutReport(that.getAdId(), response.authResponse.userID || response.authResponse.userId);
                 } else {
                     FB.login(
                         function (response) {
                             if (response.status === 'connected') {
-                                that.ajaxPutReport(that.getAdId(), response.authResponse.userId);
+                                that.ajaxPutReport(that.getAdId(), response.authResponse.userID || response.authResponse.userId);
                             } else {
-                                alert("Sorry, please connect to Facebook account to report." +
-                                    "Don't worry, we won't share anything without your okay. Promise!");
+                                alert("Sorry, please connect to Facebook account to report.");
                             }
                         },
                         { scope: 'email' }

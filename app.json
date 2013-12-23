@@ -44,6 +44,9 @@
 			"remote": true
 		},
         {
+            "path": "pubnub.min.js"
+        },
+        {
             "path": "touch/sencha-touch.js",
             "x-bootstrap": true
         },

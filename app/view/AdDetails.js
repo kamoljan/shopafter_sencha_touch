@@ -75,7 +75,9 @@ Ext.define('ShopAfter.view.AdDetails', {
             },
             {
                 xtype: 'chatlist',
-                itemId: 'chatlist'
+                itemId: 'chatlist',
+                flex: 1,
+                minHeight: '100px'
             },
             {
                 xtype: 'titlebar',
