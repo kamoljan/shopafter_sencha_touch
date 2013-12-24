@@ -45,44 +45,45 @@ Ext.define('ShopAfter.controller.AdDetails', {
                     Ext.util.InputBlocker.unblockInputs();
                 }
             },
+//            'button[action="chat"]': {
+//                tap: function (button) {
+//                    var msg = {
+//                            "user": 618592936,
+//                            "message": this.getMessage().getValue()
+//                        },
+//                        channel = this.getAdId();
+//                    this.publishPubNub(channel, msg);
+//                }
+//            }
             'button[action="chat"]': {
                 tap: function (button) {
-                    var msg = {
-                            "user": "618592936",
+                    var that = this,
+                        msg = {
                             "message": this.getMessage().getValue()
                         },
                         channel = this.getAdId();
-                    this.publishPubNub(channel, msg);
+                    FB.getLoginStatus(
+                        function (response) {
+                            if (response.status === 'connected') {
+                                msg.user = response.authResponse.userID || response.authResponse.userId;
+                                that.publishPubNub(channel, msg);
+                            } else {
+                                FB.login(
+                                    function (response) {
+                                        if (response.status === 'connected') {
+                                            msg.user = response.authResponse.userID || response.authResponse.userId;
+                                            that.publishPubNub(channel, msg);
+                                        } else {
+                                            alert("Sorry, please connect to Facebook account to report.");
+                                        }
+                                    },
+                                    { scope: 'email' }
+                                );
+                            }
+                        }
+                    );
                 }
             }
-//            'button[action="chat"]': {
-//                tap: function (button) {
-//                    alert('0');
-//                    var that = this,
-//                        msg = this.getMessage().getValue(),
-//                        channel = this.getAdId();
-//                    FB.getLoginStatus(
-//                        function (response) {
-//                            alert(JSON.stringify(response));
-//                            if (response.status === 'connected') {
-//                                alert(JSON.stringify(response));
-//                                that.publishPubNub(channel, msg, response.authResponse.userID || response.authResponse.userId);
-//                            } else {
-//                                FB.login(
-//                                    function (response) {
-//                                        if (response.status === 'connected') {
-//                                            that.publishPubNub(channel, msg, response.authResponse.userID || response.authResponse.userId);
-//                                        } else {
-//                                            alert("Sorry, please connect to Facebook account to report.");
-//                                        }
-//                                    },
-//                                    { scope: 'email' }
-//                                );
-//                            }
-//                        }
-//                    );
-//                }
-//            }
         }
     },
 
@@ -118,18 +119,13 @@ Ext.define('ShopAfter.controller.AdDetails', {
             //reverse: reverse ? 'true' : 'false',
             reverse: true,
             callback: function (response) {
-                console.log("getPubNubHistory history");
-                console.dir(JSON.stringify(response[0]));
+//                console.dir(JSON.stringify(response[0]));
                 for (x in response[0]) {
-                    console.log("user = " + response[0][x].user);
-                    console.log("message = " + response[0][x].message);
-//                    myStore.insert(0, {txt: JSON.stringify(response[0][x])});
-//                    myStore.insert(0, response[0][x].user, response[0][x].message);
                     myStore.insert(
                         0,
                         {
-                            user: JSON.stringify(response[0][x].user),
-                            message: JSON.stringify(response[0][x].message)
+                            user: response[0][x].user,
+                            message: response[0][x].message
                         }
                     );
                 }
@@ -170,9 +166,9 @@ Ext.define('ShopAfter.controller.AdDetails', {
         );
     },
 
-// ----------------------------------
-// PUT REPORT
-// ----------------------------------
+    // ----------------------------------
+    // PUT REPORT
+    // ----------------------------------
     ajaxPutReport: function (ad_id, user_id) {
         Ext.Ajax.request({
             url: 'http://shopafter.com:3000/report/' + ad_id,
@@ -195,5 +191,4 @@ Ext.define('ShopAfter.controller.AdDetails', {
         this.getAdDetails().setMasked(false);
         this.getBtnReport().setText("Please, check your connection");
     }
-})
-;
+});
